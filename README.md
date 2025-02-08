@@ -45,6 +45,4 @@ L'idée ? Une plateforme où **tout le monde peut apprendre et enseigner**, en f
 
 ---
 
-## 🚀 Installation & Déploiement
-
-### **1️⃣ Cloner le projet**
+Le projet est actuellement en phase de développement :)
