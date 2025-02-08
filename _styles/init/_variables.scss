@@ -1,0 +1,172 @@
+// ========================
+// CORRESPONDANCES PX - REM
+// ========================
+
+//px to rem
+$onepx: 0.063rem;
+$twopx: 0.125rem;
+$threepx: 0.188rem;
+$fourpx: 0.25rem;
+$fivepx: 0.313rem;
+$sixpx: 0.375rem;
+$sevenpx: 0.438rem;
+$eightpx: 0.5rem;
+$ninepx: 0.563rem;
+$tenpx: 0.625rem;
+$elevenpx: 0.688rem;
+$twelvepx: 0.75rem;
+$thirteenpx: 0.813rem;
+$fourteenpx: 0.875rem;
+$fifteenpx: 0.938rem;
+$sixteenpx: 1rem;
+$seventeenpx: 1.063rem;
+$eighteenpx: 1.125rem;
+$nineteenpx: 1.188rem;
+$twentypx: 1.25rem;
+$twenty-onepx: 1.313rem;
+$twenty-twopx: 1.375rem;
+$twenty-threepx: 1.438rem;
+$twenty-fourpx: 1.5rem;
+$twenty-fivepx: 1.563rem;
+$twenty-sixpx: 1.625rem;
+$twenty-sevenpx: 1.688rem;
+$twenty-eightpx: 1.75rem;
+$twenty-ninepx: 1.813rem;
+$thirtypx: 1.875rem;
+$thirty-onepx: 1.938rem;
+$thirty-twopx: 2rem;
+$thirty-threepx: 2.063rem;
+$thirty-fourpx: 2.125rem;
+$thirty-fivepx: 2.188rem;
+$thirty-sixpx: 2.25rem;
+$thirty-sevenpx: 2.313rem;
+$thirty-eightpx: 2.375rem;
+$thirty-ninepx: 2.438rem;
+$fourtypx: 2.5rem;
+$fiftypx: 3.125rem;
+$sixtypx: 3.75rem;
+$sixty-fivepx: 4.063rem;
+$seventypx: 4.375rem;
+$seventy-fivepx: 4.688rem;
+$eightypx: 5rem;
+$ninetypx: 5.625rem;
+$hundredpx: 6.25rem;
+
+// ========================
+// COULEURS
+// ========================
+/* Définition des variables CSS pour le mode clair */
+:root {
+  --color1: #351e29;
+  --color1-light: #5a3b4a;
+  --color1-dark: #1f0f17;
+  --color1-50: rgb(53, 30, 41, 0.5);
+
+  --color2: #facc15;
+  --color2-light: #fef9c3;
+  --color2-dark: #c47a08;
+  --color2-50: rgb(250, 204, 21, 0.5);
+
+  --color3: #ff6b6b;
+  --color4: #111827;
+
+  --black: #1f1f1f;
+  --white: #fff;
+  --grey-1: #351e291a;
+
+  --body-color: #f8fafc;
+
+  --section-color1: #f9fafb;
+  --section-color2: #f3f4f6;
+
+  --text-color1: #4b5563;
+}
+
+$border-color: #e6e6e6;
+
+/* Définition des variables CSS pour le mode sombre */
+.dark-mode {
+}
+
+$color1: var(--color1);
+$color1-light: var(--color1-light);
+$color1-dark: var(--color1-dark);
+$color1-50: var(--color1-50);
+
+$color2: var(--color2);
+$color2-light: var(--color2-light);
+$color2-dark: var(--color2-dark);
+$color2-50: var(--color2-50);
+
+$color3: var(--color3);
+$color4: var(--color4);
+$black: var(--black);
+$white: var(--white);
+$grey-1: var(--grey-1);
+
+$body-color: var(--body-color);
+
+$section-color1: var(--section-color1);
+$section-color2: var(--section-color2);
+
+$text-color1: var(--text-color1);
+
+// Liste des noms des couleurs du projet
+$color-name-list: (
+  "color1",
+  "color1-light",
+  "color1-dark",
+  "color1-50",
+  "color2",
+  "color2-light",
+  "color2-dark",
+  "color2-50",
+  "color3",
+  "color4",
+  "black",
+  "white",
+  "grey-1",
+  "body-color",
+  "section-color1",
+  "section-color2",
+  "text-color1"
+);
+
+// Liste des couleurs du projet
+$color-list: (
+  $color1,
+  $color1-light,
+  $color1-dark,
+  $color1-50,
+  $color2,
+  $color2-light,
+  $color2-dark,
+  $color2-50,
+  $color3,
+  $color4,
+  $black,
+  $white,
+  $grey-1,
+  $body-color,
+  $section-color1,
+  $section-color2,
+  $text-color1
+);
+
+$shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+// ========================
+// TYPOGRAPHIE
+// ========================
+
+// Font Family
+$font-base: "Roboto", sans-serif;
+$font-secondary: "Poppins", sans-serif;
+
+// Font Weight
+$weight-black: 900;
+$weight-bold: 700;
+$weight-semibold: 600;
+$weight-medium: 500;
+$weight-regular: 400;
+$weight-light: 300;
+$weight-thin: 100;

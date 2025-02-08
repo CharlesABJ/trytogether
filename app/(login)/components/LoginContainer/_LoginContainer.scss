@@ -1,0 +1,64 @@
+.LoginContainer {
+  position: relative;
+  width: 60%;
+  padding: $seventypx $thirty-twopx $thirty-twopx;
+  border-radius: $eightpx;
+  z-index: 0;
+  margin-top: $thirty-twopx;
+  .icon {
+    position: absolute;
+    bottom: calc(100% - ($hundredpx + $eightypx) / 2);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc($hundredpx + $eightypx);
+    height: calc($hundredpx + $eightypx);
+    background-color: $color6;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  h1,
+  .instruction {
+    text-align: center;
+  }
+  form {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    gap: $sixteenpx;
+    margin-top: $thirty-twopx;
+    margin-inline: auto;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: $sevenpx;
+      cursor: pointer;
+      input {
+        border: $input-border;
+        height: calc($fourtypx + $fivepx);
+        padding: $eightpx $twelvepx;
+      }
+      .password-forgot {
+        align-self: end;
+        color: $color5;
+      }
+    }
+    .separator {
+      position: relative;
+      margin-block: $thirty-twopx;
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: $color6;
+        padding: $sevenpx;
+      }
+    }
+    button {
+      text-align: center;
+      margin-inline: auto;
+      width: 100%;
+    }
+  }
+}

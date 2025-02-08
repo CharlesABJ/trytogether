@@ -1,0 +1,187 @@
+@mixin classic-body {
+  font-size: $sixteenpx;
+  background: $body-color;
+  color: $text-color1;
+}
+
+@mixin classic-section {
+  padding-block: $hundredpx;
+}
+@mixin classic-h1-font-size {
+  font-size: $sixtypx;
+  @media screen and (max-width: 1640px) {
+    font-size: $sixtypx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: calc($thirty-twopx - $twopx);
+  }
+  @media screen and (max-width: 678px) {
+    font-size: calc($twenty-fivepx - $twopx);
+  }
+}
+@mixin classic-h1 {
+  @include classic-h1-font-size;
+  color: $black;
+  line-height: 56px;
+  font-weight: $weight-bold;
+}
+
+@mixin classic-h2-font-size {
+  font-size: $thirty-sixpx;
+  @media screen and (max-width: 1640px) {
+    font-size: $thirty-sixpx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $twenty-fivepx;
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+@mixin classic-h2 {
+  @include classic-h2-font-size;
+  color: $black;
+  line-height: 32px;
+  font-weight: $weight-bold;
+  margin-block: $sixteenpx;
+}
+
+@mixin classic-h3-font-size {
+  font-size: $twentypx;
+  @media screen and (max-width: 1640px) {
+    font-size: $twentypx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $twentypx;
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+@mixin classic-h3 {
+  @include classic-h3-font-size;
+  color: $black;
+  line-height: 32px;
+  font-weight: $weight-semibold;
+}
+
+@mixin classic-alternative-font-size {
+  font-size: $twentypx;
+  @media screen and (max-width: 1640px) {
+    font-size: $twentypx;
+  }
+  @media screen and (max-width: 1250px) {
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+@mixin classic-alternative {
+  @include classic-alternative-font-size;
+  line-height: 24px;
+}
+
+@mixin big-alternative-font-size {
+  font-size: $thirty-twopx;
+  @media screen and (max-width: 1640px) {
+    font-size: $thirtypx;
+  }
+  @media screen and (max-width: 1250px) {
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+@mixin big-alternative {
+  @include big-alternative-font-size;
+  line-height: 32px;
+}
+
+@mixin classic-container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1500px;
+  @media screen and (max-width: 1640px) {
+    max-width: 1400px;
+  }
+  @media screen and (max-width: 1250px) {
+    max-width: 100%;
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+
+@mixin classic-apply-color($type, $color-name, $color) {
+  .#{$type}-#{$color-name} {
+    @if $type == "bg" {
+      background-color: $color;
+      @if (
+        $color-name ==
+          "black" or
+          $color-name ==
+          "color1" or
+          $color-name ==
+          "color4"
+      ) {
+        color: $white;
+      }
+    }
+  }
+}
+
+@mixin classic-grid($columns: 4, $gap: $thirty-twopx) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+@mixin classic-header-logo-font-size {
+  font-size: $twentypx;
+  @media screen and (max-width: 1640px) {
+    font-size: $twentypx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $twentypx;
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+@mixin classic-header-logo {
+  @include classic-header-logo-font-size;
+}
+
+@mixin classic-header-nav-font-size {
+  font-size: $sixteenpx;
+  @media screen and (max-width: 1640px) {
+    font-size: $sixteenpx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $sixteenpx;
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+
+@mixin classic-header-nav {
+  @include classic-header-nav-font-size;
+}
+
+@mixin classic-tag-font-size {
+  font-size: $fourteenpx;
+  @media screen and (max-width: 1640px) {
+    font-size: $fourteenpx;
+  }
+  @media screen and (max-width: 1250px) {
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+
+@mixin classic-tag {
+  @include classic-tag-font-size;
+  padding: $fourpx $twelvepx;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  border-radius: $hundredpx;
+  font-weight: $weight-medium;
+  background: $grey-1;
+  color: $black;
+  user-select: none;
+}

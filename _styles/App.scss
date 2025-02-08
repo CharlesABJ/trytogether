@@ -1,0 +1,28 @@
+// Fichier d'entrée des styles de l'application
+
+//** (1) Importation des fichiers d'initialisation du projet **//
+@import "./init/_variables";
+@import "./init/_reset";
+@import "./init/_mixins";
+@import "./init/_animations";
+@import "./init/_global";
+@import "./init/_not-found";
+
+// Header et Footer
+@import "../_components/Header/_Header";
+@import "../_components/Footer/_Footer";
+
+//** (2) Importation des fichiers de composants
+@import "../_components/AvatarEditor/_AvatarEditor";
+@import "../_components/TitleTag/_TitleTag";
+@import "../_components/AgendaGoalsPreview/_AgendaGoalsPreview";
+@import "../_components/GoalItem/_GoalItem";
+@import "../_components/AgendaItem/_AgendaItem";
+
+// (3) Importation des fichiers de pages
+@import "../app/dashboard/Dashboard";
+@import "../app/messages/Messages";
+// @import "../app/messages/[id]/MessagesID";
+@import "../app/meetings/Meetings";
+@import "../app/goals/Goals";
+@import "../app/store/Store";

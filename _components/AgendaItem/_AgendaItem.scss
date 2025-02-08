@@ -1,0 +1,32 @@
+.AgendaItem {
+  display: flex;
+  background: $white;
+  padding: $twenty-fourpx;
+  border-radius: $twelvepx;
+  box-shadow: $shadow;
+
+  .avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    width: $fourtypx;
+    height: $fourtypx;
+    border: 1px solid $border-color;
+  }
+  .infos {
+    display: flex;
+    .schedules {
+      display: flex;
+      flex-direction: column;
+      margin-inline: $sixteenpx;
+      color: $color1-light;
+    }
+    .name-and-subject {
+      display: flex;
+      flex-direction: column;
+      font-weight: $weight-medium;
+    }
+  }
+  .settings {
+    margin-left: auto;
+  }
+}

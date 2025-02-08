@@ -1,0 +1,35 @@
+.Dashboard {
+  .greetings-and-level {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .greetings {
+      .username {
+        color: $color1-light;
+      }
+    }
+    .level {
+      position: relative;
+      svg {
+        @include classic-h2-font-size;
+        & {
+          color: $color1;
+        }
+      }
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $white;
+      }
+    }
+  }
+
+  .infos-zone {
+    margin-top: $fiftypx;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $fiftypx;
+  }
+}

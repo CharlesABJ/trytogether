@@ -1,0 +1,67 @@
+.Header {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: max-content;
+  z-index: 100;
+  .container {
+    @include classic-container;
+    & {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: $sixteenpx;
+    }
+
+    .logo {
+      @include classic-header-logo;
+    }
+
+    nav {
+      ul {
+        display: flex;
+        gap: $fiftypx;
+        li {
+          display: flex;
+          align-items: center;
+          a {
+            @include classic-header-nav;
+            & {
+              display: flex;
+              align-items: center;
+              gap: $fivepx;
+              opacity: 0.75;
+              transition: 0.2s ease-in-out;
+            }
+            &:hover {
+              opacity: 0.95;
+            }
+            &.active {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    .profile {
+      width: $fourtypx;
+      height: $fourtypx;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: 1.3s;
+      a {
+        width: 100%;
+        height: 100%;
+      }
+      &:hover {
+        box-shadow: rgba(255, 255, 255, 0.412) 0px 0px 10px 0px;
+      }
+
+      &:active {
+        transform: rotate(-1turn);
+        transition: padding-block 0.3s;
+      }
+    }
+  }
+}

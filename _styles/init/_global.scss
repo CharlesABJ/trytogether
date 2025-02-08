@@ -1,0 +1,28 @@
+@each $color-name, $color in zip($color-name-list, $color-list) {
+  @include classic-apply-color("bg", $color-name, $color);
+}
+
+body {
+  @include classic-body;
+  main {
+    @include classic-container;
+  }
+}
+
+section {
+  @include classic-section;
+}
+
+h1 {
+  &:not(.TitleTag) {
+    @include classic-h1;
+  }
+}
+
+h2 {
+  @include classic-h2;
+}
+
+h3 {
+  @include classic-h3;
+}
