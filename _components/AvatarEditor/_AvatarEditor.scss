@@ -7,8 +7,43 @@
   margin-bottom: $fiftypx;
   border-radius: $twelvepx;
   overflow: hidden;
-  cursor: pointer;
-
+  .camera-editor {
+    position: absolute;
+    top: $sixteenpx;
+    right: $sixteenpx;
+    height: $fiftypx;
+    width: $fiftypx;
+    z-index: 2;
+    background: $color1-light;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: $shadow;
+    cursor: pointer;
+    overflow: hidden;
+    input {
+      display: none;
+    }
+    svg {
+      @include classic-h3-font-size;
+      & {
+        color: $white;
+        transition: 0.3s ease;
+      }
+    }
+    &:hover {
+      svg {
+        transform: scale(1.1);
+      }
+    }
+    &:active {
+      svg {
+        transform: scale(0.98);
+        color: #ffffffb2;
+      }
+    }
+  }
   .overlay {
     position: absolute;
     top: 0;

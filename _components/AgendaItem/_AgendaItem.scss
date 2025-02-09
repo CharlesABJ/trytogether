@@ -1,16 +1,8 @@
 .AgendaItem {
-  display: flex;
-  background: $white;
-  padding: $twenty-fourpx;
-  border-radius: $twelvepx;
-  box-shadow: $shadow;
+  @include classic-item;
 
   .avatar {
-    border-radius: 50%;
-    overflow: hidden;
-    width: $fourtypx;
-    height: $fourtypx;
-    border: 1px solid $border-color;
+    @include classic-avatar;
   }
   .infos {
     display: flex;

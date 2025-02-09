@@ -185,3 +185,19 @@
   color: $black;
   user-select: none;
 }
+
+@mixin classic-item {
+  display: flex;
+  background: $white;
+  padding: $twenty-fourpx;
+  border-radius: $twelvepx;
+  box-shadow: $shadow;
+}
+
+@mixin classic-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: $fourtypx;
+  height: $fourtypx;
+  border: 1px solid $border-color;
+}
