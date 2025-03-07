@@ -17,7 +17,7 @@ function Login() {
     }
 
     return (
-        <div className="Login bg-color1">
+        <main className="Login bg-color1-50">
             {JSON.stringify(session)}
             <div className="test">
                 <button onClick={handleSignIn}>Sign in</button>
@@ -30,7 +30,7 @@ function Login() {
             </div>
             <CloseButton />
             <LoginContainer />
-        </div>
+        </main>
     );
 }
 

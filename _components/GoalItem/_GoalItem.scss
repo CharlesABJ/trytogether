@@ -1,29 +1,81 @@
 .GoalItem {
   @include classic-item;
   & {
-    flex-direction: column;
-    gap: $twenty-fourpx;
-  }
-
-  .infos {
     display: flex;
-    .avatar {
-      @include classic-avatar;
-    }
-    .name-and-subject {
-      margin-inline: $sixteenpx;
-    }
-    .goal-status {
-      margin-left: auto;
-      width: $thirtypx;
-      height: $thirtypx;
-      border: 2px solid $color1-light;
-      background: transparent;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      &.completed {
-        background: $color1-light;
+    justify-content: space-between;
+  }
+  .infos-and-content {
+    display: flex;
+    flex-direction: column;
+    gap: $thirty-twopx;
+    .infos {
+      display: flex;
+      .avatar {
+        @include classic-avatar;
+      }
+      .name-and-subject {
+        margin-inline: $sixteenpx;
+      }
+      .goal-status {
+        margin-left: auto;
+        width: $thirtypx;
+        height: $thirtypx;
+        border: 2px solid var(--color1-light);
+        background: transparent;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        cursor: pointer;
       }
     }
+    .goal-description {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      @include classic-limited-text(5);
+
+      ul {
+        margin-left: $sixteenpx;
+      }
+    }
+  }
+
+  .settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .goal-status {
+      width: $thirtypx;
+      height: $thirtypx;
+      border: 2px solid var(--color1-light);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .trash {
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    // background-color: var(--color1-light);
+    // color: var(--white);
+
+    .goal-status {
+      // border-color: var(--white);
+    }
+  }
+  &.completed {
+    // background: $item-bg-inactive;
+    text-decoration: line-through;
+    color: var(--black);
+    .settings {
+      .goal-status {
+        background: var(--color1-light);
+        border-color: var(--color1-light);
+      }
+    }
+  }
+  &.deleted {
+    display: none;
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
@@ -12,7 +13,8 @@ function Footer() {
     return (
         <footer className='Footer'>
             <div className="container">
-                <span>Make with <FontAwesomeIcon icon={faHeart} /> by TryItTogether</span>
+                <p>Make with <FontAwesomeIcon icon={faHeart} /> by <Link target="_blank" href="https://charlesabj.com"><u>Charles ABJ</u></Link>
+                </p>
             </div>
         </footer>
     );

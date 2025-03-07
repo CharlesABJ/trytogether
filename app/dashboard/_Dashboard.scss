@@ -5,7 +5,7 @@
     justify-content: space-between;
     .greetings {
       .username {
-        color: $color1-light;
+        color: var(--color1-light);
       }
     }
     .level {
@@ -13,7 +13,7 @@
       svg {
         @include classic-h2-font-size;
         & {
-          color: $color1;
+          color: var(--color1);
         }
       }
       span {
@@ -21,7 +21,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: $white;
+        color: var(--white);
       }
     }
   }

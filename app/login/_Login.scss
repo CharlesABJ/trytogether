@@ -1,0 +1,290 @@
+.main-of-Login {
+  max-width: unset;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  .presentation {
+    @include alternative-section-padding;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $twenty-fourpx;
+    width: 50%;
+    background: var(--blue);
+    color: var(--white);
+    ::selection {
+      background: var(--white);
+      color: var(--blue);
+    }
+    .try-together {
+      display: flex;
+      align-items: center;
+      gap: $sixteenpx;
+      .icon {
+        position: relative;
+        background: rgba(255, 255, 255, 0.25);
+        height: $fourtypx;
+        width: $fourtypx;
+        border-radius: 50%;
+        svg {
+          position: absolute;
+          width: $eighteenpx;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+        }
+      }
+      span {
+        @include classic-alternative-font-size;
+        & {
+          font-weight: $weight-bold;
+        }
+      }
+    }
+
+    h1 {
+      @include alternative-h1;
+    }
+  }
+  .login {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+
+    .welcome {
+      @include big-alternative-font-size;
+      font-weight: $weight-bold;
+      line-height: 50px;
+      &::selection {
+        background: var(--blue);
+        color: var(--white-light);
+      }
+      span {
+        position: relative;
+        transition: 0.3s;
+        &::selection {
+          background: var(--white-light);
+          color: var(--blue);
+        }
+        &::after {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 3px;
+          background: var(--blue-light);
+          left: 0;
+          bottom: 0;
+          z-index: -1;
+          transition: 0.3s;
+        }
+        &:hover {
+          color: var(--white-light);
+          &::after {
+            background: var(--blue);
+            height: 100%;
+          }
+        }
+      }
+    }
+    .slogan {
+      color: var(--grey-1);
+    }
+    .forms-zone {
+      @include alternative-section-padding;
+      padding-top: $thirty-twopx;
+      .toggle-choice {
+        display: flex;
+        gap: $tenpx;
+        background: var(--grey-50);
+        padding: $fivepx $sevenpx;
+        border-radius: $eightpx;
+        button {
+          position: relative;
+          overflow: hidden;
+          width: 50%;
+          border: none;
+          background: none;
+          padding: $eightpx 0;
+          font-weight: $weight-semibold;
+          z-index: 1;
+          cursor: pointer;
+
+          &::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: var(--white-light);
+            border-radius: $fourpx;
+            z-index: -1;
+            transition: left 1s ease;
+          }
+          &#sign-in-button {
+            &::before {
+              left: 100%;
+            }
+            &.active {
+              &::before {
+                left: 0;
+              }
+            }
+          }
+          &#sign-up-button {
+            &::before {
+              left: -100%;
+            }
+            &.active {
+              &::before {
+                left: 0;
+              }
+            }
+          }
+        }
+      }
+      form {
+        display: none;
+        flex-direction: column;
+        gap: $twentypx;
+        margin-top: $fourtypx;
+
+        svg {
+          // Icon
+          position: absolute;
+          width: $sixteenpx;
+          top: 50%;
+          left: $sixteenpx;
+          transform: translateY(-50%);
+          color: var(--grey-1);
+          &.eye-icon {
+            left: calc(100% - $sixteenpx * 2);
+            opacity: 0;
+            &.active {
+              opacity: 1;
+            }
+          }
+        }
+        label {
+          display: flex;
+          flex-direction: column;
+          .passord-zone {
+            display: flex;
+            justify-content: space-between;
+            font-size: small;
+            .passord-reset {
+              color: var(--blue);
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+          }
+          cursor: pointer;
+          span {
+            display: flex;
+            margin-bottom: $tenpx;
+            font-size: small;
+            font-weight: $weight-semibold;
+          }
+          .input-wrapper {
+            position: relative;
+            width: 100%;
+          }
+
+          &[for="remember-me"] {
+            flex-direction: row;
+            align-items: center;
+            gap: $tenpx;
+            span {
+              margin-bottom: 0;
+            }
+            input {
+              accent-color: var(--blue);
+              width: $sixteenpx;
+              height: $sixteenpx;
+              border-radius: $eightpx;
+            }
+          }
+        }
+
+        button {
+          background: var(--blue);
+          color: var(--white-light);
+        }
+
+        &.active {
+          display: flex;
+        }
+      }
+      .continue-with-google {
+        margin-top: $twenty-fourpx;
+        display: flex;
+        flex-direction: column;
+        gap: $twenty-fourpx;
+        .separator {
+          position: relative;
+          &::after {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 1px;
+            width: 100%;
+            background: var(--grey-1);
+            z-index: -1;
+          }
+          span {
+            background: var(--body-bg-color);
+            width: max-content;
+            margin: 0 auto;
+            padding: 0 $tenpx;
+            text-transform: uppercase;
+            font-size: smaller;
+            color: var(--grey-1);
+            z-index: 1;
+          }
+        }
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: $sixteenpx;
+          img {
+            width: $eighteenpx;
+            height: $eighteenpx;
+          }
+        }
+      }
+      .legals-zone {
+        width: 90%;
+        margin-top: $twenty-fourpx;
+        font-size: small;
+        a {
+          position: relative;
+          display: inline-block;
+          transition: 0.3s ease-in-out;
+          &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: $onepx;
+            background: var(--black);
+            transition: 0.3s ease-in-out;
+          }
+          &:hover {
+            opacity: 0.8;
+            &::before {
+              background: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}

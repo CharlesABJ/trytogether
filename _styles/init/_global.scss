@@ -1,11 +1,31 @@
-@each $color-name, $color in zip($color-name-list, $color-list) {
-  @include classic-apply-color("bg", $color-name, $color);
+// Génération des classes pour background
+@each $color-name in $color-name-list {
+  .bg-#{$color-name} {
+    background-color: var(--#{$color-name});
+  }
+}
+
+// Génération des classes pour le texte
+@each $color-name in $color-name-list {
+  .text-#{$color-name} {
+    color: var(--#{$color-name});
+  }
+}
+
+// Génération des classes pour border
+@each $color-name in $color-name-list {
+  .border-#{$color-name} {
+    border-color: var(--#{$color-name});
+  }
 }
 
 body {
   @include classic-body;
-  main {
+  > main {
     @include classic-container;
+    & {
+      min-height: 60vh;
+    }
   }
 }
 
@@ -25,4 +45,9 @@ h2 {
 
 h3 {
   @include classic-h3;
+}
+
+input,
+button {
+  @include classic-input;
 }

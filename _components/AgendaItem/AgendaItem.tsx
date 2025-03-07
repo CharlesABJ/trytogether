@@ -27,7 +27,7 @@ function AgendaItem({ dataAgendaItem }: AgendaItemProps) {
                 </div>
                 <div className="name-and-subject">
                     <div className="name">
-                        {dataAgendaItem.participantFirstname} {dataAgendaItem.participantLastname.charAt(0)}
+                        {dataAgendaItem.participantFirstname} {dataAgendaItem.participantLastname.charAt(0)}.
                     </div>
                     <div className="lesson-subject">({dataAgendaItem.lessonSubject})</div>
                 </div>

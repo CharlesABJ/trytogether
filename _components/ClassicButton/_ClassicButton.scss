@@ -1,0 +1,19 @@
+.ClassicButton {
+  width: calc(3 * $hundredpx);
+  border: none;
+  border-radius: $eightpx;
+  text-align: center;
+  padding: $tenpx;
+  font-weight: $weight-semibold;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+  &:hover {
+    opacity: 0.9;
+    box-shadow: $shadow;
+  }
+  &:active {
+    opacity: 1;
+    transform: scale(0.98);
+    transition: 0.1s ease-out;
+  }
+}

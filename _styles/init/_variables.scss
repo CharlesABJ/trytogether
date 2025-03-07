@@ -55,105 +55,192 @@ $hundredpx: 6.25rem;
 // ========================
 // COULEURS
 // ========================
-/* Définition des variables CSS pour le mode clair */
 :root {
-  --color1: #351e29;
-  --color1-light: #5a3b4a;
-  --color1-dark: #1f0f17;
-  --color1-50: rgb(53, 30, 41, 0.5);
+  /* 🎨 Palette Principale */
+  --blue: #6366f1; /* Par défaut */
+  --blue-light: #a5b4fc;
+  --blue-dark: #3730a3;
+  --blue-50: rgba(99, 102, 241, 0.5);
+  --blue-disabled: #6366f1;
 
-  --color2: #facc15;
-  --color2-light: #fef9c3;
-  --color2-dark: #c47a08;
-  --color2-50: rgb(250, 204, 21, 0.5);
+  --red: #f43f5e;
+  --red-light: #ff85a2;
+  --red-dark: #9f1239;
+  --red-50: rgba(244, 63, 94, 0.5);
+  --red-disabled: #f43f5e;
 
-  --color3: #ff6b6b;
-  --color4: #111827;
+  --teal: #14b8a6;
+  --teal-light: #5eead4;
+  --teal-dark: #0f766e;
+  --teal-50: rgba(20, 184, 166, 0.5);
+  --teal-disabled: #14b8a6;
 
+  --yellow: #eab308;
+  --yellow-light: #facc15;
+  --yellow-dark: #b45309;
+  --yellow-50: rgba(234, 179, 8, 0.5);
+  --yellow-disabled: #eab308;
+
+  --purple: #8b5cf6;
+  --purple-light: #d8b4fe;
+  --purple-dark: #6b21a8;
+  --purple-50: rgba(139, 92, 246, 0.5);
+  --purple-disabled: #8b5cf6;
+
+  --orange: #f97316;
+  --orange-light: #fdba74;
+  --orange-dark: #c2410c;
+  --orange-50: rgba(249, 115, 22, 0.5);
+  --orange-disabled: #f97316;
+
+  --green: #22c55e;
+  --green-light: #4ade80;
+  --green-dark: #15803d;
+  --green-50: rgba(34, 197, 94, 0.5);
+  --green-disabled: #22c55e;
+
+  /* ⚫ Couleurs Classiques */
   --black: #1f1f1f;
-  --white: #fff;
-  --grey-1: #351e291a;
+  --black-dark: #000;
+  --white: #f1f1f1;
+  --white-light: #fff;
+  --grey-1: #6b7280;
+  --grey-2: #9ca3af;
+  --grey-3: #d1d5db;
+  --grey-50: rgba(209, 213, 219, 0.5);
+  --disabled: #d1d5db;
 
-  --body-color: #f8fafc;
+  /* ⚠️ Couleurs de statut */
+  --alert: #ffcc00;
+  --notice: #0099ff;
+  --error: #dc2626;
+  --success: #22c55e;
+  --warning: #f97316;
+  --info: #3b82f6;
 
-  --section-color1: #f9fafb;
-  --section-color2: #f3f4f6;
+  /* Couleurs de bordure et d'ombre */
+  --border-color: #e5e7eb;
+  --shadow-color: #1f2937;
 
-  --text-color1: #4b5563;
+  /* 🎨 Mode clair par défaut */
+  --body-bg-color: #f8fafc;
+  --body-text-color: #111827;
+  ::selection {
+    background: var(--grey-50);
+    color: var(--black);
+  }
 }
 
-$border-color: #e6e6e6;
+/* 🌓 Mode Sombre */
+[data-theme="dark"] {
+  --body-bg-color: #111827;
+  --body-text-color: #f1f1f1;
 
-/* Définition des variables CSS pour le mode sombre */
-.dark-mode {
+  /* Couleurs de bordure et d'ombre */
+  --border-color: #374151;
+  --shadow-color: #1f2937;
+
+  /* Ajustement léger des couleurs */
+  --blue-light: #818cf8;
+  --red-light: #ff7597;
+  --teal-light: #34d399;
+  --yellow-light: #facc15;
+  --purple-light: #c084fc;
+  --orange-light: #fb923c;
+  --green-light: #16a34a;
 }
 
-$color1: var(--color1);
-$color1-light: var(--color1-light);
-$color1-dark: var(--color1-dark);
-$color1-50: var(--color1-50);
-
-$color2: var(--color2);
-$color2-light: var(--color2-light);
-$color2-dark: var(--color2-dark);
-$color2-50: var(--color2-50);
-
-$color3: var(--color3);
-$color4: var(--color4);
-$black: var(--black);
-$white: var(--white);
-$grey-1: var(--grey-1);
-
-$body-color: var(--body-color);
-
-$section-color1: var(--section-color1);
-$section-color2: var(--section-color2);
-
-$text-color1: var(--text-color1);
-
-// Liste des noms des couleurs du projet
-$color-name-list: (
-  "color1",
-  "color1-light",
-  "color1-dark",
-  "color1-50",
-  "color2",
-  "color2-light",
-  "color2-dark",
-  "color2-50",
-  "color3",
-  "color4",
-  "black",
-  "white",
-  "grey-1",
-  "body-color",
-  "section-color1",
-  "section-color2",
-  "text-color1"
-);
-
-// Liste des couleurs du projet
+/* ✅ Mise à jour dynamique de la couleur principale */
+// Liste des couleurs disponibles
 $color-list: (
-  $color1,
-  $color1-light,
-  $color1-dark,
-  $color1-50,
-  $color2,
-  $color2-light,
-  $color2-dark,
-  $color2-50,
-  $color3,
-  $color4,
-  $black,
-  $white,
-  $grey-1,
-  $body-color,
-  $section-color1,
-  $section-color2,
-  $text-color1
+  // Bleu
+  "blue",
+  // Rouge
+  "red",
+  // Vert Cyan
+  "teal",
+  // Jaune
+  "yellow",
+  // Violet
+  "purple",
+  // Orange
+  "orange",
+  // Vert
+  "green"
 );
 
-$shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+// Génération automatique des classes [data-main-color="X"]
+@each $color in $color-list {
+  [data-main-color="#{$color}"] {
+    --color-classic: var(--#{$color});
+    --color-light: var(--#{$color}-light);
+    --color-dark: var(--#{$color}-dark);
+    --color-50: var(--#{$color}-50);
+    --color-disabled: var(--#{$color}-disabled);
+  }
+}
+
+$color-name-list: (
+  "blue",
+  "blue-light",
+  "blue-dark",
+  "blue-50",
+  "blue-disabled",
+  "red",
+  "red-light",
+  "red-dark",
+  "red-50",
+  "red-disabled",
+  "teal",
+  "teal-light",
+  "teal-dark",
+  "teal-50",
+  "teal-disabled",
+  "yellow",
+  "yellow-light",
+  "yellow-dark",
+  "yellow-50",
+  "yellow-disabled",
+  "purple",
+  "purple-light",
+  "purple-dark",
+  "purple-50",
+  "purple-disabled",
+  "orange",
+  "orange-light",
+  "orange-dark",
+  "orange-50",
+  "orange-disabled",
+  "green",
+  "green-light",
+  "green-dark",
+  "green-50",
+  "green-disabled",
+  "black",
+  "black-dark",
+  "white",
+  "white-light",
+  "grey-1",
+  "grey-2",
+  "grey-3",
+  "grey-50",
+  "disabled",
+  "alert",
+  "notice",
+  "error",
+  "success",
+  "warning",
+  "info",
+  "body-bg-color",
+  "body-text-color" // Main colors
+  "color-classic",
+  "color-light",
+  "color-dark",
+  "color-50",
+  "color-disabled"
+);
+
+$shadow: 0px 4px 8px 0px var(--shadow-color);
 // ========================
 // TYPOGRAPHIE
 // ========================

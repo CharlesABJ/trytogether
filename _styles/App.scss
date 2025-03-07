@@ -18,8 +18,10 @@
 @import "../_components/AgendaGoalsPreview/_AgendaGoalsPreview";
 @import "../_components/GoalItem/_GoalItem";
 @import "../_components/AgendaItem/_AgendaItem";
+@import "../_components/ClassicButton/_ClassicButton";
 
 // (3) Importation des fichiers de pages
+@import "../app/login/Login";
 @import "../app/dashboard/Dashboard";
 @import "../app/messages/Messages";
 // @import "../app/messages/[id]/MessagesID";

@@ -33,7 +33,7 @@ export default function RootLayout({
       <html lang="fr">
         <body className={monserrat.className}>
           <Header />
-          <main>{children}</main>
+          {children}
           <Footer />
         </body>
       </html>

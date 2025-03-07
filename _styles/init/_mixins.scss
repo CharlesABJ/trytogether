@@ -1,7 +1,7 @@
 @mixin classic-body {
   font-size: $sixteenpx;
-  background: $body-color;
-  color: $text-color1;
+  background: var(--body-bg-color);
+  color: var(--body-text-color);
 }
 
 @mixin classic-section {
@@ -21,8 +21,24 @@
 }
 @mixin classic-h1 {
   @include classic-h1-font-size;
-  color: $black;
   line-height: 56px;
+  font-weight: $weight-bold;
+}
+
+@mixin alternative-h1-font-size {
+  font-size: $thirty-fourpx;
+  @media screen and (max-width: 1640px) {
+    font-size: $thirty-fourpx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $twenty-fivepx;
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+@mixin alternative-h1 {
+  @include alternative-h1-font-size;
+  line-height: 38px;
   font-weight: $weight-bold;
 }
 
@@ -39,7 +55,6 @@
 }
 @mixin classic-h2 {
   @include classic-h2-font-size;
-  color: $black;
   line-height: 32px;
   font-weight: $weight-bold;
   margin-block: $sixteenpx;
@@ -58,7 +73,6 @@
 }
 @mixin classic-h3 {
   @include classic-h3-font-size;
-  color: $black;
   line-height: 32px;
   font-weight: $weight-semibold;
 }
@@ -107,6 +121,10 @@
   }
 }
 
+@mixin alternative-section-padding {
+  padding: calc($hundredpx + $fourtypx);
+}
+
 @mixin classic-apply-color($type, $color-name, $color) {
   .#{$type}-#{$color-name} {
     @if $type == "bg" {
@@ -117,9 +135,11 @@
           $color-name ==
           "color1" or
           $color-name ==
+          "color1-light" or
+          $color-name ==
           "color4"
       ) {
-        color: $white;
+        color: var(--white);
       }
     }
   }
@@ -144,6 +164,7 @@
 }
 @mixin classic-header-logo {
   @include classic-header-logo-font-size;
+  font-weight: $weight-bold;
 }
 
 @mixin classic-header-nav-font-size {
@@ -181,17 +202,18 @@
   max-width: 100%;
   border-radius: $hundredpx;
   font-weight: $weight-medium;
-  background: $grey-1;
-  color: $black;
+  background: var(--grey-1);
+  color: var(--black);
   user-select: none;
 }
 
 @mixin classic-item {
   display: flex;
-  background: $white;
+  background: var(--white);
   padding: $twenty-fourpx;
   border-radius: $twelvepx;
   box-shadow: $shadow;
+  transition: 0.3s ease-in-out;
 }
 
 @mixin classic-avatar {
@@ -199,5 +221,30 @@
   overflow: hidden;
   width: $fourtypx;
   height: $fourtypx;
-  border: 1px solid $border-color;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+@mixin classic-limited-text($maxLine: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $maxLine; // Limite le texte à $maxLine lignes
+  -webkit-box-orient: vertical; // Orientation verticale
+}
+
+@mixin classic-input {
+  width: 100%;
+  background: unset;
+  padding: $fourteenpx $thirty-eightpx;
+  border: 1px solid var(--border-color);
+  border-radius: $eightpx;
+  &:focus-visible {
+    outline: 2px solid var(--grey-2);
+    outline-offset: 2px;
+  }
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

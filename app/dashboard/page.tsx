@@ -20,11 +20,11 @@ function Dashboard() {
 
             <div className="greetings-and-level">
                 <div className="greetings">
-                    <h2 >{hour > 18 ? "Bonsoir" : "Bonjour"}, <span className='username'>{user.firstName} !</span>
+                    <h2 >{hour > 18 ? "Bonsoir" : "Bonjour"}, <span className='username'>{user.firstName}</span> !!
                     </h2>
                     <p>Bienvenu(e) sur ton tableau de bord personnel</p>
                 </div>
-                <div className="level">
+                <div className="badges-zone level">
                     <FontAwesomeIcon icon={faSuitcase} />
                     <span>{user.level}</span>
                 </div>

@@ -1,15 +1,17 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye } from '@fortawesome/free-solid-svg-icons/faBullseye';
 import { faCalendar, faMessage } from '@fortawesome/free-regular-svg-icons';
-import { faBookOpen, faCartShopping, faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faCartShopping, faHouse, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 
 
 
 function Header() {
+    const pathname = usePathname(); // On récupère l'url actuelle
     const user = {
         name: "John Doe",
         avatar: "/img/profil.jpeg"
@@ -49,29 +51,41 @@ function Header() {
         },
 
     ];
-
+    if (pathname === "/" || pathname === "/login") {
+        return;
+    }
     return (
-        <header className="Header bg-color1">
+        <header className="Header bg-color1-light">
             <div className="container">
                 <div className="logo">
                     <Link href="/">
-                        <FontAwesomeIcon icon={faBookOpen} />TryItTogether
+                        <FontAwesomeIcon icon={faBookOpen} />TryTogether
                     </Link>
                 </div>
                 <nav>
                     <ul>
                         {navLinks.map((link) => (
                             <li key={link.navId}>
-                                <Link href={link.href}> <FontAwesomeIcon icon={link.icon} /> {link.name ?? ""}
+                                <Link
+                                    className={`nav-link ${link.href === pathname ? "active" : ""}`}
+                                    href={link.href}>
+                                    <FontAwesomeIcon icon={link.icon} />
+                                    {link.name ?? ""}
                                 </Link>
                             </li>
                         ))}
 
                     </ul>
                 </nav>
-                <Link title='Profil' className='profile' href="/profile">
-                    <Image width={50} height={50} src={user.avatar} alt={`${user.name} profil`} />
-                </Link>
+                <div className="account-zone">
+                    <div className="toggle-darkmode">
+                        <FontAwesomeIcon icon={faMoon} />
+                        {/* <FontAwesomeIcon icon={faSun} /> */}
+                    </div>
+                    <Link title='Profil' className={`profile ${pathname === "/profile" ? "active" : ""}`} href="/profile">
+                        <Image width={50} height={50} src={user.avatar} alt={`${user.name} profil`} />
+                    </Link>
+                </div>
             </div>
         </header>
     );

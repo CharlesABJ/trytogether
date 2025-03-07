@@ -2,7 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: $sixteenpx;
-  background: $section-color2;
+  height: max-content;
+  // background: $section-color2;
   padding: $twenty-fourpx;
   border-radius: $twelvepx;
+
+  .ClassicButton {
+    margin: $thirty-twopx auto;
+  }
 }
