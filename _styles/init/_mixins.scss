@@ -234,17 +234,36 @@
 }
 
 @mixin classic-input {
-  width: 100%;
-  background: unset;
-  padding: $fourteenpx $thirty-eightpx;
-  border: 1px solid var(--border-color);
-  border-radius: $eightpx;
-  &:focus-visible {
-    outline: 2px solid var(--grey-2);
-    outline-offset: 2px;
+  .label-title {
+    display: flex;
   }
-  &[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .input-wrapper {
+    position: relative;
+    width: 100%;
+    .icon {
+      // Icon
+      position: absolute;
+      width: $sixteenpx;
+      top: 50%;
+      left: $sixteenpx;
+      transform: translateY(-50%);
+      color: var(--grey-1);
+    }
+  }
+  input,
+  &.submit-button {
+    width: 100%;
+    background: unset;
+    padding: $fourteenpx $thirty-eightpx;
+    border: 1px solid var(--border-color);
+    border-radius: $eightpx;
+    &:focus-visible {
+      outline: 2px solid var(--grey-2);
+      outline-offset: 2px;
+    }
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
 }

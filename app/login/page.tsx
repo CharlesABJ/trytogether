@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faEnvelope, faEye, faEyeSlash, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Link from 'next/link';
+import PasswordInput from '@/_components/(Form)/PasswordInput/PasswordInput';
+import TextInput from '@/_components/(Form)/TextInput/TextInput';
+import EmailInput from '@/_components/(Form)/EmailInput/EmailInput';
 
 function Login() {
     const [formActive, setFormActive] = useState(false);
@@ -48,93 +51,38 @@ function Login() {
                         <button id='sign-up-button'>Inscription</button>
                     </div>
                     <form id="sign-in-form" className='active' action="" method="POST">
-                        <label htmlFor="sign-in-email">
-                            <span>Email</span>
-                            <div className="input-wrapper">
-                                <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" />
-                                <input
-                                    type="email"
-                                    name="sign-in-email"
-                                    id="sign-in-email"
-                                    placeholder="nom@exemple.com"
-                                />
-                            </div>
-                        </label>
-                        <label htmlFor="sign-in-password">
-                            <div className="passord-zone">
-                                <span>Mot de passe</span> <Link href="/reset" className='passord-reset'>Mot de passe oublié ?</Link>
-                            </div>
-                            <div className="input-wrapper">
-                                <FontAwesomeIcon icon={faLock} aria-hidden="true" />
-                                <input
-                                    type="password"
-                                    name="sign-in-password"
-                                    id="sign-in-password"
-                                    placeholder="••••••••"
-                                />
-                                <FontAwesomeIcon className='eye-icon active' icon={faEye} />
-                                <FontAwesomeIcon className='eye-icon' icon={faEyeSlash} />
-                            </div>
-                        </label>
+                        <EmailInput dataEmailInput={{ label: "Email", name: "sign-in-email", placeholder: "nom@exemple.com", icon: "envelope" }} />
+                        <PasswordInput
+                            dataPasswordInput={{
+                                label: "Mot de passe",
+                                name: "sign-in-password", placeholder: "••••••••",
+                                icon: "lock"
+                            }} />
                         <label htmlFor="remember-me">
                             <input type="checkbox" name="remember-me" id="remember-me" />
                             <span>Se souvenir de moi</span>
                         </label>
-                        <button type="submit" disabled>Se connecter</button>
+                        <button className="submit-button" type="submit" disabled>Se connecter</button>
                     </form>
                     <form id="sign-up-form" action="" method="POST">
                         <div className="name-and-firstname-zone">
-                            <label htmlFor="sign-up-firstname">
-                                <span>Prénom</span>
-                                <div className="input-wrapper">
-                                    <FontAwesomeIcon icon={faUser} aria-hidden="true" />
-                                    <input
-                                        type="text"
-                                        name="sign-up-firstname"
-                                        id="sign-up-firstname"
-                                        placeholder="John"
-                                    />
-                                </div>
-                            </label>
-                            <label htmlFor="sign-up-lastname">
-                                <span>Nom</span>
-                                <div className="input-wrapper">
-                                    <FontAwesomeIcon icon={faUser} aria-hidden="true" />
-                                    <input
-                                        type="text"
-                                        name="sign-up-lastname"
-                                        id="sign-up-lastname"
-                                        placeholder="Doe"
-                                    />
-                                </div>
-                            </label>
+                            <TextInput dataTextInput={{ label: "Prénom", name: "sign-up-firstname", placeholder: "John", icon: "user" }} />
+                            <TextInput dataTextInput={{ label: "Nom", name: "sign-up-lastname", placeholder: "Doe", icon: "user" }} />
+
                         </div>
-                        <label htmlFor="sign-up-email">
-                            <span>Email</span>
-                            <div className="input-wrapper">
-                                <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" />
-                                <input
-                                    type="email"
-                                    name="sign-up-email"
-                                    id="sign-up-email"
-                                    placeholder="john.doe@ex"
-                                />
-                            </div>
-                        </label>
-                        <label htmlFor="sign-up-password">
-                            <span>Mot de passe</span>
-                            <div className="input-wrapper">
-                                <FontAwesomeIcon icon={faLock} aria-hidden="true" />
-                                <input
-                                    type="password"
-                                    name="sign-up-password"
-                                    id="sign-up-password"
-                                    placeholder="••••••••"
-                                />
-                                <FontAwesomeIcon className='eye-icon active' icon={faEye} />
-                                <FontAwesomeIcon className='eye-icon' icon={faEyeSlash} />
-                            </div>
-                        </label>
+                        <EmailInput
+                            dataEmailInput={{
+                                label: "Email",
+                                name: "sign-up-email",
+                                placeholder: "nom@exemple.com", icon: "envelope"
+                            }} />
+                        <PasswordInput
+                            dataPasswordInput={{
+                                label: "Mot de passe",
+                                name: "sign-up-password",
+                                placeholder: "••••••••",
+                                icon: "lock"
+                            }} />
                         <label htmlFor="accept-legal-terms">
                             <input type="checkbox" name="accept-legal-terms" id="accept-legal-terms" />
                             J'accepte les conditions d'utilisation et la politique de confidentialité
@@ -143,7 +91,7 @@ function Login() {
                     </form>
                     <div className="continue-with-google">
                         <p className='separator'><span>Ou continuer avec</span></p>
-                        <button><Image src="/img/icon/google-icon.png" alt="Google" width={18} height={18} /><span>Continuer avec Google</span></button>
+                        <button className="submit-button"><Image src="/img/icon/google-icon.png" alt="Google" width={18} height={18} /><span>Continuer avec Google</span></button>
                     </div>
                     <div className="legals-zone">
                         En vous connectant, vous acceptez nos <Link href="/cgu">Conditions d'utilisation</Link> et notre <Link href="/confidentialite">Politique de confidentialité</Link>.

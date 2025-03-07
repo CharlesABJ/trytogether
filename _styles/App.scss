@@ -13,6 +13,12 @@
 @import "../_components/Footer/_Footer";
 
 //** (2) Importation des fichiers de composants
+
+// (Form)
+@import "../_components/(Form)/TextInput/_TextInput";
+@import "../_components/(Form)/EmailInput/_EmailInput";
+@import "../_components/(Form)/PasswordInput/_PasswordInput";
+
 @import "../_components/AvatarEditor/_AvatarEditor";
 @import "../_components/TitleTag/_TitleTag";
 @import "../_components/AgendaGoalsPreview/_AgendaGoalsPreview";

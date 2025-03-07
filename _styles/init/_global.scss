@@ -47,7 +47,7 @@ h3 {
   @include classic-h3;
 }
 
-input,
-button {
+button,
+.input {
   @include classic-input;
 }
