@@ -2,18 +2,26 @@
 "use client";
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faEnvelope, faEye, faEyeSlash, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import PasswordInput from '@/_components/(Form)/PasswordInput/PasswordInput';
 import TextInput from '@/_components/(Form)/TextInput/TextInput';
 import EmailInput from '@/_components/(Form)/EmailInput/EmailInput';
+import CheckboxInput from '@/_components/(Form)/CheckboxInput/CheckboxInput';
 
 function Login() {
-    const [formActive, setFormActive] = useState(false);
-    const [eyeActive, setEyeActive] = useState(false);
-    const handleActive = () => {
+    const [signInFormActive, setSignInFormActive] = useState(true);
+    const [signUpFormActive, setSignUpFormActive] = useState(false);
 
+    const handleActive = (form: string) => {
+        if (form === 'sign-in') {
+            setSignInFormActive(true);
+            setSignUpFormActive(false);
+        } else if (form === 'sign-up') {
+            setSignInFormActive(false);
+            setSignUpFormActive(true);
+        }
     }
     return (
         <main className="main-of-Login">
@@ -47,10 +55,14 @@ function Login() {
 
                 <div className="forms-zone">
                     <div className="toggle-choice">
-                        <button id='sign-in-button' className='active'>Connexion</button>
-                        <button id='sign-up-button'>Inscription</button>
+                        <button onClick={() => handleActive('sign-in')} id='sign-in-button' className={signInFormActive ? 'active' : ''}>Connexion</button>
+                        <button onClick={() => handleActive('sign-up')} id='sign-up-button' className={signUpFormActive ? 'active' : ''}>Inscription</button>
                     </div>
-                    <form id="sign-in-form" className='active' action="" method="POST">
+                    <form
+                        id="sign-in-form"
+                        className={signInFormActive ? 'active' : ''}
+                        action=""
+                        method="POST">
                         <EmailInput dataEmailInput={{ label: "Email", name: "sign-in-email", placeholder: "nom@exemple.com", icon: "envelope" }} />
                         <PasswordInput
                             dataPasswordInput={{
@@ -58,16 +70,21 @@ function Login() {
                                 name: "sign-in-password", placeholder: "••••••••",
                                 icon: "lock"
                             }} />
-                        <label htmlFor="remember-me">
-                            <input type="checkbox" name="remember-me" id="remember-me" />
-                            <span>Se souvenir de moi</span>
-                        </label>
+                        <CheckboxInput
+                            dataCheckboxInput={{
+                                label: "Se souvenir de moi",
+                                name: "remember-me"
+                            }} />
                         <button className="submit-button" type="submit" disabled>Se connecter</button>
                     </form>
-                    <form id="sign-up-form" action="" method="POST">
+                    <form
+                        id="sign-up-form"
+                        className={signUpFormActive ? 'active' : ''}
+                        action=""
+                        method="POST">
                         <div className="name-and-firstname-zone">
-                            <TextInput dataTextInput={{ label: "Prénom", name: "sign-up-firstname", placeholder: "John", icon: "user" }} />
-                            <TextInput dataTextInput={{ label: "Nom", name: "sign-up-lastname", placeholder: "Doe", icon: "user" }} />
+                            <TextInput dataTextInput={{ label: "Prénom", name: "sign-up-firstname", placeholder: "Candice", icon: "user" }} />
+                            <TextInput dataTextInput={{ label: "Nom", name: "sign-up-lastname", placeholder: "Lale", icon: "user" }} />
 
                         </div>
                         <EmailInput
@@ -83,11 +100,12 @@ function Login() {
                                 placeholder: "••••••••",
                                 icon: "lock"
                             }} />
-                        <label htmlFor="accept-legal-terms">
-                            <input type="checkbox" name="accept-legal-terms" id="accept-legal-terms" />
-                            J'accepte les conditions d'utilisation et la politique de confidentialité
-                        </label>
-                        <button type="submit" disabled>S'inscrire</button>
+                        <CheckboxInput
+                            dataCheckboxInput={{
+                                label: "J'accepte les conditions d'utilisation et la politique de confidentialité",
+                                name: "accept-legal-terms"
+                            }} />
+                        <button type="submit" className="submit-button" disabled>S'inscrire</button>
                     </form>
                     <div className="continue-with-google">
                         <p className='separator'><span>Ou continuer avec</span></p>

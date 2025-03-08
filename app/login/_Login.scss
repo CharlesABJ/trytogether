@@ -10,11 +10,11 @@
     justify-content: center;
     gap: $twenty-fourpx;
     width: 50%;
-    background: var(--blue);
+    background: var(--red);
     color: var(--white);
     ::selection {
       background: var(--white);
-      color: var(--blue);
+      color: var(--red);
     }
     .try-together {
       display: flex;
@@ -50,15 +50,17 @@
   .login {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 50%;
     text-align: center;
+    padding-block: $thirty-twopx;
 
     .welcome {
       @include big-alternative-font-size;
       font-weight: $weight-bold;
       line-height: 50px;
       &::selection {
-        background: var(--blue);
+        background: var(--red);
         color: var(--white-light);
       }
       span {
@@ -66,14 +68,14 @@
         transition: 0.3s;
         &::selection {
           background: var(--white-light);
-          color: var(--blue);
+          color: var(--red);
         }
         &::after {
           position: absolute;
           content: "";
           width: 100%;
           height: 3px;
-          background: var(--blue-light);
+          background: var(--red-light);
           left: 0;
           bottom: 0;
           z-index: -1;
@@ -82,7 +84,7 @@
         &:hover {
           color: var(--white-light);
           &::after {
-            background: var(--blue);
+            background: var(--red);
             height: 100%;
           }
         }
@@ -96,7 +98,6 @@
       padding-top: $thirty-twopx;
       .toggle-choice {
         display: flex;
-        gap: $tenpx;
         background: var(--grey-50);
         padding: $fivepx $sevenpx;
         border-radius: $eightpx;
@@ -121,25 +122,25 @@
             background: var(--white-light);
             border-radius: $fourpx;
             z-index: -1;
-            transition: left 1s ease;
+            transition: 0.7s ease;
           }
           &#sign-in-button {
             &::before {
-              left: 100%;
+              transform: translateX(100%);
             }
             &.active {
               &::before {
-                left: 0;
+                transform: translateX(0);
               }
             }
           }
           &#sign-up-button {
             &::before {
-              left: -100%;
+              transform: translateX(-100%);
             }
             &.active {
               &::before {
-                left: 0;
+                transform: translateX(0);
               }
             }
           }
@@ -150,9 +151,27 @@
         flex-direction: column;
         gap: $twentypx;
         margin-top: $fourtypx;
+        .name-and-firstname-zone {
+          display: flex;
+          gap: $twentypx;
+        }
+        label {
+          &.PasswordInput {
+            .passord-zone {
+              .passord-reset {
+                color: var(--red-light);
+              }
+            }
+          }
+          &.CheckboxInput {
+            input {
+              accent-color: var(--red);
+            }
+          }
+        }
 
         button {
-          background: var(--blue);
+          background: var(--red);
           color: var(--white-light);
         }
 

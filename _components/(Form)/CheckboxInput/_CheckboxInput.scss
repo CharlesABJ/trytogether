@@ -1,0 +1,14 @@
+.CheckboxInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $tenpx;
+  span {
+    margin-bottom: 0;
+  }
+  input {
+    width: $sixteenpx;
+    height: $sixteenpx;
+    border-radius: $eightpx;
+  }
+}

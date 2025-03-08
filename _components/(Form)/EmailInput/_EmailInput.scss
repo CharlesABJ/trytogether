@@ -1,37 +1,5 @@
-label {
-  display: flex;
-  flex-direction: column;
-  .passord-zone {
-    display: flex;
-    justify-content: space-between;
-    font-size: small;
-    .passord-reset {
-      color: var(--blue);
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-  }
-  cursor: pointer;
-  span {
-    display: flex;
-    margin-bottom: $tenpx;
-    font-size: small;
-    font-weight: $weight-semibold;
-  }
-
-  &[for="remember-me"] {
-    flex-direction: row;
-    align-items: center;
-    gap: $tenpx;
-    span {
-      margin-bottom: 0;
-    }
-    input {
-      accent-color: var(--blue);
-      width: $sixteenpx;
-      height: $sixteenpx;
-      border-radius: $eightpx;
-    }
+.EmailInput {
+  input {
+    margin-top: $eightpx;
   }
 }
