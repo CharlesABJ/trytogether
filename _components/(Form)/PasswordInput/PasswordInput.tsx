@@ -11,8 +11,11 @@ interface PasswordInputProps {
         placeholder: string;
         icon: string;
     }
+    value: string
+    onChange: (name: string, value: string, formName: string) => void
+    formName: string
 }
-function PasswordInput({ dataPasswordInput }: PasswordInputProps) {
+function PasswordInput({ dataPasswordInput, value, onChange, formName }: PasswordInputProps) {
     const [eyeActive, setEyeActive] = useState(false);
     const handleEyeActive = () => {
         setEyeActive(!eyeActive);
@@ -34,6 +37,8 @@ function PasswordInput({ dataPasswordInput }: PasswordInputProps) {
                     name={dataPasswordInput.name}
                     id={dataPasswordInput.name}
                     placeholder={dataPasswordInput.placeholder}
+                    value={value}
+                    onChange={(e) => onChange(dataPasswordInput.name, e.target.value, formName)}
                 />
                 <div onClick={handleEyeActive} className="eyes-icons-zone">
                     {eyeActive ?

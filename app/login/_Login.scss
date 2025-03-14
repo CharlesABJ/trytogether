@@ -1,6 +1,7 @@
 .main-of-Login {
   max-width: unset;
   display: flex;
+  background: var(--bg-color-classic);
   height: 100vh;
   overflow: hidden;
   .presentation {
@@ -10,22 +11,22 @@
     justify-content: center;
     gap: $twenty-fourpx;
     width: 50%;
-    background: var(--red);
     color: var(--white);
     ::selection {
       background: var(--white);
-      color: var(--red);
+      color: var(--bg-color-classic);
     }
     .try-together {
       display: flex;
       align-items: center;
       gap: $sixteenpx;
-      .icon {
+      .arrow {
         position: relative;
         background: rgba(255, 255, 255, 0.25);
         height: $fourtypx;
         width: $fourtypx;
         border-radius: 50%;
+        cursor: pointer;
         svg {
           position: absolute;
           width: $eighteenpx;
@@ -33,6 +34,19 @@
           left: 50%;
           transform: translate(-50%, -50%);
           z-index: 2;
+          transition: 0.3s ease-in-out;
+        }
+        &:hover {
+          svg {
+            left: 45%;
+            transform: translate(-50%, -50%) scale(1.05);
+          }
+          &:active {
+            svg {
+              left: 60%;
+              transform: translate(-50%, -50%) scale(0.95);
+            }
+          }
         }
       }
       span {
@@ -46,6 +60,24 @@
     h1 {
       @include alternative-h1;
     }
+    .testimonials-zone {
+      display: flex;
+      overflow: hidden;
+      height: calc(2 * $hundredpx);
+      position: relative;
+      .testimony {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 100%;
+        opacity: 0;
+        transition: 1s ease-in-out;
+        &.active {
+          top: 50%;
+          opacity: 1;
+          z-index: 2;
+        }
+      }
+    }
   }
   .login {
     display: flex;
@@ -54,28 +86,29 @@
     width: 50%;
     text-align: center;
     padding-block: $thirty-twopx;
-
+    background-color: var(--body-bg-color);
     .welcome {
       @include big-alternative-font-size;
       font-weight: $weight-bold;
       line-height: 50px;
       &::selection {
-        background: var(--red);
+        background: var(--bg-color-classic);
         color: var(--white-light);
       }
       span {
         position: relative;
+        z-index: 1;
         transition: 0.3s;
         &::selection {
           background: var(--white-light);
-          color: var(--red);
+          color: var(--bg-color-classic);
         }
         &::after {
           position: absolute;
           content: "";
           width: 100%;
           height: 3px;
-          background: var(--red-light);
+          background: var(--bg-color-light);
           left: 0;
           bottom: 0;
           z-index: -1;
@@ -84,7 +117,7 @@
         &:hover {
           color: var(--white-light);
           &::after {
-            background: var(--red);
+            background: var(--bg-color-classic);
             height: 100%;
           }
         }
@@ -154,6 +187,9 @@
         .name-and-firstname-zone {
           display: flex;
           gap: $twentypx;
+          label {
+            width: 50%;
+          }
         }
         label {
           &.PasswordInput {
@@ -165,13 +201,13 @@
           }
           &.CheckboxInput {
             input {
-              accent-color: var(--red);
+              accent-color: var(--bg-color-classic);
             }
           }
         }
 
         button {
-          background: var(--red);
+          background: var(--bg-color-classic);
           color: var(--white-light);
         }
 
@@ -246,6 +282,21 @@
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .main-of-Login {
+    flex-direction: column;
+    height: max-content;
+    .presentation {
+      width: 100%;
+      padding-block: $fiftypx;
+    }
+    .login {
+      width: 100%;
+      border-radius: $seventypx $seventypx 0 0;
     }
   }
 }

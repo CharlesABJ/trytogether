@@ -1,0 +1,21 @@
+.Testimony {
+  display: flex;
+  gap: $sixteenpx;
+  .avatar {
+    width: $sixtypx;
+    height: $sixtypx;
+    border-radius: 30%;
+    overflow: hidden;
+  }
+  .content {
+    width: 85%;
+    .testimony-content {
+      font-weight: $weight-semibold;
+      line-height: 1.5;
+    }
+    .testimony-author {
+      font-size: smaller;
+      margin-top: $fourpx;
+    }
+  }
+}

@@ -6,10 +6,13 @@ interface EmailInputProps {
         label: string
         name: string
         placeholder: string
-        icon: string
+        icon?: string
     }
+    value: string
+    onChange: (name: string, value: string, formName: string) => void
+    formName: string
 }
-function EmailInput({ dataEmailInput }: EmailInputProps) {
+function EmailInput({ dataEmailInput, value, onChange, formName }: EmailInputProps) {
     return (
         <label className='EmailInput input' htmlFor={dataEmailInput.name}>
             <span className='label-title'>{dataEmailInput.label}</span>
@@ -20,6 +23,8 @@ function EmailInput({ dataEmailInput }: EmailInputProps) {
                     name={dataEmailInput.name}
                     id={dataEmailInput.name}
                     placeholder={dataEmailInput.placeholder}
+                    value={value}
+                    onChange={(e) => onChange(dataEmailInput.name, e.target.value, formName)}
                 />
             </div>
         </label>

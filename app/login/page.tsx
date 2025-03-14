@@ -1,34 +1,204 @@
 
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import Image from 'next/image';
 import Link from 'next/link';
 import PasswordInput from '@/_components/(Form)/PasswordInput/PasswordInput';
 import TextInput from '@/_components/(Form)/TextInput/TextInput';
 import EmailInput from '@/_components/(Form)/EmailInput/EmailInput';
 import CheckboxInput from '@/_components/(Form)/CheckboxInput/CheckboxInput';
+import Testimony from '@/_components/(Reinsurance)/Testimony/Testimony';
+import SubmitButton from '@/_components/(Form)/SubmitButton/SubmitButton';
+import { signInSchema } from '@/_utils/validation/auth/signInSchema';
+import { signUpSchema } from '@/_utils/validation/auth/signUpSchema';
+
+const testimonyData = [
+    {
+        testimonyId: 1,
+        avatar: "/img/user1.png",
+        content: "Grâce à TryTogether, j'ai trouvé un mentor qui m'a initié au dessin numérique. Aujourd’hui, je réalise mes propres illustrations et j’envisage même d’en faire mon métier.",
+        author: "Léa M. - Future illustratrice"
+    },
+    {
+        testimonyId: 2,
+        avatar: "/img/user2.jpeg",
+        content: "Apprendre le japonais tout seul était un vrai défi. Mon mentor m’a aidé à progresser avec une méthode efficace, et aujourd’hui, je peux enfin tenir une conversation basique !",
+        author: "Nathan S. - Étudiant en langues"
+    },
+    {
+        testimonyId: 3,
+        avatar: "/img/user3.jpeg",
+        content: "J’ai toujours voulu apprendre à jouer aux échecs. Grâce à TryTogether, j’ai compris les bases et appris des stratégies avancées. Mes parties sont devenues bien plus intéressantes !",
+        author: "Lucas D. - Joueur d’échecs amateur"
+    },
+    {
+        testimonyId: 4,
+        avatar: "/img/user4.jpg",
+        content: "Je galérais en maths jusqu’à ce que mon mentor me montre une autre approche. Maintenant, les équations me paraissent bien plus claires et je gagne en confiance pour mes examens.",
+        author: "Inès T. - Lycéenne en terminale"
+    },
+    {
+        testimonyId: 5,
+        avatar: "/img/user5.jpg",
+        content: "J’ai toujours voulu apprendre à coder mais je ne savais pas par où commencer. Mon mentor a su m’expliquer les bases avec clarté et aujourd’hui, j’ai créé mon premier site web !",
+        author: "Samir K. - Développeur en herbe"
+    },
+    {
+        testimonyId: 6,
+        avatar: "/img/user6.jpeg",
+        content: "Je voulais améliorer mon niveau en anglais pour être plus à l’aise en voyage et au travail. Grâce à mon mentor, j’ai fait des progrès concrets et je prends enfin confiance à l’oral.",
+        author: "Sarah P. - Consultante en marketing"
+    },
+    {
+        testimonyId: 7,
+        avatar: "/img/user7.jpeg",
+        content: "J’ai toujours aimé la cuisine asiatique mais je ne savais pas par où commencer. Mon mentor m’a guidée pas à pas, et aujourd’hui, je réussis mes propres ramen maison !",
+        author: "Sophie R. - Chef amateur"
+    },
+    {
+        testimonyId: 8,
+        avatar: "/img/user8.jpg",
+        content: "Je voulais progresser sur *Valorant*, et grâce à un mentor expert, j’ai amélioré mon niveau et compris les vraies stratégies du jeu. Résultat : plus de victoires et moins de frustration !",
+        author: "David P. - Joueur passionné d'e-sport"
+    },
+    {
+        testimonyId: 9,
+        avatar: "/img/user9.jpeg",
+        content: "J’adorais filmer mes voyages, mais mes montages étaient… disons, un peu chaotiques. Mon mentor m’a appris à structurer mes vidéos, à choisir les bons cuts et à jouer avec les transitions. Maintenant, mes vidéos ressemblent enfin à celles des pros !",
+        author: "Lucas R. - Futur monteur pro"
+    },
+    {
+        testimonyId: 10,
+        avatar: "/img/user10.jpeg",
+        content: "Je voulais me remettre en forme, mais je manquais de motivation. Avec TryTogether, j’ai trouvé un coach qui m’a aidé à établir une routine adaptée. Résultat : je suis en meilleure forme que jamais !",
+        author: "Emma C. - Sportive motivée"
+    }
+];
 
 function Login() {
-    const [signInFormActive, setSignInFormActive] = useState(true);
-    const [signUpFormActive, setSignUpFormActive] = useState(false);
 
-    const handleActive = (form: string) => {
+    // ============================ VARIABLES ==============================
+    // (1) État pour savoir quel témoignage est actif
+    const [activeTestimonyIndex, setActiveTestimonyIndex] = useState(0);
+
+    // (2) État pour savoir quel formulaire est actif
+    const [activeForm, setActiveForm] = useState("sign-in");
+
+    // (3) État pour stocker les données des formulaires
+    // Sign-in
+    const [signInFormData, setSignInFormData] = useState({
+        email: "",
+        password: "",
+        rememberMe: false
+    });
+    // Sign-up
+    const [signUpFormData, setSignUpFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        acceptLegalTerms: false
+    });
+
+    // (4) État pour savoir si le bouton est disabled
+    const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
+
+    // (5) État pour stocker les erreurs des formulaires
+    const [errors, setErrors] = useState<{ [key: string]: string }>();
+
+    // (6) État pour stocker la couleur principale de la page
+    const colors = ["blue", "red", "teal", "yellow", "purple", "orange", "green"];
+
+    const [colorIndex, setColorIndex] = useState(Math.floor(Math.random() * colors.length));
+
+
+
+    // ============================= FONCTIONS =============================
+
+    // (1) Changer l'index du temoignage actif toute les x secondes
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveTestimonyIndex((prevIndex) =>
+                prevIndex === testimonyData.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 9000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    // (2) Fonction pour activer le formulaire de connexion ou de inscription
+    const handleActiveForm = (form: 'sign-in' | 'sign-up') => {
         if (form === 'sign-in') {
-            setSignInFormActive(true);
-            setSignUpFormActive(false);
+            setActiveForm("sign-in");
         } else if (form === 'sign-up') {
-            setSignInFormActive(false);
-            setSignUpFormActive(true);
+            setActiveForm("sign-up");
         }
     }
+
+    // (3) Fonction pour changer l'état des inputs des formulaires
+    const handleInputChange = (name: string, value: string | boolean, form: string) => {
+        if (form === 'sign-in') {
+            setSignInFormData((prevData) => ({
+                ...prevData,
+                [name]: value
+            }));
+        } else if (form === 'sign-up') {
+            setSignUpFormData((prevData) => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
+    };
+
+
+    // (3b, 5) Fonction pour gérer la soumission des formulaires
+    const handleFormSubmit = (e: React.FormEvent, form: string) => {
+        e.preventDefault();
+        // On vérifie si les données sont valides
+        const result = form === 'sign-in' ?
+            signInSchema.safeParse(signInFormData) : signUpSchema.safeParse(signUpFormData);
+
+        if (!result.success) {
+            const errors: { [key: string]: string } = {}; // Stocke les erreurs de validation
+            result.error.issues.forEach((issue) => { // 
+                errors[issue.path[0]] = issue.message;
+            });
+            console.log("Gros y a des erreurs");
+
+            setErrors(errors);
+            return;
+        }
+
+        console.log("Y a pas d'erreurs!");
+        setErrors({}); // On supprime les erreurs après la validation
+    }
+
+
+    // (4) Fonction pour vérifier si le bouton doit être activé ou non
+    useEffect(() => {
+        const schema = activeForm === 'sign-in' ? signInSchema : signUpSchema;
+        const formData = activeForm === 'sign-in' ? signInFormData : signUpFormData;
+
+        const result = schema.safeParse(formData);
+        setButtonIsDisabled(!result.success); // Désactive le bouton si le formulaire n'est pas valide
+    }, [signInFormData, signUpFormData, activeForm]);
+
+
+    // (6) Fonction pour changer la couleur principale de la page
+    const handleChangeColor = () => {
+        const newColorIndex = Math.floor(Math.random() * colors.length);
+        setColorIndex(newColorIndex);
+    }
+
+
+
     return (
-        <main className="main-of-Login">
+        <main data-main-color={colors[colorIndex]} className="main-of-Login ">
             <section className="presentation">
                 <div className="try-together">
-                    <div className="icon">
-                        <FontAwesomeIcon icon={faArrowRight} />
+                    <div className="icon arrow">
+                        <FontAwesomeIcon onClick={handleChangeColor} icon={faArrowRight} />
                     </div>
                     <span>TryTogether</span>
                 </div>
@@ -36,17 +206,11 @@ function Login() {
                 <p>Rejoignez notre communauté et connectez-vous avec des experts dans votre domaine pour accélérer votre apprentissage.</p>
 
                 <div className="testimonials-zone">
-                    <div className="testimony">
-                        <div className="avatar">
-                            <Image src="/images/avatar.png" alt="Avatar" width={40} height={40} />
+                    {testimonyData.map((testimony, index) => (
+                        <div key={testimony.testimonyId} className={index === activeTestimonyIndex ? 'testimony active' : 'testimony'}>
+                            <Testimony dataTestimony={testimony} />
                         </div>
-                        <div className="testimony-content">
-                            "TryTogether m'a permis de trouver un mentor qui a transformé ma carrière."
-                        </div>
-                        <div className="testimony-author">
-                            Sophie L. - Développeuse Web
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </section>
             <section className="login">
@@ -55,61 +219,123 @@ function Login() {
 
                 <div className="forms-zone">
                     <div className="toggle-choice">
-                        <button onClick={() => handleActive('sign-in')} id='sign-in-button' className={signInFormActive ? 'active' : ''}>Connexion</button>
-                        <button onClick={() => handleActive('sign-up')} id='sign-up-button' className={signUpFormActive ? 'active' : ''}>Inscription</button>
+                        <button onClick={() => handleActiveForm('sign-in')} id='sign-in-button' className={activeForm === 'sign-in' ? 'active' : ''}>Connexion</button>
+                        <button onClick={() => handleActiveForm('sign-up')} id='sign-up-button' className={activeForm === 'sign-up' ? 'active' : ''}>Inscription</button>
                     </div>
                     <form
+                        onSubmit={(e) => handleFormSubmit(e, 'sign-in')}
                         id="sign-in-form"
-                        className={signInFormActive ? 'active' : ''}
+                        className={activeForm === 'sign-in' ? 'active' : ''}
                         action=""
                         method="POST">
-                        <EmailInput dataEmailInput={{ label: "Email", name: "sign-in-email", placeholder: "nom@exemple.com", icon: "envelope" }} />
+                        <EmailInput
+                            dataEmailInput={{
+                                label: "Email",
+                                name: "email",
+                                placeholder: "nom@exemple.com",
+                                icon: "envelope"
+                            }}
+                            value={signInFormData.email}
+                            onChange={handleInputChange}
+                            formName="sign-in"
+                        />
                         <PasswordInput
                             dataPasswordInput={{
                                 label: "Mot de passe",
-                                name: "sign-in-password", placeholder: "••••••••",
+                                name: "password", placeholder: "••••••••",
                                 icon: "lock"
-                            }} />
+                            }}
+                            value={signInFormData.password}
+                            onChange={handleInputChange}
+                            formName="sign-in" />
                         <CheckboxInput
                             dataCheckboxInput={{
                                 label: "Se souvenir de moi",
-                                name: "remember-me"
-                            }} />
-                        <button className="submit-button" type="submit" disabled>Se connecter</button>
+                                name: "rememberMe"
+                            }}
+                            value={signInFormData.rememberMe}
+                            onChange={handleInputChange}
+                            formName="sign-in" />
+                        <SubmitButton
+                            dataSubmitButton={{
+                                label: "Se connecter"
+                            }}
+                            isGoogle={false}
+                            disabled={buttonIsDisabled}
+                            formName="sign-in"
+                        />
                     </form>
                     <form
+                        onSubmit={(e) => handleFormSubmit(e, 'sign-up')}
                         id="sign-up-form"
-                        className={signUpFormActive ? 'active' : ''}
+                        className={activeForm === 'sign-up' ? 'active' : ''}
                         action=""
                         method="POST">
                         <div className="name-and-firstname-zone">
-                            <TextInput dataTextInput={{ label: "Prénom", name: "sign-up-firstname", placeholder: "Candice", icon: "user" }} />
-                            <TextInput dataTextInput={{ label: "Nom", name: "sign-up-lastname", placeholder: "Lale", icon: "user" }} />
-
+                            <TextInput
+                                dataTextInput={{
+                                    label: "Prénom",
+                                    name: "firstName",
+                                    placeholder: "Candice",
+                                    icon: "user"
+                                }}
+                                value={signUpFormData.firstName}
+                                onChange={handleInputChange}
+                                formName="sign-up" />
+                            <TextInput
+                                dataTextInput={{
+                                    label: "Nom",
+                                    name: "lastName",
+                                    placeholder: "Lale",
+                                    icon: "user"
+                                }}
+                                value={signUpFormData.lastName}
+                                onChange={handleInputChange}
+                                formName="sign-up" />
                         </div>
                         <EmailInput
                             dataEmailInput={{
                                 label: "Email",
-                                name: "sign-up-email",
+                                name: "email",
                                 placeholder: "nom@exemple.com", icon: "envelope"
-                            }} />
+                            }}
+                            value={signUpFormData.email}
+                            onChange={handleInputChange}
+                            formName="sign-up" />
                         <PasswordInput
                             dataPasswordInput={{
                                 label: "Mot de passe",
-                                name: "sign-up-password",
+                                name: "password",
                                 placeholder: "••••••••",
                                 icon: "lock"
-                            }} />
+                            }}
+                            value={signUpFormData.password}
+                            onChange={handleInputChange}
+                            formName="sign-up" />
                         <CheckboxInput
                             dataCheckboxInput={{
                                 label: "J'accepte les conditions d'utilisation et la politique de confidentialité",
-                                name: "accept-legal-terms"
-                            }} />
-                        <button type="submit" className="submit-button" disabled>S'inscrire</button>
+                                name: "acceptLegalTerms"
+                            }}
+                            value={signUpFormData.acceptLegalTerms}
+                            onChange={handleInputChange}
+                            formName="sign-up" />
+                        <SubmitButton
+                            dataSubmitButton={{
+                                label: "S'inscrire"
+                            }}
+                            isGoogle={false}
+                            disabled={buttonIsDisabled}
+                            formName="sign-up" />
                     </form>
                     <div className="continue-with-google">
                         <p className='separator'><span>Ou continuer avec</span></p>
-                        <button className="submit-button"><Image src="/img/icon/google-icon.png" alt="Google" width={18} height={18} /><span>Continuer avec Google</span></button>
+                        <SubmitButton
+                            dataSubmitButton={{
+                                label: "Continuer avec Google"
+                            }}
+                            isGoogle={true}
+                            disabled={false} />
                     </div>
                     <div className="legals-zone">
                         En vous connectant, vous acceptez nos <Link href="/cgu">Conditions d'utilisation</Link> et notre <Link href="/confidentialite">Politique de confidentialité</Link>.
