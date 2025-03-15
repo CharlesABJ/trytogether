@@ -51,3 +51,11 @@ button,
 .input {
   @include classic-input;
 }
+
+.errors-message {
+  display: flex;
+  text-align: left;
+  font-size: small;
+  color: var(--error);
+  margin-top: $twopx;
+}

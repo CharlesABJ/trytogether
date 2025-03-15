@@ -12,6 +12,8 @@ import Testimony from '@/_components/(Reinsurance)/Testimony/Testimony';
 import SubmitButton from '@/_components/(Form)/SubmitButton/SubmitButton';
 import { signInSchema } from '@/_utils/validation/auth/signInSchema';
 import { signUpSchema } from '@/_utils/validation/auth/signUpSchema';
+import dynamic from 'next/dynamic';
+import { number } from 'zod';
 
 const testimonyData = [
     {
@@ -113,6 +115,15 @@ function Login() {
     const [colorIndex, setColorIndex] = useState(Math.floor(Math.random() * colors.length));
 
 
+    // (7) Etat 
+    // const words = ["compétences", "talents", "potentiel", "connaissances", "créativité", "curiosité"];
+    // const words = ["compétences", "talents", "idées", "connaissances", "envies", "capacités"];
+    const words = ["compétences", "connaissances"];
+    const [wordIndex, setWordIndex] = useState<number>(0);
+    const [letters, setLetters] = useState<string[]>([]);
+    const [letterIndex, setLetterIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
 
     // ============================= FONCTIONS =============================
 
@@ -177,11 +188,18 @@ function Login() {
 
     // (4) Fonction pour vérifier si le bouton doit être activé ou non
     useEffect(() => {
-        const schema = activeForm === 'sign-in' ? signInSchema : signUpSchema;
-        const formData = activeForm === 'sign-in' ? signInFormData : signUpFormData;
 
-        const result = schema.safeParse(formData);
-        setButtonIsDisabled(!result.success); // Désactive le bouton si le formulaire n'est pas valide
+        const formData = activeForm === 'sign-in' ? signInFormData : signUpFormData;
+        // Liste des champs obligatoires pour chaque formulaire
+        const requiredFields = activeForm === 'sign-in'
+            ? ["email", "password"]  // Champs obligatoires pour la connexion
+            : ["firstName", "lastName", "email", "password"];  // Champs obligatoires pour l'inscription
+
+        // On vérifie si tous les champs obligatoires sont remplis
+        let isFormValid = requiredFields.every(field => formData[field as keyof typeof formData].trim() !== "");
+
+        setButtonIsDisabled(!isFormValid);
+
     }, [signInFormData, signUpFormData, activeForm]);
 
 
@@ -192,7 +210,35 @@ function Login() {
     }
 
 
+    // (7) Fonction pour changer la phrase dynamique
 
+    useEffect(() => {
+        let currentWord = words[wordIndex].split(""); // On coupe le mot en lettres
+
+        if (!isDeleting) {
+            if (letterIndex < currentWord.length) {
+                setTimeout(() => {
+                    setLetters((prev) => [...prev, currentWord[letterIndex]]);
+                    setLetterIndex((prev) => prev + 1);
+                }, 100);
+            } else {
+                // **Pause avant suppression**
+                setTimeout(() => setIsDeleting(true), 2000);
+            }
+        } else {
+            // **Suppression des lettres une par une**
+            if (letterIndex > 0) {
+                setTimeout(() => {
+                    setLetters((prev) => prev.slice(0, -1));
+                    setLetterIndex((prev) => prev - 1);
+                }, 50);
+            } else {
+                // **Changement de mot après suppression**
+                setIsDeleting(false);
+                setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+            }
+        }
+    }, [letterIndex, isDeleting]);
     return (
         <main data-main-color={colors[colorIndex]} className="main-of-Login ">
             <section className="presentation">
@@ -202,7 +248,13 @@ function Login() {
                     </div>
                     <span>TryTogether</span>
                 </div>
-                <h1>Développez vos compétences avec des mentors passionnés</h1>
+                <h1>Développez vos <br />
+                    <i>
+                        {letters.map((letter, index) => (
+                            <span key={index} >
+                                {letter}
+                            </span>
+                        ))}</i> avec des mentors passionnés</h1>
                 <p>Rejoignez notre communauté et connectez-vous avec des experts dans votre domaine pour accélérer votre apprentissage.</p>
 
                 <div className="testimonials-zone">
@@ -237,6 +289,7 @@ function Login() {
                             }}
                             value={signInFormData.email}
                             onChange={handleInputChange}
+                            errors={errors}
                             formName="sign-in"
                         />
                         <PasswordInput
@@ -247,6 +300,7 @@ function Login() {
                             }}
                             value={signInFormData.password}
                             onChange={handleInputChange}
+                            errors={errors}
                             formName="sign-in" />
                         <CheckboxInput
                             dataCheckboxInput={{
@@ -255,6 +309,7 @@ function Login() {
                             }}
                             value={signInFormData.rememberMe}
                             onChange={handleInputChange}
+                            errors={errors}
                             formName="sign-in" />
                         <SubmitButton
                             dataSubmitButton={{
@@ -281,6 +336,7 @@ function Login() {
                                 }}
                                 value={signUpFormData.firstName}
                                 onChange={handleInputChange}
+                                errors={errors}
                                 formName="sign-up" />
                             <TextInput
                                 dataTextInput={{
@@ -291,6 +347,7 @@ function Login() {
                                 }}
                                 value={signUpFormData.lastName}
                                 onChange={handleInputChange}
+                                errors={errors}
                                 formName="sign-up" />
                         </div>
                         <EmailInput
@@ -301,6 +358,7 @@ function Login() {
                             }}
                             value={signUpFormData.email}
                             onChange={handleInputChange}
+                            errors={errors}
                             formName="sign-up" />
                         <PasswordInput
                             dataPasswordInput={{
@@ -311,6 +369,7 @@ function Login() {
                             }}
                             value={signUpFormData.password}
                             onChange={handleInputChange}
+                            errors={errors}
                             formName="sign-up" />
                         <CheckboxInput
                             dataCheckboxInput={{
@@ -319,6 +378,7 @@ function Login() {
                             }}
                             value={signUpFormData.acceptLegalTerms}
                             onChange={handleInputChange}
+                            errors={errors}
                             formName="sign-up" />
                         <SubmitButton
                             dataSubmitButton={{

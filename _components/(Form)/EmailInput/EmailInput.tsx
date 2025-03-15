@@ -10,9 +10,10 @@ interface EmailInputProps {
     }
     value: string
     onChange: (name: string, value: string, formName: string) => void
+    errors?: { [key: string]: string }
     formName: string
 }
-function EmailInput({ dataEmailInput, value, onChange, formName }: EmailInputProps) {
+function EmailInput({ dataEmailInput, value, onChange, errors, formName }: EmailInputProps) {
     return (
         <label className='EmailInput input' htmlFor={dataEmailInput.name}>
             <span className='label-title'>{dataEmailInput.label}</span>
@@ -27,6 +28,7 @@ function EmailInput({ dataEmailInput, value, onChange, formName }: EmailInputPro
                     onChange={(e) => onChange(dataEmailInput.name, e.target.value, formName)}
                 />
             </div>
+            {errors && <span className="errors-message">{errors[dataEmailInput.name]}</span>}
         </label>
     );
 }

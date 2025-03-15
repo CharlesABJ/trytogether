@@ -13,9 +13,10 @@ interface PasswordInputProps {
     }
     value: string
     onChange: (name: string, value: string, formName: string) => void
+    errors?: { [key: string]: string }
     formName: string
 }
-function PasswordInput({ dataPasswordInput, value, onChange, formName }: PasswordInputProps) {
+function PasswordInput({ dataPasswordInput, value, onChange, errors, formName }: PasswordInputProps) {
     const [eyeActive, setEyeActive] = useState(false);
     const handleEyeActive = () => {
         setEyeActive(!eyeActive);
@@ -50,6 +51,7 @@ function PasswordInput({ dataPasswordInput, value, onChange, formName }: Passwor
                             icon={faEye} />}
                 </div>
             </div>
+            {errors && <span className="errors-message">{errors[dataPasswordInput.name]}</span>}
         </label>
 
     );

@@ -123,6 +123,15 @@
 
 @mixin alternative-section-padding {
   padding: 0 calc($hundredpx + $fourtypx);
+  @media screen and (max-width: 1640px) {
+    padding: 0 calc($hundredpx + $fourtypx);
+  }
+  @media screen and (max-width: 1250px) {
+    padding: 0 $hundredpx;
+  }
+  @media screen and (max-width: 678px) {
+    padding: 0 $sixteenpx;
+  }
 }
 
 @mixin classic-apply-color($type, $color-name, $color) {
@@ -237,6 +246,7 @@
   .label-title {
     display: flex;
     font-size: small;
+    text-align: left;
     cursor: pointer;
   }
   .input-wrapper {

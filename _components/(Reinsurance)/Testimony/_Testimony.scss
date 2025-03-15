@@ -19,3 +19,16 @@
     }
   }
 }
+
+@media screen and (max-width: 678px) {
+  .Testimony {
+    flex-direction: column-reverse;
+    text-align: center;
+    .avatar {
+      margin: auto;
+    }
+    .content {
+      width: 100%;
+    }
+  }
+}

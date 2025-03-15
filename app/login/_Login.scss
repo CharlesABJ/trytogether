@@ -45,6 +45,7 @@
             svg {
               left: 60%;
               transform: translate(-50%, -50%) scale(0.95);
+              transition: transform;
             }
           }
         }
@@ -59,6 +60,15 @@
 
     h1 {
       @include alternative-h1;
+      i {
+        font-style: normal;
+        background: var(--white);
+        color: var(--bg-color-classic);
+        ::selection {
+          background: var(--bg-color-dark);
+          color: var(--white);
+        }
+      }
     }
     .testimonials-zone {
       display: flex;
@@ -124,6 +134,8 @@
       }
     }
     .slogan {
+      display: block;
+      margin-block: $sixteenpx $thirty-twopx;
       color: var(--grey-1);
     }
     .forms-zone {
@@ -297,6 +309,37 @@
     .login {
       width: 100%;
       border-radius: $seventypx $seventypx 0 0;
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .main-of-Login {
+    .presentation {
+      .testimonials-zone {
+        height: calc(2 * $hundredpx + $seventypx);
+      }
+    }
+
+    .login {
+      border-radius: $fourtypx $fourtypx 0 0;
+      .welcome {
+        line-height: 35px;
+      }
+
+      .forms-zone {
+        form {
+          .name-and-firstname-zone {
+            flex-direction: column;
+            label {
+              width: 100%;
+            }
+          }
+        }
+        .legals-zone {
+          width: 100%;
+        }
+      }
     }
   }
 }

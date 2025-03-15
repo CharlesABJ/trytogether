@@ -11,27 +11,32 @@ interface TextInputProps {
     };
     value: string;
     onChange: (name: string, value: string, formName: string) => void;
+    errors?: { [key: string]: string };
     formName: string;
 }
-function TextInput({ dataTextInput, value, onChange, formName }: TextInputProps) {
+function TextInput({ dataTextInput, value, onChange, errors, formName }: TextInputProps) {
     return (
-        <label className='TextInput input' htmlFor={dataTextInput.name}>
-            <span className='label-title'>{dataTextInput.label}</span>
-            <div className="input-wrapper">
-                <FontAwesomeIcon
-                    className='icon'
-                    icon={dataTextInput.icon == 'user' ? faUser : dataTextInput.icon == 'envelope' ? faEnvelope : faLock}
-                    aria-hidden="true" />
-                <input
-                    type="text"
-                    name={dataTextInput.name}
-                    id={dataTextInput.name}
-                    placeholder={dataTextInput.placeholder}
-                    value={value}
-                    onChange={(e) => onChange(dataTextInput.name, e.target.value, formName)}
-                />
-            </div>
-        </label>
+        <>
+            <label className='TextInput input' htmlFor={dataTextInput.name}>
+                <span className='label-title'>{dataTextInput.label}</span>
+                <div className="input-wrapper">
+                    <FontAwesomeIcon
+                        className='icon'
+                        icon={dataTextInput.icon == 'user' ? faUser : dataTextInput.icon == 'envelope' ? faEnvelope : faLock}
+                        aria-hidden="true" />
+                    <input
+                        type="text"
+                        name={dataTextInput.name}
+                        id={dataTextInput.name}
+                        placeholder={dataTextInput.placeholder}
+                        value={value}
+                        onChange={(e) => onChange(dataTextInput.name, e.target.value, formName)}
+                    />
+                </div>
+                {errors && <span className="errors-message">{errors[dataTextInput.name]}</span>}
+            </label>
+
+        </>
     );
 }
 
