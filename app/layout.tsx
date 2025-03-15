@@ -1,7 +1,7 @@
 
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import "../_styles/app.scss";
+import "../styles/app.scss";
 import Header from "@/_components/Header/Header";
 import Footer from "@/_components/Footer/Footer";
 import SessionWrapper from "@/lib/SessionWrapper";
