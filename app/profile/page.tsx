@@ -1,10 +1,10 @@
 "use client";
 import React from 'react';
-import { useSession, signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 
 
 function Profile() {
-    const session = useSession();
+    // const session = useSession();
     const handleSignOut = async () => {
         await signOut();
         alert('Vous êtes déconnecté, redirection vers la page d\'accueil');

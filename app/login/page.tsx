@@ -12,8 +12,6 @@ import Testimony from '@/_components/(Reinsurance)/Testimony/Testimony';
 import SubmitButton from '@/_components/(Form)/SubmitButton/SubmitButton';
 import { signInSchema } from '@/_utils/validation/auth/signInSchema';
 import { signUpSchema } from '@/_utils/validation/auth/signUpSchema';
-import dynamic from 'next/dynamic';
-import { number } from 'zod';
 
 const testimonyData = [
     {
@@ -196,7 +194,7 @@ function Login() {
             : ["firstName", "lastName", "email", "password"];  // Champs obligatoires pour l'inscription
 
         // On vérifie si tous les champs obligatoires sont remplis
-        let isFormValid = requiredFields.every(field => formData[field as keyof typeof formData].trim() !== "");
+        const isFormValid = requiredFields.every(field => formData[field as keyof typeof formData].trim() !== "");
 
         setButtonIsDisabled(!isFormValid);
 
@@ -213,7 +211,7 @@ function Login() {
     // (7) Fonction pour changer la phrase dynamique
 
     useEffect(() => {
-        let currentWord = words[wordIndex].split(""); // On coupe le mot en lettres
+        const currentWord = words[wordIndex].split(""); // On coupe le mot en lettres
 
         if (!isDeleting) {
             if (letterIndex < currentWord.length) {
@@ -398,7 +396,7 @@ function Login() {
                             disabled={false} />
                     </div>
                     <div className="legals-zone">
-                        En vous connectant, vous acceptez nos <Link href="/cgu">Conditions d'utilisation</Link> et notre <Link href="/confidentialite">Politique de confidentialité</Link>.
+                        En vous connectant, vous acceptez nos <Link href="/cgu">{"Conditions d'utilisation"}</Link>{" et notre "}<Link href="/confidentialite">Politique de confidentialité</Link>.
                     </div>
                 </div>
             </section>
