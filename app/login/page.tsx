@@ -116,7 +116,7 @@ function Login() {
     // (7) Etat 
     // const words = ["compétences", "talents", "potentiel", "connaissances", "créativité", "curiosité"];
     // const words = ["compétences", "talents", "idées", "connaissances", "envies", "capacités"];
-    const words = ["compétences", "connaissances"];
+    const words = ["compétences", "connaissances", "idées"];
     const [wordIndex, setWordIndex] = useState<number>(0);
     const [letters, setLetters] = useState<string[]>([]);
     const [letterIndex, setLetterIndex] = useState(0);
