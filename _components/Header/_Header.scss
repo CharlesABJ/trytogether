@@ -3,6 +3,8 @@
   inset: 0;
   width: 100%;
   height: max-content;
+  background: var(--bg-color-classic);
+  color: var(--text-color-classic);
   z-index: 100;
   ::selection {
     background-color: var(--white);

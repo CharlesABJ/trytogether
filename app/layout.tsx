@@ -4,7 +4,7 @@ import { Montserrat } from "next/font/google";
 import "../styles/app.scss";
 import Header from "@/_components/Header/Header";
 import Footer from "@/_components/Footer/Footer";
-import SessionWrapper from "@/lib/SessionWrapper";
+import SessionWrapper from "@/_lib/SessionWrapper";
 
 
 const monserrat = Montserrat(
@@ -30,7 +30,7 @@ export default function RootLayout({
 
   return (
     <SessionWrapper>
-      <html lang="fr">
+      <html data-main-color="original" lang="fr">
         <body className={monserrat.className}>
           <Header />
           {children}

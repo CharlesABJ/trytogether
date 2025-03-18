@@ -20,7 +20,7 @@
       display: flex;
       align-items: center;
       gap: $sixteenpx;
-      .arrow {
+      .lightbulb {
         position: relative;
         background: rgba(255, 255, 255, 0.25);
         height: $fourtypx;
@@ -38,12 +38,10 @@
         }
         &:hover {
           svg {
-            left: 45%;
             transform: translate(-50%, -50%) scale(1.05);
           }
           &:active {
             svg {
-              left: 60%;
               transform: translate(-50%, -50%) scale(0.95);
               transition: transform;
             }

@@ -55,7 +55,7 @@ function Header() {
         return;
     }
     return (
-        <header className="Header bg-color1-light">
+        <header className="Header">
             <div className="container">
                 <div className="logo">
                     <Link href="/">

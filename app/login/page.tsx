@@ -2,7 +2,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import PasswordInput from '@/_components/(Form)/PasswordInput/PasswordInput';
 import TextInput from '@/_components/(Form)/TextInput/TextInput';
@@ -108,7 +108,7 @@ function Login() {
     const [errors, setErrors] = useState<{ [key: string]: string }>();
 
     // (6) État pour stocker la couleur principale de la page
-    const colors = ["blue", "red", "teal", "yellow", "purple", "orange", "green"];
+    const colors = ["original", "blue", "red", "teal", "yellow", "purple", "orange", "green"];
 
     const [colorIndex, setColorIndex] = useState(Math.floor(Math.random() * colors.length));
 
@@ -241,8 +241,8 @@ function Login() {
         <main data-main-color={colors[colorIndex]} className="main-of-Login ">
             <section className="presentation">
                 <div className="try-together">
-                    <div className="icon arrow">
-                        <FontAwesomeIcon onClick={handleChangeColor} icon={faArrowRight} />
+                    <div className="icon lightbulb">
+                        <FontAwesomeIcon onClick={handleChangeColor} icon={faLightbulb} />
                     </div>
                     <span>TryTogether</span>
                 </div>

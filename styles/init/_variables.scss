@@ -56,6 +56,18 @@ $hundredpx: 6.25rem;
 // COULEURS
 // ========================
 :root {
+  /* Original - Original  */
+  --bg-original-classic: #c74754;
+  --bg-original-light: #f8add4;
+  --bg-original-dark: #9f1239;
+  --bg-original-50: rgba(199, 71, 84, 0.5);
+  --bg-original-disabled: #c74754;
+  --text-original-classic: var(--white);
+  --text-original-light: var(--white);
+  --text-original-dark: var(--white);
+  --text-original-50: var(--white);
+  --text-original-disabled: var(--disabled);
+
   /* Blue - Bleu  */
   --bg-blue-classic: #6366f1;
   --bg-blue-light: #a5b4fc;
@@ -195,6 +207,8 @@ $hundredpx: 6.25rem;
 /* ✅ Mise à jour dynamique de la couleur principale */
 // Liste des couleurs disponibles
 $color-list: (
+  // Original
+  "original",
   // Bleu
   "blue",
   // Rouge
@@ -229,6 +243,16 @@ $color-list: (
 }
 
 $color-name-list: (
+  "bg-original",
+  "bg-original-light",
+  "bg-original-dark",
+  "bg-original-50",
+  "bg-original-disabled",
+  "text-original-classic",
+  "text-original-light",
+  "text-original-dark",
+  "text-original-50",
+  "text-original-disabled",
   "bg-blue",
   "bg-blue-light",
   "bg-blue-dark",
