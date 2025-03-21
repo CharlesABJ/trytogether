@@ -1,7 +1,7 @@
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import Avatar from '../(User)/Avatar/Avatar';
+import Avatar from '@/_components/(User)/Avatar/Avatar';
 
 interface AgendaItemProps {
     dataAgendaItem: {
