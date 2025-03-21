@@ -13,7 +13,7 @@
       svg {
         @include classic-h2-font-size;
         & {
-          color: var(--color1);
+          color: var(--bg-color-dark);
         }
       }
       span {
@@ -27,9 +27,10 @@
   }
 
   .infos-zone {
-    margin-top: $fiftypx;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: $fiftypx;
+    @include classic-auto-grid(2, 1, 1);
+    & {
+      margin-top: $fiftypx;
+      gap: $fiftypx;
+    }
   }
 }

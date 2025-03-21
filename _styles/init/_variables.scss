@@ -174,7 +174,8 @@ $hundredpx: 6.25rem;
 
   /* Couleurs de bordure et d'ombre */
   --border-color: #e5e7eb;
-  --shadow-color: #1f2937;
+  --shadow-color: #1f293732;
+  --overlay-color: #000c;
 
   /* 🎨 Mode clair par défaut */
   --body-bg-color: #f8fafc;
@@ -352,7 +353,8 @@ $color-name-list: (
   "text-color-disabled"
 );
 
-$shadow: 0px 4px 8px 0px var(--shadow-color);
+$shadow: 0px 2px 5px 0px var(--shadow-color);
+$shadow-hover: 0px 4px 8px 0px var(--shadow-color);
 // ========================
 // TYPOGRAPHIE
 // ========================

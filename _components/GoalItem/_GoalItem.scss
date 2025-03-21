@@ -10,9 +10,7 @@
     gap: $thirty-twopx;
     .infos {
       display: flex;
-      .avatar {
-        @include classic-avatar;
-      }
+
       .name-and-subject {
         margin-inline: $sixteenpx;
       }

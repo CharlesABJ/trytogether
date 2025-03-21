@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-function page() {
+async function page() {
   redirect('/dashboard');
   return (
     <main className="Home">

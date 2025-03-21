@@ -1,12 +1,13 @@
 "use client";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import { useState } from "react";
+import Avatar from "../(User)/Avatar/Avatar";
 
 interface GoalItemProps {
     dataGoalItem: {
         creatorAvatar: string;
+        creatorPseudo: string;
         creatorFirstname: string;
         creatorLastname: string;
         lessonSubject: string;
@@ -31,14 +32,12 @@ function GoalItem({ dataGoalItem }: GoalItemProps) {
         ${isDeleted ? 'deleted' : ''}`}>
             <div className="infos-and-content">
                 <div className="infos">
-                    <div className="avatar">
-                        <Image
-                            src={dataGoalItem.creatorAvatar}
-                            alt={`Avatar de ${dataGoalItem.creatorFirstname} ${dataGoalItem.creatorLastname}`}
-                            width={50}
-                            height={50}
-                        />
-                    </div>
+                    <Avatar
+                        dataAvatar={{
+                            src: dataGoalItem.creatorAvatar,
+                            alt: `${dataGoalItem.creatorPseudo ? dataGoalItem.creatorPseudo : `${dataGoalItem.creatorFirstname} ${dataGoalItem.creatorLastname}`}`
+                        }}
+                    />
                     <div className="name-and-subject">
                         <div className="name">
                             {dataGoalItem.creatorFirstname}{" "}

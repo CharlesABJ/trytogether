@@ -1,11 +1,8 @@
 
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import "@/_styles/app_.scss";
-import Header from "@/_components/Header/Header";
-import Footer from "@/_components/Footer/Footer";
-import SessionWrapper from "@/_lib/SessionWrapper";
-
+import "@/_styles/app.scss";
+import SessionWrapper from "@/_lib/auth/sessionWrapper";
 
 const monserrat = Montserrat(
   {
@@ -13,8 +10,6 @@ const monserrat = Montserrat(
     weight: ["400", "700"],
   }
 );
-
-
 
 
 export const metadata: Metadata = {
@@ -32,9 +27,7 @@ export default function RootLayout({
     <SessionWrapper>
       <html data-main-color="original" lang="fr">
         <body className={monserrat.className}>
-          <Header />
           {children}
-          <Footer />
         </body>
       </html>
     </SessionWrapper>

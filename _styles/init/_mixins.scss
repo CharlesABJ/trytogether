@@ -1,5 +1,18 @@
-@mixin classic-body {
+@mixin classic-body-font-size {
   font-size: $sixteenpx;
+  @media screen and (max-width: 1640px) {
+    font-size: $sixteenpx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $sixteenpx;
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+
+@mixin classic-body {
+  @include classic-body-font-size;
+
   background: var(--body-bg-color);
   color: var(--body-text-color);
 }
@@ -153,11 +166,15 @@
     }
   }
 }
-
-@mixin classic-grid($columns: 4, $gap: $thirty-twopx) {
+@mixin classic-auto-grid($desktop-columns, $tablet-columns, $mobile-columns) {
   display: grid;
-  grid-template-columns: repeat($columns, 1fr);
-  gap: $gap;
+  grid-template-columns: repeat($desktop-columns, minmax(0, 1fr));
+  @media screen and (max-width: 1250px) {
+    grid-template-columns: repeat($tablet-columns, minmax(0, 1fr));
+  }
+  @media screen and (max-width: 678px) {
+    grid-template-columns: repeat($mobile-columns, minmax(0, 1fr));
+  }
 }
 
 @mixin classic-header-logo-font-size {
@@ -211,18 +228,22 @@
   max-width: 100%;
   border-radius: $hundredpx;
   font-weight: $weight-medium;
-  background: var(--grey-1);
+  background: var(--grey-3);
   color: var(--black);
   user-select: none;
 }
 
 @mixin classic-item {
   display: flex;
-  background: var(--white);
+  background: var(--white-light);
   padding: $twenty-fourpx;
   border-radius: $twelvepx;
   box-shadow: $shadow;
   transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: color-mix(in srgb, var(--white), var(--white-light) 90%);
+    box-shadow: $shadow-hover;
+  }
 }
 
 @mixin classic-avatar {
@@ -230,8 +251,13 @@
   overflow: hidden;
   width: $fourtypx;
   height: $fourtypx;
-  border: 1px solid var(--border-color);
+  border: 1.5px solid var(--border-color);
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    border-color: var(--bg-color-classic);
+  }
 }
 
 @mixin classic-limited-text($maxLine: 1) {
@@ -279,5 +305,28 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
+  }
+}
+
+@mixin classic-modal {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--overlay-color);
+    z-index: 999;
+  }
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--white);
+    border-radius: $twelvepx;
+    box-shadow: $shadow;
+    padding: $thirty-twopx;
+    z-index: 1000;
   }
 }

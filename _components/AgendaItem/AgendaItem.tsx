@@ -1,7 +1,7 @@
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 import React from 'react';
+import Avatar from '../(User)/Avatar/Avatar';
 
 interface AgendaItemProps {
     dataAgendaItem: {
@@ -17,9 +17,12 @@ interface AgendaItemProps {
 function AgendaItem({ dataAgendaItem }: AgendaItemProps) {
     return (
         <div className="AgendaItem">
-            <div className="avatar">
-                <Image src={dataAgendaItem.participantAvatar} alt="Avatar" width={50} height={50} />
-            </div>
+            <Avatar
+                dataAvatar={{
+                    src: dataAgendaItem.participantAvatar,
+                    alt: `${dataAgendaItem.participantFirstname} ${dataAgendaItem.participantLastname}`
+                }}
+            />
             <div className="infos">
                 <div className="schedules">
                     <span className="start-time">{dataAgendaItem.startTime}</span>

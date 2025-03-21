@@ -8,7 +8,7 @@
   z-index: 100;
   ::selection {
     background-color: var(--white);
-    color: var(--color1-light);
+    color: var(--bg-color-classic);
   }
   .container {
     @include classic-container;
@@ -100,12 +100,12 @@
           box-shadow: rgba(255, 255, 255, 0.412) 0px 0px 10px 0px;
         }
 
-        &:active {
-          transform: rotate(-1turn);
-          transition: padding-block 0.3s;
-        }
         &.active {
           box-shadow: rgba(255, 255, 255, 0.412) 0px 0px 10px 0px;
+          &:active {
+            transform: rotate(-1turn);
+            transition: padding-block 0.3s;
+          }
         }
       }
     }

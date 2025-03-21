@@ -2,6 +2,13 @@
   position: relative;
   display: flex;
   width: 80%;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--white), var(--bg-color-50)) 0%,
+    var(--bg-color-50) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
   aspect-ratio: 16 / 7;
   margin-inline: auto;
   margin-bottom: $fiftypx;
@@ -9,12 +16,10 @@
   overflow: hidden;
   .camera-editor {
     position: absolute;
-    top: $sixteenpx;
-    right: $sixteenpx;
+    background: var(--bg-color-50);
     height: $fiftypx;
     width: $fiftypx;
     z-index: 2;
-    background: var(--color1-light);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -22,15 +27,20 @@
     box-shadow: $shadow;
     cursor: pointer;
     overflow: hidden;
+
     input {
       display: none;
     }
     svg {
       @include classic-h3-font-size;
       & {
-        color: var(--white);
+        color: var(--white-light);
         transition: 0.3s ease;
       }
+    }
+    &.banner-editor {
+      top: $sixteenpx;
+      right: $sixteenpx;
     }
     &:hover {
       svg {
@@ -53,5 +63,35 @@
     background-color: var(--color1)-50;
     opacity: 0.3;
     z-index: 1;
+  }
+
+  .avatar {
+    position: relative;
+    width: calc(2 * $hundredpx);
+    height: calc(2 * $hundredpx);
+    border-radius: 50%;
+    margin: auto;
+    border: 3px solid var(--white-light);
+
+    img {
+      border-radius: 50%;
+    }
+    .camera-editor {
+      &.avatar-editor {
+        width: $thirty-twopx;
+        height: $thirty-twopx;
+        background: var(--bg-color-classic);
+        bottom: $eightpx;
+        right: $sixteenpx;
+        svg {
+          @include classic-body-font-size;
+        }
+        &:hover {
+          svg {
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 
 "use client";
 import React, { useEffect, useState } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
@@ -12,6 +13,7 @@ import Testimony from '@/_components/(Reinsurance)/Testimony/Testimony';
 import SubmitButton from '@/_components/(Form)/SubmitButton/SubmitButton';
 import { signInSchema } from '@/_utils/validation/auth/signInSchema';
 import { signUpSchema } from '@/_utils/validation/auth/signUpSchema';
+import { redirect } from 'next/navigation';
 
 const testimonyData = [
     {
@@ -79,6 +81,11 @@ const testimonyData = [
 function Login() {
 
     // ============================ VARIABLES ==============================
+
+    // (0) État de la session
+    const { data: session } = useSession();
+
+
     // (1) État pour savoir quel témoignage est actif
     const [activeTestimonyIndex, setActiveTestimonyIndex] = useState(0);
 
@@ -110,8 +117,11 @@ function Login() {
     // (6) État pour stocker la couleur principale de la page
     const colors = ["original", "blue", "red", "teal", "yellow", "purple", "orange", "green"];
 
-    const [colorIndex, setColorIndex] = useState(Math.floor(Math.random() * colors.length));
-
+    const [colorIndex, setColorIndex] = useState<number | null>(null);
+    useEffect(() => {
+        const newColorIndex = Math.floor(Math.random() * colors.length);
+        setColorIndex(newColorIndex);
+    }, []);
 
     // (7) Etat 
     // const words = ["compétences", "talents", "potentiel", "connaissances", "créativité", "curiosité"];
@@ -124,6 +134,22 @@ function Login() {
 
 
     // ============================= FONCTIONS =============================
+
+    // Vérifier le statut
+    if (session) {
+        redirect("/dashboard");
+    }
+
+    // (0a) Se connecter avec Google
+    const handleSignIn = async () => {
+        try {
+            await signIn("google");
+        } catch (error) {
+            console.error("Erreur lors de la connexion avec Google", error);
+        }
+    };
+
+    // (0b) Se connecter avec un compte existant
 
     // (1) Changer l'index du temoignage actif toute les x secondes
     useEffect(() => {
@@ -162,7 +188,7 @@ function Login() {
 
 
     // (3b, 5) Fonction pour gérer la soumission des formulaires
-    const handleFormSubmit = (e: React.FormEvent, form: string) => {
+    const handleFormSubmit = async (e: React.FormEvent, form: string) => {
         e.preventDefault();
         // On vérifie si les données sont valides
         const result = form === 'sign-in' ?
@@ -181,6 +207,43 @@ function Login() {
 
         console.log("Y a pas d'erreurs!");
         setErrors({}); // On supprime les erreurs après la validation
+
+
+        try {
+            if (form === "sign-up") {
+                // 🚀 Envoi des données d'inscription à `/api/auth/signup`
+                const res = await fetch("/api/auth/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(signUpFormData),
+                });
+
+                const data = await res.json();
+                if (!res.ok) {
+                    setErrors({ api: data.message }); // Afficher une erreur de l'API
+                } else {
+                    console.log("Inscription réussie !");
+                    // Tu peux rediriger l'utilisateur vers la page de connexion ici
+                }
+            } else if (form === "sign-in") {
+                // 🚀 Envoi des données de connexion à NextAuth.js
+                const res = await signIn("credentials", {
+                    redirect: false,
+                    email: signInFormData.email,
+                    password: signInFormData.password,
+                });
+
+                if (res?.error) {
+                    setErrors({ api: res.error }); // Afficher une erreur si connexion échoue
+                } else {
+                    console.log("Connexion réussie !");
+                    // Redirige l'utilisateur après connexion
+                }
+            }
+        } catch (error) {
+            console.error("Erreur serveur :", error);
+            setErrors({ api: "Une erreur inattendue s'est produite." });
+        }
     }
 
 
@@ -237,6 +300,9 @@ function Login() {
             }
         }
     }, [letterIndex, isDeleting]);
+
+
+    if (colorIndex === null) return null;
     return (
         <main data-main-color={colors[colorIndex]} className="main-of-Login ">
             <section className="presentation">
@@ -393,7 +459,8 @@ function Login() {
                                 label: "Continuer avec Google"
                             }}
                             isGoogle={true}
-                            disabled={false} />
+                            disabled={false}
+                            onClick={handleSignIn} />
                     </div>
                     <div className="legals-zone">
                         En vous connectant, vous acceptez nos <Link href="/cgu">{"Conditions d'utilisation"}</Link>{" et notre "}<Link href="/confidentialite">Politique de confidentialité</Link>.

@@ -1,14 +1,18 @@
 "use client";
 import React from 'react';
 import { signOut } from 'next-auth/react';
+// import { redirect } from 'next/navigation';
 
 
 function Profile() {
     // const session = useSession();
     const handleSignOut = async () => {
-        await signOut();
-        alert('Vous êtes déconnecté, redirection vers la page d\'accueil');
-        window.location.href = '/';
+        try {
+            await signOut();
+
+        } catch (error) {
+            console.error("Erreur lors de la déconnexion", error);
+        }
 
     };
     return (

@@ -1,0 +1,15 @@
+.UserModal {
+  @include classic-modal;
+  .modal {
+    display: flex;
+    flex-direction: column;
+    width: calc(7 * $hundredpx + $fiftypx);
+    height: calc(4 * $hundredpx + $thirty-fivepx);
+    border: 2px solid var(--white-light);
+
+    .avatar-and-banner {
+    }
+    .content {
+    }
+  }
+}

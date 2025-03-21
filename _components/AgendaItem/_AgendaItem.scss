@@ -1,9 +1,6 @@
 .AgendaItem {
   @include classic-item;
 
-  .avatar {
-    @include classic-avatar;
-  }
   .infos {
     display: flex;
     .schedules {
@@ -23,10 +20,7 @@
     cursor: pointer;
   }
   &:hover {
-    background-color: var(--color1-light);
-    color: var(--white);
     .schedules {
-      color: var(--white);
     }
   }
 }

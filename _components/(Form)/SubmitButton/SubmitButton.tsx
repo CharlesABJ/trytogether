@@ -4,13 +4,15 @@ interface SubmitButtonProps {
     dataSubmitButton: {
         label: string
     }
+    onClick?: () => void
     isGoogle: boolean,
     disabled: boolean,
     formName?: string
 }
-function SubmitButton({ dataSubmitButton, isGoogle = false, disabled }: SubmitButtonProps) {
+function SubmitButton({ dataSubmitButton, isGoogle = false, disabled, onClick }: SubmitButtonProps) {
     return (
         <button
+            onClick={onClick}
             className="SubmitButton submit-button"
             type="submit"
             disabled={disabled}

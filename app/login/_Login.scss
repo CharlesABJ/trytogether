@@ -43,6 +43,7 @@
           &:active {
             svg {
               transform: translate(-50%, -50%) scale(0.95);
+              opacity: 0.8;
               transition: transform;
             }
           }

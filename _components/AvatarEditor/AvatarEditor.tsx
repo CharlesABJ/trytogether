@@ -7,41 +7,80 @@ import React, { useRef, useState } from 'react';
 
 const user = {
     firstName: "Mery",
-    avatar: "/img/profil.jpeg",
+    avatar: "/img/user1.jpg",
     level: "1"
+};
+
+interface AvatarEditorProps {
+    hasEditable?: boolean;
 }
 
-function AvatarEditor() {
+function AvatarEditor({ hasEditable = true }: AvatarEditorProps) {
+    const [avatar, setAvatar] = useState<string>(user.avatar);
+    const [banner, setBanner] = useState<string | null>(null);
 
-    const [avatar, setAvatar] = useState(user.avatar);
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
-    const handleCameraClick = () => {
-        fileInputRef.current?.click();
-    }
+    const avatarInputRef = useRef<HTMLInputElement | null>(null);
+    const bannerInputRef = useRef<HTMLInputElement | null>(null);
+
+    const handleAvatarClick = () => {
+        avatarInputRef.current?.click();
+    };
+
+    const handleBannerClick = () => {
+        bannerInputRef.current?.click();
+    };
+
     const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const image = e.target.files?.[0];
         if (image) {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setAvatar(reader.result as string);
-            }
+            };
             reader.readAsDataURL(image);
         }
-    }
+    };
+
+    const handleBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const image = e.target.files?.[0];
+        if (image) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setBanner(reader.result as string);
+            };
+            reader.readAsDataURL(image);
+        }
+    };
+
     return (
-        <div className='AvatarEditor'>
-            <div onClick={handleCameraClick} className="camera-editor">
+        <div className="AvatarEditor" style={banner ? { backgroundImage: `url(${banner})` } : undefined}>            {hasEditable && (
+            <div onClick={handleBannerClick} className="camera-editor banner-editor">
                 <input
                     type="file"
-                    accept='image/*'
-                    ref={fileInputRef}
-                    onChange={handleAvatarChange}
-
+                    accept="image/*"
+                    ref={bannerInputRef}
+                    onChange={handleBannerChange}
+                    hidden
                 />
                 <FontAwesomeIcon icon={faCamera} />
             </div>
-            <div className="overlay"></div>
-            <Image src={avatar} alt="Profil" width={50} height={50} />
+        )}
+
+            <div className="avatar">
+                {hasEditable && (
+                    <div onClick={handleAvatarClick} className="camera-editor avatar-editor">
+                        <input
+                            type="file"
+                            accept="image/*"
+                            ref={avatarInputRef}
+                            onChange={handleAvatarChange}
+                            hidden
+                        />
+                        <FontAwesomeIcon icon={faCamera} />
+                    </div>
+                )}
+                <Image src={avatar} alt="Profil" width={50} height={50} />
+            </div>
         </div>
     );
 }

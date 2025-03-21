@@ -20,6 +20,10 @@
 @import "../_components/(Form)/PasswordInput/_PasswordInput";
 @import "../_components/(Form)/CheckboxInput/_CheckboxInput";
 
+// (User)
+@import "../_components/(User)/Avatar/_Avatar";
+@import "../_components/(User)/UserModal/_UserModal";
+
 // (Reinsurance)
 @import "../_components/(Reinsurance)/Testimony/Testimony";
 
@@ -32,9 +36,9 @@
 
 // (3) Importation des fichiers de pages
 @import "../app/login/Login";
-@import "../app/dashboard/Dashboard";
-@import "../app/messages/Messages";
-// @import "../app/messages/[id]/MessagesID";
-@import "../app/meetings/Meetings";
-@import "../app/goals/Goals";
-@import "../app/store/Store";
+@import "../app/(protected)/dashboard/Dashboard";
+@import "../app/(protected)/messages/Messages";
+// @import "../app/(protected)/messages/[id]/MessagesID";
+@import "../app/(protected)/meetings/Meetings";
+@import "../app/(protected)/goals/Goals";
+@import "../app/(protected)/store/Store";
