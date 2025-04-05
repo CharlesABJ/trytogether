@@ -18,7 +18,7 @@
         margin-left: auto;
         width: $thirtypx;
         height: $thirtypx;
-        border: 2px solid var(--color1-light);
+        border: 2px solid var(--bg-color-light);
         background: transparent;
         border-radius: 50%;
         transition: all 0.3s ease;
@@ -45,7 +45,7 @@
     .goal-status {
       width: $thirtypx;
       height: $thirtypx;
-      border: 2px solid var(--color1-light);
+      border: 2px solid var(--bg-color-classic);
       border-radius: 50%;
       cursor: pointer;
     }
@@ -55,21 +55,18 @@
   }
 
   &:hover {
-    // background-color: var(--color1-light);
-    // color: var(--white);
-
     .goal-status {
       // border-color: var(--white);
     }
   }
   &.completed {
-    // background: $item-bg-inactive;
+    background: var(--disabled);
     text-decoration: line-through;
     color: var(--black);
     .settings {
       .goal-status {
-        background: var(--color1-light);
-        border-color: var(--color1-light);
+        background: var(--bg-color-classic);
+        border-color: var(--bg-color-classic);
       }
     }
   }

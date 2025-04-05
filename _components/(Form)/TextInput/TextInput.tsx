@@ -17,7 +17,7 @@ interface TextInputProps {
 function TextInput({ dataTextInput, value, onChange, errors, formName }: TextInputProps) {
     return (
         <>
-            <label className='TextInput input' htmlFor={dataTextInput.name}>
+            <label className='TextInput input' htmlFor={`${dataTextInput.name}-${formName}`}>
                 <span className='label-title'>{dataTextInput.label}</span>
                 <div className="input-wrapper">
                     <FontAwesomeIcon
@@ -27,7 +27,7 @@ function TextInput({ dataTextInput, value, onChange, errors, formName }: TextInp
                     <input
                         type="text"
                         name={dataTextInput.name}
-                        id={dataTextInput.name}
+                        id={`${dataTextInput.name}-${formName}`}
                         placeholder={dataTextInput.placeholder}
                         value={value}
                         onChange={(e) => onChange(dataTextInput.name, e.target.value, formName)}

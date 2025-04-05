@@ -15,11 +15,11 @@ function CheckboxInput({ dataCheckboxInput, value, onChange, errors, formName }:
         <div>
             <label
                 className="CheckboxInput input"
-                htmlFor={dataCheckboxInput.name}>
+                htmlFor={`${dataCheckboxInput.name}-${formName}`}>
                 <input
                     type="checkbox"
                     name={dataCheckboxInput.name}
-                    id={dataCheckboxInput.name}
+                    id={`${dataCheckboxInput.name}-${formName}`}
                     checked={value}
                     onChange={(e) => onChange(dataCheckboxInput.name, e.target.checked, formName)}
                 />

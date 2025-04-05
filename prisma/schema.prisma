@@ -8,12 +8,33 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String // Stocke un hash sécurisé du mot de passe
+  id                 String    @id @default(uuid())
+  email              String    @unique
+  password           String
+  acceptLegalTerms   Boolean
+  isVerified         Boolean   @default(false)
+  dateOfRegistration DateTime  @default(now())
+  dateOfBirth        DateTime?
+
+  // Relations
+  profile  Profile?
+  sessions Session[]
+}
+
+model Profile {
+  id        String  @id @default(uuid())
+  userId    String  @unique
   firstName String
   lastName  String
-  avatar    String? // URL de l’avatar
-  bio       String? // Petite description
+  avatar    String?
+  bio       String?
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

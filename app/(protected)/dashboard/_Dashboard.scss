@@ -3,11 +3,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .greetings {
-      .username {
-        color: var(--color1-light);
-      }
-    }
     .level {
       position: relative;
       svg {
@@ -27,7 +22,7 @@
   }
 
   .infos-zone {
-    @include classic-auto-grid(2, 1, 1);
+    @include classic-auto-grid(2, 2, 1, 1);
     & {
       margin-top: $fiftypx;
       gap: $fiftypx;

@@ -15,14 +15,14 @@ interface EmailInputProps {
 }
 function EmailInput({ dataEmailInput, value, onChange, errors, formName }: EmailInputProps) {
     return (
-        <label className='EmailInput input' htmlFor={dataEmailInput.name}>
+        <label className='EmailInput input' htmlFor={`${dataEmailInput.name}-${formName}`}>
             <span className='label-title'>{dataEmailInput.label}</span>
             <div className="input-wrapper">
                 <FontAwesomeIcon className='icon' icon={dataEmailInput.icon == 'envelope' ? faEnvelope : faEnvelope} aria-hidden="true" />
                 <input
                     type="email"
                     name={dataEmailInput.name}
-                    id={dataEmailInput.name}
+                    id={`${dataEmailInput.name}-${formName}`}
                     placeholder={dataEmailInput.placeholder}
                     value={value}
                     onChange={(e) => onChange(dataEmailInput.name, e.target.value, formName)}

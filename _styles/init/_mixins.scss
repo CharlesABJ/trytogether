@@ -166,9 +166,17 @@
     }
   }
 }
-@mixin classic-auto-grid($desktop-columns, $tablet-columns, $mobile-columns) {
+@mixin classic-auto-grid(
+  $big-screen-columns,
+  $desktop-columns,
+  $tablet-columns,
+  $mobile-columns
+) {
   display: grid;
-  grid-template-columns: repeat($desktop-columns, minmax(0, 1fr));
+  grid-template-columns: repeat($big-screen-columns, minmax(0, 1fr));
+  @media screen and (max-width: 1640px) {
+    grid-template-columns: repeat($desktop-columns, minmax(0, 1fr));
+  }
   @media screen and (max-width: 1250px) {
     grid-template-columns: repeat($tablet-columns, minmax(0, 1fr));
   }

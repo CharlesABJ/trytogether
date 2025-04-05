@@ -25,7 +25,7 @@ function PasswordInput({ dataPasswordInput, value, onChange, errors, formName }:
 
     return (
 
-        <label className='PasswordInput input' htmlFor={dataPasswordInput.name}>
+        <label className='PasswordInput input' htmlFor={`${dataPasswordInput.name}-${formName}`}>
             <div className="passord-zone">
                 <span className='label-title'>{dataPasswordInput.label}</span> <Link href="/reset" className='passord-reset'>Mot de passe oublié ?</Link>
             </div>
@@ -36,7 +36,7 @@ function PasswordInput({ dataPasswordInput, value, onChange, errors, formName }:
                 <input
                     type={eyeActive ? "text" : "password"}
                     name={dataPasswordInput.name}
-                    id={dataPasswordInput.name}
+                    id={`${dataPasswordInput.name}-${formName}`}
                     placeholder={dataPasswordInput.placeholder}
                     value={value}
                     onChange={(e) => onChange(dataPasswordInput.name, e.target.value, formName)}

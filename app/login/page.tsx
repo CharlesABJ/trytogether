@@ -95,8 +95,8 @@ function Login() {
     // (3) État pour stocker les données des formulaires
     // Sign-in
     const [signInFormData, setSignInFormData] = useState({
-        email: "",
-        password: "",
+        email: "aurore@domain.com",
+        password: "12345678",
         rememberMe: false
     });
     // Sign-up
@@ -117,11 +117,7 @@ function Login() {
     // (6) État pour stocker la couleur principale de la page
     const colors = ["original", "blue", "red", "teal", "yellow", "purple", "orange", "green"];
 
-    const [colorIndex, setColorIndex] = useState<number | null>(null);
-    useEffect(() => {
-        const newColorIndex = Math.floor(Math.random() * colors.length);
-        setColorIndex(newColorIndex);
-    }, []);
+    const [colorIndex, setColorIndex] = useState<number>(() => Math.floor(Math.random() * colors.length));
 
     // (7) Etat 
     // const words = ["compétences", "talents", "potentiel", "connaissances", "créativité", "curiosité"];
@@ -143,13 +139,22 @@ function Login() {
     // (0a) Se connecter avec Google
     const handleSignIn = async () => {
         try {
-            await signIn("google");
+            await signIn("google", { redirectTo: "/dashboard" });
         } catch (error) {
+            alert("Erreur lors de la connexion avec Google !");
             console.error("Erreur lors de la connexion avec Google", error);
         }
     };
 
     // (0b) Se connecter avec un compte existant
+    const handleSignInWithCredentials = async () => {
+        try {
+            await signIn("credentials", { redirectTo: "/dashboard" });
+        } catch (error) {
+            alert("Erreur lors de la connexion !");
+            console.error("Erreur lors de la connexion avec un compte existant", error);
+        }
+    };
 
     // (1) Changer l'index du temoignage actif toute les x secondes
     useEffect(() => {
@@ -199,27 +204,22 @@ function Login() {
             result.error.issues.forEach((issue) => { // 
                 errors[issue.path[0]] = issue.message;
             });
-            console.log("Gros y a des erreurs");
-
             setErrors(errors);
             return;
         }
-
-        console.log("Y a pas d'erreurs!");
-        setErrors({}); // On supprime les erreurs après la validation
-
-
+        setErrors({}); // On supprime les erreurs lié à Zod après la validation
+        // Il n'y a plus d'erreurs, on peut envoyer les données et les vérifier dans la base de données
         try {
             if (form === "sign-up") {
-                // 🚀 Envoi des données d'inscription à `/api/auth/signup`
-                const res = await fetch("/api/auth/signup", {
+                //On envoi des données d'inscription à `/api/auth/signup`
+                const response = await fetch("/api/auth/signup", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(signUpFormData),
                 });
 
-                const data = await res.json();
-                if (!res.ok) {
+                const data = await response.json();
+                if (!response.ok) {
                     setErrors({ api: data.message }); // Afficher une erreur de l'API
                 } else {
                     console.log("Inscription réussie !");
@@ -227,22 +227,21 @@ function Login() {
                 }
             } else if (form === "sign-in") {
                 // 🚀 Envoi des données de connexion à NextAuth.js
-                const res = await signIn("credentials", {
-                    redirect: false,
+                const response = await signIn("credentials", {
+                    redirect: false, // Pour empêcher la redirection par défaut de NextAuth
                     email: signInFormData.email,
                     password: signInFormData.password,
                 });
 
-                if (res?.error) {
-                    setErrors({ api: res.error }); // Afficher une erreur si connexion échoue
+                if (response?.error) {
+                    setErrors({ loginError: response.error }); // Afficher une erreur si connexion échoue
                 } else {
-                    console.log("Connexion réussie !");
-                    // Redirige l'utilisateur après connexion
+                    redirect("/dashboard");
                 }
             }
         } catch (error) {
             console.error("Erreur serveur :", error);
-            setErrors({ api: "Une erreur inattendue s'est produite." });
+            setErrors({ loginError: `Une erreur inattendue s'est produite: ${error}` });
         }
     }
 
@@ -307,8 +306,8 @@ function Login() {
         <main data-main-color={colors[colorIndex]} className="main-of-Login ">
             <section className="presentation">
                 <div className="try-together">
-                    <div className="icon lightbulb">
-                        <FontAwesomeIcon onClick={handleChangeColor} icon={faLightbulb} />
+                    <div onClick={handleChangeColor} className="icon lightbulb">
+                        <FontAwesomeIcon icon={faLightbulb} />
                     </div>
                     <span>TryTogether</span>
                 </div>
@@ -450,7 +449,8 @@ function Login() {
                             }}
                             isGoogle={false}
                             disabled={buttonIsDisabled}
-                            formName="sign-up" />
+                            formName="sign-up"
+                            onClick={handleSignInWithCredentials} />
                     </form>
                     <div className="continue-with-google">
                         <p className='separator'><span>Ou continuer avec</span></p>
