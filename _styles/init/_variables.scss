@@ -155,7 +155,7 @@ $hundredpx: 6.25rem;
   /* ⚫ Couleurs Classiques */
   --black: #1f1f1f;
   --black-dark: #000;
-  --white: #f1f1f1;
+  --white: #fafafa;
   --white-light: #fff;
   --grey-1: #6b7280;
   --grey-2: #9ca3af;
@@ -178,7 +178,7 @@ $hundredpx: 6.25rem;
   --overlay-color: #000c;
 
   /* 🎨 Mode clair par défaut */
-  --body-bg-color: #f8fafc;
+  --body-bg-color: #fff;
   --body-text-color: #111827;
   ::selection {
     background: var(--grey-50);

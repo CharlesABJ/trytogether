@@ -16,6 +16,12 @@ interface GoalItemProps {
     };
 }
 
+const user = {
+    firstName: "Aurore",
+    lastName: "Lale",
+    avatar: "/img/profil.jpeg",
+};
+
 function GoalItem({ dataGoalItem }: GoalItemProps) {
     const [isCompleted, setIsCompleted] = useState(dataGoalItem.isCompleted);
     const [isDeleted, setIsDeleted] = useState(false);
@@ -40,7 +46,7 @@ function GoalItem({ dataGoalItem }: GoalItemProps) {
                     />
                     <div className="name-and-subject">
                         <div className="name">
-                            {dataGoalItem.creatorFirstname}{" "}
+                            {dataGoalItem.creatorFirstname === user.firstName ? "Vous" : ` ${dataGoalItem.creatorFirstname}`}
                             {dataGoalItem.creatorLastname.charAt(0)}.
                         </div>
                         <div className="subject">({dataGoalItem.lessonSubject})</div>

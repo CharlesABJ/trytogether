@@ -4,12 +4,13 @@ interface CheckboxInputProps {
         label: string;
         name: string;
     };
+    required?: boolean
     value: boolean
     onChange: (name: string, value: boolean, form: string) => void
     errors?: { [key: string]: string }
     formName: string
 }
-function CheckboxInput({ dataCheckboxInput, value, onChange, errors, formName }: CheckboxInputProps) {
+function CheckboxInput({ dataCheckboxInput, required, value, onChange, errors, formName }: CheckboxInputProps) {
     return (
 
         <div>
@@ -21,6 +22,7 @@ function CheckboxInput({ dataCheckboxInput, value, onChange, errors, formName }:
                     name={dataCheckboxInput.name}
                     id={`${dataCheckboxInput.name}-${formName}`}
                     checked={value}
+                    required={required}
                     onChange={(e) => onChange(dataCheckboxInput.name, e.target.checked, formName)}
                 />
                 <span className='label-title'>{dataCheckboxInput.label}</span>

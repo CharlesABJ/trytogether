@@ -1,5 +1,9 @@
 .Greetings {
   .username {
     color: var(--bg-color-classic);
+    &::selection {
+      background-color: var(--bg-color-50);
+      color: var(--white-light);
+    }
   }
 }

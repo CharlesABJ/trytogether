@@ -96,7 +96,7 @@ function Login() {
     // Sign-in
     const [signInFormData, setSignInFormData] = useState({
         email: "aurore@domain.com",
-        password: "12345678",
+        password: "Charles03//",
         rememberMe: false
     });
     // Sign-up
@@ -117,7 +117,12 @@ function Login() {
     // (6) État pour stocker la couleur principale de la page
     const colors = ["original", "blue", "red", "teal", "yellow", "purple", "orange", "green"];
 
-    const [colorIndex, setColorIndex] = useState<number>(() => Math.floor(Math.random() * colors.length));
+    const [colorIndex, setColorIndex] = useState<null | number>(null);
+    useEffect(() => {
+        if (colorIndex === null) {
+            setColorIndex(Math.floor(Math.random() * colors.length));
+        }
+    }, [colorIndex]);
 
     // (7) Etat 
     // const words = ["compétences", "talents", "potentiel", "connaissances", "créativité", "curiosité"];
@@ -256,9 +261,13 @@ function Login() {
             : ["firstName", "lastName", "email", "password"];  // Champs obligatoires pour l'inscription
 
         // On vérifie si tous les champs obligatoires sont remplis
-        const isFormValid = requiredFields.every(field => formData[field as keyof typeof formData].trim() !== "");
+        const isFormValid = activeForm === 'sign-in'
+            ? requiredFields.every(field => formData[field as keyof typeof formData].trim() !== "")
+            : requiredFields.every(field => formData[field as keyof typeof formData].trim() !== "") && signUpFormData.acceptLegalTerms;
+
 
         setButtonIsDisabled(!isFormValid);
+
 
     }, [signInFormData, signUpFormData, activeForm]);
 
@@ -435,6 +444,7 @@ function Login() {
                             errors={errors}
                             formName="sign-up" />
                         <CheckboxInput
+                            required={true}
                             dataCheckboxInput={{
                                 label: "J'accepte les conditions d'utilisation et la politique de confidentialité",
                                 name: "acceptLegalTerms"

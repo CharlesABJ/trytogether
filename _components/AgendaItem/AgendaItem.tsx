@@ -1,11 +1,13 @@
+"use client";
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@/_components/(User)/Avatar/Avatar';
 
 interface AgendaItemProps {
     dataAgendaItem: {
         participantAvatar: string;
+        participantPseudo: string;
         participantFirstname: string;
         participantLastname: string;
         lessonSubject: string;
@@ -15,8 +17,9 @@ interface AgendaItemProps {
     }
 }
 function AgendaItem({ dataAgendaItem }: AgendaItemProps) {
+    const [isCompleted, setIsCompleted] = useState(dataAgendaItem.isCompleted);
     return (
-        <div className="AgendaItem">
+        <div className={`AgendaItem ${isCompleted ? 'completed' : ''}`}>
             <Avatar
                 dataAvatar={{
                     src: dataAgendaItem.participantAvatar,

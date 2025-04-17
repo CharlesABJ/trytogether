@@ -23,4 +23,12 @@
     .schedules {
     }
   }
+  &.completed {
+    background: var(--disabled);
+    text-decoration: line-through;
+    color: var(--black);
+  }
+  &.deleted {
+    display: none;
+  }
 }

@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import ClassicButton from '../ClassicButton/ClassicButton';
-import { redirect } from 'next/navigation';
 
 interface AgendaGoalsPreviewProps {
     dataAgendaGoalsPreview: {
@@ -19,34 +18,58 @@ function AgendaGoalsPreview({ dataAgendaGoalsPreview }: AgendaGoalsPreviewProps)
     const datasAgenda = [
         {
             agendaId: 1,
-            participantAvatar: "/img/profil.jpeg",
-            participantFirstname: "Mery",
-            participantLastname: "Nod",
+            participantAvatar: "/img/user5.jpg",
+            participantPseudo: "Franklin S",
+            participantFirstname: "Franklin",
+            participantLastname: "Sanders",
             lessonSubject: "Mathématiques",
-            startTime: "12:00",
-            endTime: "13:00",
+            startTime: "13:30",
+            endTime: "14:30",
             isCompleted: false
 
         },
         {
             agendaId: 2,
-            participantAvatar: "/img/profil.jpeg",
-            participantFirstname: "Tom",
-            participantLastname: "Leblanc",
-            lessonSubject: "Français",
-            startTime: "10:00",
-            endTime: "11:30",
+            participantAvatar: "/img/user2.jpeg",
+            participantPseudo: "Candice M",
+            participantFirstname: "Candice",
+            participantLastname: "Merin",
+            lessonSubject: "Informatique",
+            startTime: "17:30",
+            endTime: "18:00",
             isCompleted: false
-
+        },
+        {
+            agendaId: 3,
+            participantAvatar: "/img/user3.jpeg",
+            participantPseudo: "Eloise M",
+            participantFirstname: "Eloise",
+            participantLastname: "Mango",
+            lessonSubject: "Anglais",
+            startTime: "18:30",
+            endTime: "19:00",
+            isCompleted: true
+        },
+        {
+            agendaId: 4,
+            participantAvatar: "/img/user1.jpg",
+            participantPseudo: "Franklin S",
+            participantFirstname: "Franklin",
+            participantLastname: "Sanders",
+            lessonSubject: "Mathématiques",
+            startTime: "18:30",
+            endTime: "19:00",
+            isCompleted: false
         }
     ];
 
     const datasGoals = [
         {
             goalId: 1,
-            creatorAvatar: "/img/profil.jpeg",
-            creatorFirstname: "Mery",
-            creatorLastname: "Nod",
+            creatorAvatar: "/img/user5.jpg",
+            creatorPseudo: "Franklin S",
+            creatorFirstname: "Franklin",
+            creatorLastname: "Sanders",
             lessonSubject: "Mathématiques",
             goalDescription: `
                 <p>Résoudre les 3 équations linéaires de l’exo page 47.</p>
@@ -58,16 +81,43 @@ function AgendaGoalsPreview({ dataAgendaGoalsPreview }: AgendaGoalsPreviewProps)
         },
         {
             goalId: 2,
-            creatorAvatar: "/img/profil.jpeg",
-            creatorFirstname: "Tom",
-            creatorLastname: "Leblanc",
-            lessonSubject: "Français",
+            creatorAvatar: "/img/user2.jpeg",
+            creatorPseudo: "Candice M",
+            creatorFirstname: "Candice",
+            creatorLastname: "Merin",
+            lessonSubject: "Informatique",
             goalDescription: `
                 <ul>
                     <li>Revoir la structure HTML de ton code</li>
                     <li>Télécharger l’extension « Wave »</li>
                     <li>Essayer de ne plus avoir aucune erreur ou alerte dans la console de ton navigateur</li>
                     <li>Comme tu avances très vite, si tu as le temps, tu peux essayer de mettre en place tes nouvelles connaissances en javascript en essayant de réaliser une petite calculatrice basique (addition, soustraction, multiplication et division) </li>
+                </ul>
+            `,
+            isCompleted: true
+        },
+        {
+            goalId: 3,
+            creatorAvatar: "/img/user3.jpeg",
+            creatorPseudo: "Eloise M",
+            creatorFirstname: "Eloise",
+            creatorLastname: "Mango",
+            lessonSubject: "Anglais",
+            goalDescription: `
+                <p>Apprendre les 20 verbes irréguliers :)</p>
+            `,
+            isCompleted: true
+        },
+        {
+            goalId: 4,
+            creatorAvatar: "/img/profil.jpeg",
+            creatorPseudo: "Aurore L",
+            creatorFirstname: "Aurore",
+            creatorLastname: "Lale",
+            lessonSubject: "Mathématiques",
+            goalDescription: `
+                <ul>
+                    <li>Mémoriser par cœur le Theoreme de Pythagore</li>
                 </ul>
             `,
             isCompleted: false
