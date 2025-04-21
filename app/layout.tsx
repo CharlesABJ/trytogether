@@ -1,8 +1,7 @@
-
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import "@/_styles/app.scss";
-import { SessionProvider } from "next-auth/react"
+import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
+import { Montserrat } from "next/font/google";
 
 const monserrat = Montserrat(
   {
