@@ -13,7 +13,8 @@ import Testimony from '@/_components/(Reinsurance)/Testimony/Testimony';
 import SubmitButton from '@/_components/(Form)/SubmitButton/SubmitButton';
 import { signInSchema } from '@/_utils/validation/auth/signInSchema';
 import { signUpSchema } from '@/_utils/validation/auth/signUpSchema';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+
 
 const testimonyData = [
     {
@@ -79,12 +80,13 @@ const testimonyData = [
 ];
 
 function Login() {
+    const router = useRouter();
+
 
     // ============================ VARIABLES ==============================
 
     // (0) État de la session
     const { data: session } = useSession();
-
 
     // (1) État pour savoir quel témoignage est actif
     const [activeTestimonyIndex, setActiveTestimonyIndex] = useState(0);
@@ -95,16 +97,16 @@ function Login() {
     // (3) État pour stocker les données des formulaires
     // Sign-in
     const [signInFormData, setSignInFormData] = useState({
-        email: "aurore@domain.com",
+        email: "charles@sequane.fr",
         password: "Charles03//",
         rememberMe: false
     });
     // Sign-up
     const [signUpFormData, setSignUpFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
+        firstName: "Charles",
+        lastName: "ABJ",
+        email: "charles@sequane.fr",
+        password: "Charles03//",
         acceptLegalTerms: false
     });
 
@@ -138,7 +140,7 @@ function Login() {
 
     // Vérifier le statut
     if (session) {
-        redirect("/dashboard");
+        router.push("/dashboard");
     }
 
     // (0a) Se connecter avec Google
@@ -228,7 +230,12 @@ function Login() {
                     setErrors({ api: data.message }); // Afficher une erreur de l'API
                 } else {
                     console.log("Inscription réussie !");
-                    // Tu peux rediriger l'utilisateur vers la page de connexion ici
+                    await signIn("credentials", {
+                        email: signUpFormData.email,
+                        password: signUpFormData.password,
+                        redirect: true,
+                        callbackUrl: "/dashboard"
+                    });
                 }
             } else if (form === "sign-in") {
                 // 🚀 Envoi des données de connexion à NextAuth.js
@@ -336,6 +343,7 @@ function Login() {
                         </div>
                     ))}
                 </div>
+                <i>Les commentaires présentés ci-dessus sont simulés à des fins de démonstration.</i>
             </section>
             <section className="login">
                 <p className="welcome">Bienvenue sur <span>TryTogether</span></p>
@@ -459,8 +467,7 @@ function Login() {
                             }}
                             isGoogle={false}
                             disabled={buttonIsDisabled}
-                            formName="sign-up"
-                            onClick={handleSignInWithCredentials} />
+                            formName="sign-up" />
                     </form>
                     <div className="continue-with-google">
                         <p className='separator'><span>Ou continuer avec</span></p>

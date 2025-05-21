@@ -7,7 +7,8 @@
     "dev:turbopack": "next dev --turbopack",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean:all": "rm -rf node_modules .next .turbo package-lock.json yarn.lock"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.2",
