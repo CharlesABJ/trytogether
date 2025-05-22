@@ -98,7 +98,7 @@ function Login() {
     // Sign-in
     const [signInFormData, setSignInFormData] = useState({
         email: "charles@sequane.fr",
-        password: "Charles03//",
+        password: "UneChenille03//",
         rememberMe: false
     });
     // Sign-up
@@ -106,7 +106,7 @@ function Login() {
         firstName: "Charles",
         lastName: "ABJ",
         email: "charles@sequane.fr",
-        password: "Charles03//",
+        password: "UneChenille03//",
         acceptLegalTerms: false
     });
 
