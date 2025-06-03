@@ -19,10 +19,12 @@ function Avatar({ dataAvatar, canOpenModal = true }: AvatarProps) {
     }
     return (
         <>
-            <div onClick={canOpenModal ? handleUserModal : undefined} className="Avatar">
+            <div
+                onClick={canOpenModal ? handleUserModal : undefined}
+                className="Avatar">
                 <Image
-                    src={dataAvatar.src}
-                    alt={dataAvatar.alt}
+                    src={dataAvatar.src || "/img/user1.jpg"}
+                    alt={dataAvatar.alt || "Avatar"}
                     width={50}
                     height={50}
                 />
