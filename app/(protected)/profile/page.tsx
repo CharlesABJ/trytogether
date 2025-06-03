@@ -53,7 +53,7 @@ function Profile() {
                 <div className="help">
                     <h2>Aide</h2>
                     <ul>
-                        <li>Centre d'aide</li>
+                        <li>Centre d&apos;aide</li>
                     </ul>
                 </div>
             </div>

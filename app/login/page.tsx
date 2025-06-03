@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
@@ -97,7 +97,7 @@ function Login() {
     // (3) État pour stocker les données des formulaires
     // Sign-in
     const [signInFormData, setSignInFormData] = useState({
-        email: "charles@sequane.fr",
+        email: "charles2@sequane.fr",
         password: "UneChenille03//",
         rememberMe: false
     });
@@ -105,7 +105,7 @@ function Login() {
     const [signUpFormData, setSignUpFormData] = useState({
         firstName: "Charles",
         lastName: "ABJ",
-        email: "charles@sequane.fr",
+        email: "charles2@sequane.fr",
         password: "UneChenille03//",
         acceptLegalTerms: false
     });
@@ -124,12 +124,12 @@ function Login() {
         if (colorIndex === null) {
             setColorIndex(Math.floor(Math.random() * colors.length));
         }
-    }, [colorIndex]);
+    }, [colorIndex, colors.length]);
 
     // (7) Etat 
     // const words = ["compétences", "talents", "potentiel", "connaissances", "créativité", "curiosité"];
     // const words = ["compétences", "talents", "idées", "connaissances", "envies", "capacités"];
-    const words = ["compétences", "connaissances", "idées"];
+    const words = useMemo(() => ["compétences", "connaissances", "idées"], []);
     const [wordIndex, setWordIndex] = useState<number>(0);
     const [letters, setLetters] = useState<string[]>([]);
     const [letterIndex, setLetterIndex] = useState(0);
@@ -145,21 +145,13 @@ function Login() {
 
     // (0a) Se connecter avec Google
     const handleSignIn = async () => {
+
         try {
             await signIn("google", { redirectTo: "/dashboard" });
+
         } catch (error) {
             alert("Erreur lors de la connexion avec Google !");
             console.error("Erreur lors de la connexion avec Google", error);
-        }
-    };
-
-    // (0b) Se connecter avec un compte existant
-    const handleSignInWithCredentials = async () => {
-        try {
-            await signIn("credentials", { redirectTo: "/dashboard" });
-        } catch (error) {
-            alert("Erreur lors de la connexion !");
-            console.error("Erreur lors de la connexion avec un compte existant", error);
         }
     };
 
@@ -238,7 +230,7 @@ function Login() {
                     });
                 }
             } else if (form === "sign-in") {
-                // 🚀 Envoi des données de connexion à NextAuth.js
+                //  Envoi des données de connexion à NextAuth.js
                 const response = await signIn("credentials", {
                     redirect: false, // Pour empêcher la redirection par défaut de NextAuth
                     email: signInFormData.email,
@@ -246,9 +238,12 @@ function Login() {
                 });
 
                 if (response?.error) {
-                    setErrors({ loginError: response.error }); // Afficher une erreur si connexion échoue
+                    if (response.error === "Configuration") {
+                        setErrors({ loginError: "Email ou mot de passe incorrect" })
+                    }
+                    // setErrors({ loginError: response.error }); // Afficher une erreur si connexion échoue
                 } else {
-                    redirect("/dashboard");
+                    router.push("/dashboard");
                 }
             }
         } catch (error) {
@@ -314,7 +309,7 @@ function Login() {
                 setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
             }
         }
-    }, [letterIndex, isDeleting]);
+    }, [letterIndex, isDeleting, words, wordIndex]);
 
 
     if (colorIndex === null) return null;
@@ -360,6 +355,7 @@ function Login() {
                         className={activeForm === 'sign-in' ? 'active' : ''}
                         action=""
                         method="POST">
+
                         <EmailInput
                             dataEmailInput={{
                                 label: "Email",
@@ -369,7 +365,7 @@ function Login() {
                             }}
                             value={signInFormData.email}
                             onChange={handleInputChange}
-                            errors={errors}
+                            errors={errors?.loginError ? { email: errors.loginError } : undefined}
                             formName="sign-in"
                         />
                         <PasswordInput
@@ -380,7 +376,7 @@ function Login() {
                             }}
                             value={signInFormData.password}
                             onChange={handleInputChange}
-                            errors={errors}
+                            errors={errors?.loginError ? { password: errors.loginError } : undefined}
                             formName="sign-in" />
                         <CheckboxInput
                             dataCheckboxInput={{
