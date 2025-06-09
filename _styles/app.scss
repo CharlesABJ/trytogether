@@ -15,19 +15,20 @@
 //** (2) Importation des fichiers de composants
 
 @import "../_components/Greetings/_Greetings";
+@import "../_components/WillComming/_WillComming";
 
 // (Form)
-@import "../_components/(Form)/TextInput/_TextInput";
-@import "../_components/(Form)/EmailInput/_EmailInput";
-@import "../_components/(Form)/PasswordInput/_PasswordInput";
-@import "../_components/(Form)/CheckboxInput/_CheckboxInput";
+@import "../_components/Form/TextInput/_TextInput";
+@import "../_components/Form/EmailInput/_EmailInput";
+@import "../_components/Form/PasswordInput/_PasswordInput";
+@import "../_components/Form/CheckboxInput/_CheckboxInput";
 
 // (User)
-@import "../_components/(User)/Avatar/_Avatar";
-@import "../_components/(User)/UserModal/_UserModal";
+@import "../_components/User/Avatar/_Avatar";
+@import "../_components/User/UserModal/_UserModal";
 
 // (Reinsurance)
-@import "../_components/(Reinsurance)/Testimony/Testimony";
+@import "../_components/Reinsurance/Testimony/Testimony";
 
 @import "../_components/AvatarEditor/_AvatarEditor";
 @import "../_components/TitleTag/_TitleTag";
@@ -44,4 +45,6 @@
 @import "../app/(protected)/meetings/Meetings";
 @import "../app/(protected)/goals/Goals";
 @import "../app/(protected)/store/Store";
+
 @import "../app/(protected)/profile/Profile";
+@import "../app/(protected)/profile/components/SettingsSection/_SettingsSection.scss";

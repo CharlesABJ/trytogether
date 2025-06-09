@@ -1,23 +1,16 @@
-import Greetings from '@/_components/Greetings/Greetings';
-import TitleTag from '@/_components/TitleTag/TitleTag';
+
+import WillComming from '@/_components/WillComming/WillComming';
 import React from 'react';
 
 function Goals() {
     return (
-        <section className='Goals'>
-            <TitleTag dataTitleTag={{ title: "Tes objectifs" }} />
-            <Greetings
-                dataGreeting={{
-                    title: "Courage",
-                    description: (
-                        <>
-                            <br />
-                            <strong>Tu es sur ton espace Objectifs</strong><br />
-                            Ici tu peux programmer et gérer tes objectifs !
-                        </>
-                    )
-                }} />
-        </section>
+        <main className='Goals page'>
+            <WillComming dataWillComming={{
+                title_a: "Objectifs",
+                title_b: "Bientôt disponible",
+                description: "Bientôt, vous pourrez suivre vos objectifs pas à pas et mesurer vos avancées directement depuis votre espace TryTogether."
+            }} />
+        </main>
     );
 }
 

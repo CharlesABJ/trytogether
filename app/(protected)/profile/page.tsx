@@ -2,9 +2,20 @@
 
 import React from 'react';
 import { signOut, useSession } from 'next-auth/react';
-
+import SettingsSection from './components/SettingsSection/SettingsSection';
+import settingsData from '@/datas/settings.json';
+import { iconMap } from '@/_utils/icons/iconMap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 function Profile() {
     const { data: session, status } = useSession();
+    const mappedSettings = settingsData.map(section => ({
+        ...section,
+        items: section.items.map(item => ({
+            ...item,
+            icon: iconMap[item.icon]
+        }))
+    }));
 
     const handleSignOut = async () => {
         try {
@@ -22,43 +33,31 @@ function Profile() {
     return (
         <section className='Profile'>
             <h1>Mon Compte</h1>
-            {session?.user?.email && <p>{session.user.email}</p>}
 
             <div className="container-edit">
                 <div className="avatar_name-and-email">
-                    <div className="avatar"></div>
+                    <div className="avatar">
+                        <Image
+                            src={"/img/user1.jpg"}
+                            alt={session?.user?.name || ""}
+                            width={64}
+                            height={64}
+                        />
+
+                    </div>
                     <div className="name-and-email">
                         <div className="name">{session?.user?.name}</div>
                         <div className="email">{session?.user?.email}</div>
                     </div>
                 </div>
 
-                <div className="personal-info">
-                    <h2>Informations personnelles</h2>
-                    <ul>
-                        <li>Modifier mon profil</li>
-                        <li>Notifications</li>
-                    </ul>
-                </div>
-
-                <div className="account-and-security">
-                    <h2>Compte et sécurité</h2>
-                    <ul>
-                        <li>Sécurité du compte</li>
-                        <li>Paramètres</li>
-                        <li>Abonnement et facturation</li>
-                    </ul>
-                </div>
-
-                <div className="help">
-                    <h2>Aide</h2>
-                    <ul>
-                        <li>Centre d&apos;aide</li>
-                    </ul>
-                </div>
+                {mappedSettings.map((setting) => (
+                    <SettingsSection key={setting.settingId} dataSettingsSection={setting} />
+                ))}
             </div>
 
-            <button className='btn logout-btn' onClick={handleSignOut}>Se déconnecter</button>
+            <button className='btn logout-btn' onClick={handleSignOut}><FontAwesomeIcon className='icon' icon={iconMap["faRightFromBracket"]} /> <span>Se déconnecter</span>
+            </button>
         </section>
     );
 }

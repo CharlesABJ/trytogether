@@ -1,10 +1,15 @@
+import WillComming from '@/_components/WillComming/WillComming';
 import React from 'react';
 
 function Store() {
     return (
-        <section className='Store'>
-            Store
-        </section>
+        <main className='Store page'>
+            <WillComming dataWillComming={{
+                title_a: "Boutique",
+                title_b: "Bientôt disponible",
+                description: "La boutique arrive bientôt, avec des produits sélectionnés pour accompagner votre progression au sein de TryTogether."
+            }} />
+        </main>
     );
 }
 

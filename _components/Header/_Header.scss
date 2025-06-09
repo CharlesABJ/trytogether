@@ -2,7 +2,9 @@
   position: fixed;
   inset: 0;
   width: 100%;
-  height: max-content;
+  height: 80px;
+  display: flex;
+  align-items: center;
   background: var(--bg-color-classic);
   color: var(--text-color-classic);
   z-index: 100;

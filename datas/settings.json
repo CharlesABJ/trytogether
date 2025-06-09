@@ -1,0 +1,52 @@
+ [
+    {
+        "settingId": 1,
+        "title": "Informations personnelles",
+        "className": "personal-info",
+        "items": [
+            {
+                "item": "Modifier mon profil",
+                "icon": "faUser",
+                "link": "/profile/edit"
+            },
+            {
+                "item": "Notifications",
+                "icon": "faBell",
+                "link": "/profile/notifications"
+            }
+
+        ]
+    },
+    {
+        "settingId": 2,
+        "title": "Compte et sécurité",
+        "className": "account-and-security",
+        "items": [
+            {
+                "item": "Sécurité du compte",
+                "icon": "faShieldAlt",
+                "link": "/profile/security"
+            },
+            {
+                "item": "Paramètres",
+                "icon": "faCog",
+                "link": "/profile/settings"
+            },
+            {
+                "item": "Abonnement et facturation",
+                "icon": "faMoneyBill",
+                "link": "/profile/billing"
+            }
+        ]
+    },
+    {
+        "settingId": 3,
+        "title": "Aide",
+        "className": "help",
+        "items": [{
+            "item": "Centre d'aide",
+            "icon": "faQuestion",
+            "link": "/help"
+        }]
+    }
+]

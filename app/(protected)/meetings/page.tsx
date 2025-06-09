@@ -1,24 +1,18 @@
-import Greetings from '@/_components/Greetings/Greetings';
-import TitleTag from '@/_components/TitleTag/TitleTag';
+
+import WillComming from '@/_components/WillComming/WillComming';
 import React from 'react';
 
 function Meetings() {
     return (
-        <section className='Meetings'>
-            <TitleTag dataTitleTag={{ title: "Tes rendez-vous" }} />
-            <Greetings
-                dataGreeting={{
-                    title: "2 secondes",
-                    description: (
-                        <>
-                            <br />
-                            <strong>Tu es sur ton espace Calendrier Ici tu peux programmer et gérer tes RDV ! </strong><br />
-                            Ici tu peux programmer et gérer tes rendez-vous !
-                        </>
-                    )
-                }} />
-        </section>
+        <main className='Meetings page'>
+            <WillComming dataWillComming={{
+                title_a: "Rendez-vous",
+                title_b: "En Construction",
+                description: "Bientôt, vous pourrez suivre vos objectifs pas à pas et mesurer vos avancées directement depuis votre espace TryTogether."
+            }} />
+        </main>
     );
+
 }
 
 export default Meetings;

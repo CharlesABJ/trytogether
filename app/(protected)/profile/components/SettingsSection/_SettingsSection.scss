@@ -1,0 +1,34 @@
+.SettingsSection {
+  background: var(--white-light);
+  padding: $twenty-fourpx;
+  border-radius: $twelvepx;
+  box-shadow: $shadow;
+
+  .items-list {
+    .item {
+      padding: $twelvepx;
+      transition: 0.3s ease-in-out;
+      border-radius: $sixpx;
+      cursor: pointer;
+      &:hover {
+        background: var(--body-bg-color);
+        a,
+        button {
+          .icon {
+            color: var(--bg-color-classic);
+          }
+        }
+      }
+
+      a,
+      button {
+        display: flex;
+        align-items: center;
+        gap: $twelvepx;
+        .icon {
+          transition: 0.2s ease-in;
+        }
+      }
+    }
+  }
+}

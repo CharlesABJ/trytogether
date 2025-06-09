@@ -2,7 +2,7 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import Avatar from "../(User)/Avatar/Avatar";
+import Avatar from "../User/Avatar/Avatar";
 
 interface GoalItemProps {
     dataGoalItem: {

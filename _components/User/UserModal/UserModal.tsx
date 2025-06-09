@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Avatar from '@/_components/(User)/Avatar/Avatar';
+import Avatar from '@/_components/User/Avatar/Avatar';
 
 function UserModal() {
     const [isModalOpen, setIsModalOpen] = useState(true);

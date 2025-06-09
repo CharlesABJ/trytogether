@@ -34,7 +34,7 @@
 }
 @mixin classic-h1 {
   @include classic-h1-font-size;
-  line-height: 56px;
+  line-height: 70px;
   font-weight: $weight-bold;
 }
 
@@ -73,6 +73,39 @@
   margin-block: $sixteenpx;
 }
 
+@mixin alternative-h2-font-size {
+  font-size: $thirtypx;
+  @media screen and (max-width: 1640px) {
+    font-size: $thirtypx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $twenty-fivepx;
+  }
+  @media screen and (max-width: 678px) {
+  }
+}
+@mixin alternative-h2 {
+  @include alternative-h2-font-size;
+  line-height: 32px;
+  font-weight: $weight-semibold;
+}
+
+@mixin big-h3-font-size {
+  font-size: $twenty-fourpx;
+  @media screen and (max-width: 1640px) {
+    font-size: $twenty-fourpx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $twentypx;
+  }
+  @media screen and (max-width: 678px) {
+    font-size: $twelvepx;
+  }
+}
+@mixin big-h3 {
+  @include big-h3-font-size;
+}
+
 @mixin classic-h3-font-size {
   font-size: $twentypx;
   @media screen and (max-width: 1640px) {
@@ -88,6 +121,25 @@
   @include classic-h3-font-size;
   line-height: 32px;
   font-weight: $weight-semibold;
+}
+
+@mixin small-h3-font-size {
+  font-size: $fourteenpx;
+  @media screen and (max-width: 1640px) {
+    font-size: $fourteenpx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $fourteenpx;
+  }
+  @media screen and (max-width: 678px) {
+    font-size: $twelvepx;
+  }
+}
+@mixin small-h3 {
+  @include small-h3-font-size;
+  font-weight: $weight-medium;
+  letter-spacing: 0.5px;
+  line-height: 24px;
 }
 
 @mixin classic-alternative-font-size {

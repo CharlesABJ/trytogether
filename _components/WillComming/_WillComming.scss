@@ -1,0 +1,71 @@
+.WillComming {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  .icon {
+    @include classic-h2-font-size;
+  }
+  h1 {
+    color: var(--bg-color-classic);
+    margin-bottom: $twenty-fourpx;
+
+    span {
+      color: var(--body-text-color);
+      display: block;
+    }
+  }
+  .description {
+    @include classic-h3-font-size;
+    line-height: 30px;
+  }
+}
+
+.RemainingDuration {
+  width: 450px;
+  margin: $fiftypx auto 0;
+  background: var(--white-light);
+  padding: $thirty-twopx;
+  border-radius: $twelvepx;
+  box-shadow: $shadow;
+  text-align: center;
+  .title {
+    @include classic-alternative-font-size;
+    font-weight: $weight-semibold;
+    display: flex;
+    align-items: center;
+    gap: $tenpx;
+    justify-content: center;
+    margin-bottom: $twenty-fourpx;
+    .icon {
+      color: var(--bg-color-classic);
+    }
+  }
+  .goal {
+    @include alternative-h2;
+    color: var(--bg-color-classic);
+  }
+  .percentage {
+    .bar {
+      width: 100%;
+      height: $eightpx;
+      border-radius: $twelvepx;
+      background: var(--grey-3);
+      overflow: hidden;
+      margin-block: $eightpx;
+      .fill {
+        border-radius: $twelvepx;
+        height: 100%;
+        width: 40%;
+        background: linear-gradient(
+          to right,
+          var(--bg-color-classic),
+          var(--bg-color-light)
+        );
+      }
+    }
+  }
+}
