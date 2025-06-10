@@ -6,9 +6,11 @@ import SettingsSection from './components/SettingsSection/SettingsSection';
 import settingsData from '@/datas/settings.json';
 import { iconMap } from '@/_utils/icons/iconMap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Image from 'next/image';
 function Profile() {
     const { data: session, status } = useSession();
+
     const mappedSettings = settingsData.map(section => ({
         ...section,
         items: section.items.map(item => ({
@@ -19,8 +21,10 @@ function Profile() {
 
     const handleSignOut = async () => {
         try {
-            await signOut();
+            await signOut({ redirect: true, callbackUrl: "/login" });
             console.log("Déconnexion réussie");
+
+
         } catch (error) {
             console.error("Erreur lors de la déconnexion", error);
         }
