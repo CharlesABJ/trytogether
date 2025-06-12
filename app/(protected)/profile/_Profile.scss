@@ -93,3 +93,31 @@
     }
   }
 }
+
+@media screen and (max-width: 1250px) {
+  .Profile {
+    h1 {
+      @include section-margin-inline;
+      text-align: center;
+    }
+    .container-edit {
+      @include section-margin-inline;
+    }
+    .logout-btn {
+      margin-inline: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .Profile {
+    .container-edit {
+      .avatar_name-and-email {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: $sixteenpx;
+      }
+    }
+  }
+}

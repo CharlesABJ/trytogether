@@ -1,16 +1,18 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye } from '@fortawesome/free-solid-svg-icons/faBullseye';
 import { faCalendar, faMessage } from '@fortawesome/free-regular-svg-icons';
-import { faBars, faBookOpen, faCartShopping, faHouse, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBookOpen, faCartShopping, faHouse, faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 
 
 
 function Header() {
+    const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const pathname = usePathname(); // On récupère l'url actuelle
     const user = {
         name: "John Doe",
@@ -53,6 +55,12 @@ function Header() {
     if (pathname === "/" || pathname === "/login") {
         return;
     }
+    const handleBurgerMenu = () => {
+        setIsBurgerMenuOpen(!isBurgerMenuOpen);
+    }
+    const handleChangeMode = () => {
+        setIsDarkMode(!isDarkMode);
+    }
     return (
         <header className="Header">
             <div className="container">
@@ -61,11 +69,12 @@ function Header() {
                         <FontAwesomeIcon icon={faBookOpen} /><span>TryTogether</span>
                     </Link>
                 </div>
-                <nav>
-                    <div className="burger-nav-menu">
-                        <FontAwesomeIcon icon={faBars} />
+                <nav className={isBurgerMenuOpen ? "menu-is-open" : "menu-is-closed"}>
+                    <div onClick={handleBurgerMenu} className={isBurgerMenuOpen ? "burger-nav-menu menu-is-open" : "burger-nav-menu menu-is-closed"}>
+                        <FontAwesomeIcon className="faBars" icon={faBars} />
+                        <FontAwesomeIcon className="faXmark" icon={faXmark} />
                     </div>
-                    <ul>
+                    <ul className={isBurgerMenuOpen ? "menu-is-open" : "menu-is-closed"}>
                         {navLinks.map((link) => (
                             <li key={link.navId}>
                                 <Link
@@ -79,10 +88,12 @@ function Header() {
 
                     </ul>
                 </nav>
-                <div className="account-zone">
-                    <div className="toggle-darkmode">
-                        <FontAwesomeIcon icon={faMoon} />
-                        {/* <FontAwesomeIcon icon={faSun} /> */}
+                <div className={isBurgerMenuOpen ? "account-zone menu-is-open" : "account-zone"}>
+                    <div
+                        onClick={handleChangeMode}
+                        className={isDarkMode ? "toggle-darkmode darkmode" : "toggle-darkmode lightmode"}>
+                        <FontAwesomeIcon className='faMoon' icon={faMoon} />
+                        <FontAwesomeIcon className='faSun' icon={faSun} />
                     </div>
                     <Link title='Profil' className={`profile ${pathname === "/profile" ? "active" : ""}`} href="/profile">
                         <Image width={50} height={50} src={user.avatar} alt={`${user.name} profil`} />

@@ -35,7 +35,7 @@ function Profile() {
     }
 
     return (
-        <section className='Profile'>
+        <main className='Profile'>
             <h1>Mon Compte</h1>
 
             <div className="container-edit">
@@ -62,7 +62,7 @@ function Profile() {
 
             <button className='btn logout-btn' onClick={handleSignOut}><FontAwesomeIcon className='icon' icon={iconMap["faRightFromBracket"]} /> <span>Se déconnecter</span>
             </button>
-        </section>
+        </main>
     );
 }
 

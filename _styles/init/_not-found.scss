@@ -1,2 +1,52 @@
 .NotFound {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .card {
+    width: 450px;
+    border: 2px solid var(--bg-color-50);
+    padding: $twenty-fourpx;
+    border-radius: $twelvepx;
+    text-align: center;
+    h1 {
+      @include alternative-body;
+      color: var(--bg-color-dark);
+      line-height: normal;
+      span {
+        @include classic-h1;
+        display: block;
+      }
+    }
+    .description {
+      margin-block: $sixteenpx $twenty-fourpx;
+    }
+    a {
+      display: flex;
+      margin: auto;
+      background: var(--white-light);
+      color: var(--bg-color-classic);
+      border: 1px solid var(--bg-color-classic);
+      gap: $tenpx;
+      padding: $tenpx $twelvepx;
+      border-radius: $sixpx;
+      transition: 0.3s ease;
+      svg {
+        width: $sixteenpx;
+      }
+      &:hover {
+        background: var(--bg-color-classic);
+        color: var(--white-light);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .NotFound {
+    .card {
+      width: 75%;
+    }
+  }
 }

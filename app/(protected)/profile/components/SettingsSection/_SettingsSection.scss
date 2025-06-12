@@ -32,3 +32,12 @@
     }
   }
 }
+
+@media screen and (max-width: 678px) {
+  .SettingsSection {
+    padding: $sixteenpx;
+    h2 {
+      margin-top: 0;
+    }
+  }
+}

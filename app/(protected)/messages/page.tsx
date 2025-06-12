@@ -4,7 +4,7 @@ import React from 'react';
 
 function Messages() {
     return (
-        <main className="Home page">
+        <main className="Messages page">
             <WillComming dataWillComming={{
                 title_a: "Messagerie",
                 title_b: "En Construction",

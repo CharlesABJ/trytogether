@@ -12,7 +12,7 @@ async function Dashboard() {
 
 
     return (
-        <section className="Dashboard">
+        <main className="Dashboard">
             <AvatarEditor />
             <TitleTag dataTitleTag={{ title: "Tableau de bord" }} />
 
@@ -32,7 +32,7 @@ async function Dashboard() {
                 <AgendaGoalsPreview dataAgendaGoalsPreview={{ title: "Tes prochains rendez-vous", isForMeeting: true }} />
                 <AgendaGoalsPreview dataAgendaGoalsPreview={{ title: "Tes objectifs", isForMeeting: false }} />
             </div>
-        </section>
+        </main>
     );
 }
 

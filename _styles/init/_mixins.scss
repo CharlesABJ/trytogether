@@ -17,6 +17,22 @@
   color: var(--body-text-color);
 }
 
+@mixin alternative-body-font-size {
+  font-size: $twenty-fourpx;
+  @media screen and (max-width: 1640px) {
+    font-size: $twenty-fourpx;
+  }
+  @media screen and (max-width: 1250px) {
+    font-size: $twentypx;
+  }
+  @media screen and (max-width: 678px) {
+    font-size: $seventeenpx;
+  }
+}
+@mixin alternative-body {
+  @include alternative-body-font-size;
+}
+
 @mixin classic-section {
   padding-block: $hundredpx;
 }
