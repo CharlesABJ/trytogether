@@ -25,11 +25,8 @@
     }
   }
 
-  .AgendaGoalsPreview {
-    @include section-padding-inline;
-  }
-
   .infos-zone {
+    @include section-padding-inline;
     @include classic-auto-grid(2, 2, 1, 1);
     & {
       margin-top: $fiftypx;
