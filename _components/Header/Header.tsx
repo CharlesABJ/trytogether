@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye } from '@fortawesome/free-solid-svg-icons/faBullseye';
 import { faCalendar, faMessage } from '@fortawesome/free-regular-svg-icons';
-import { faBookOpen, faCartShopping, faHouse, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBookOpen, faCartShopping, faHouse, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 
 
@@ -16,7 +16,6 @@ function Header() {
         name: "John Doe",
         avatar: "/img/profil.jpeg"
     };
-
     const navLinks = [
         {
             navId: 1,
@@ -59,10 +58,13 @@ function Header() {
             <div className="container">
                 <div className="logo">
                     <Link href="/">
-                        <FontAwesomeIcon icon={faBookOpen} />TryTogether
+                        <FontAwesomeIcon icon={faBookOpen} /><span>TryTogether</span>
                     </Link>
                 </div>
                 <nav>
+                    <div className="burger-nav-menu">
+                        <FontAwesomeIcon icon={faBars} />
+                    </div>
                     <ul>
                         {navLinks.map((link) => (
                             <li key={link.navId}>
@@ -70,7 +72,7 @@ function Header() {
                                     className={`nav-link ${link.href === pathname ? "active" : ""}`}
                                     href={link.href}>
                                     <FontAwesomeIcon icon={link.icon} />
-                                    {link.name ?? ""}
+                                    {link.name && <span className="nav-link-text">{link.name}</span>}
                                 </Link>
                             </li>
                         ))}

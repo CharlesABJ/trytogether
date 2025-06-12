@@ -3,7 +3,7 @@
 import React from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import SettingsSection from './components/SettingsSection/SettingsSection';
-import settingsData from '@/datas/settings.json';
+import settingsData from '@/_datas/profile-settings.json';
 import { iconMap } from '@/_utils/icons/iconMap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationCircle, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import PasswordInput from '@/_components/Form/PasswordInput/PasswordInput';
 import TextInput from '@/_components/Form/TextInput/TextInput';
@@ -14,70 +14,7 @@ import SubmitButton from '@/_components/Form/SubmitButton/SubmitButton';
 import { signInSchema } from '@/_utils/validation/auth/signInSchema';
 import { signUpSchema } from '@/_utils/validation/auth/signUpSchema';
 import { useRouter } from 'next/navigation';
-
-
-const testimonyData = [
-    {
-        testimonyId: 1,
-        avatar: "/img/user1.png",
-        content: "Grâce à TryTogether, j'ai trouvé un mentor qui m'a initié au dessin numérique. Aujourd’hui, je réalise mes propres illustrations et j’envisage même d’en faire mon métier.",
-        author: "Léa M. - Future illustratrice"
-    },
-    {
-        testimonyId: 2,
-        avatar: "/img/user2.jpeg",
-        content: "Apprendre le japonais tout seul était un vrai défi. Mon mentor m’a aidé à progresser avec une méthode efficace, et aujourd’hui, je peux enfin tenir une conversation basique !",
-        author: "Nathan S. - Étudiant en langues"
-    },
-    {
-        testimonyId: 3,
-        avatar: "/img/user3.jpeg",
-        content: "J’ai toujours voulu apprendre à jouer aux échecs. Grâce à TryTogether, j’ai compris les bases et appris des stratégies avancées. Mes parties sont devenues bien plus intéressantes !",
-        author: "Lucas D. - Joueur d’échecs amateur"
-    },
-    {
-        testimonyId: 4,
-        avatar: "/img/user4.jpg",
-        content: "Je galérais en maths jusqu’à ce que mon mentor me montre une autre approche. Maintenant, les équations me paraissent bien plus claires et je gagne en confiance pour mes examens.",
-        author: "Inès T. - Lycéenne en terminale"
-    },
-    {
-        testimonyId: 5,
-        avatar: "/img/user5.jpg",
-        content: "J’ai toujours voulu apprendre à coder mais je ne savais pas par où commencer. Mon mentor a su m’expliquer les bases avec clarté et aujourd’hui, j’ai créé mon premier site web !",
-        author: "Samir K. - Développeur en herbe"
-    },
-    {
-        testimonyId: 6,
-        avatar: "/img/user6.jpeg",
-        content: "Je voulais améliorer mon niveau en anglais pour être plus à l’aise en voyage et au travail. Grâce à mon mentor, j’ai fait des progrès concrets et je prends enfin confiance à l’oral.",
-        author: "Sarah P. - Consultante en marketing"
-    },
-    {
-        testimonyId: 7,
-        avatar: "/img/user7.jpeg",
-        content: "J’ai toujours aimé la cuisine asiatique mais je ne savais pas par où commencer. Mon mentor m’a guidée pas à pas, et aujourd’hui, je réussis mes propres ramen maison !",
-        author: "Sophie R. - Chef amateur"
-    },
-    {
-        testimonyId: 8,
-        avatar: "/img/user8.jpg",
-        content: "Je voulais progresser sur *Valorant*, et grâce à un mentor expert, j’ai amélioré mon niveau et compris les vraies stratégies du jeu. Résultat : plus de victoires et moins de frustration !",
-        author: "David P. - Joueur passionné d'e-sport"
-    },
-    {
-        testimonyId: 9,
-        avatar: "/img/user9.jpeg",
-        content: "J’adorais filmer mes voyages, mais mes montages étaient… disons, un peu chaotiques. Mon mentor m’a appris à structurer mes vidéos, à choisir les bons cuts et à jouer avec les transitions. Maintenant, mes vidéos ressemblent enfin à celles des pros !",
-        author: "Lucas R. - Futur monteur pro"
-    },
-    {
-        testimonyId: 10,
-        avatar: "/img/user10.jpeg",
-        content: "Je voulais me remettre en forme, mais je manquais de motivation. Avec TryTogether, j’ai trouvé un coach qui m’a aidé à établir une routine adaptée. Résultat : je suis en meilleure forme que jamais !",
-        author: "Emma C. - Sportive motivée"
-    }
-];
+import testimonialsData from '@/_datas/testimonials.json';
 
 function Login() {
     const router = useRouter();
@@ -86,7 +23,7 @@ function Login() {
     // ============================ VARIABLES ==============================
 
     // (0) État de la session
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
 
     // (1) État pour savoir quel témoignage est actif
     const [activeTestimonyIndex, setActiveTestimonyIndex] = useState(0);
@@ -97,16 +34,16 @@ function Login() {
     // (3) État pour stocker les données des formulaires
     // Sign-in
     const [signInFormData, setSignInFormData] = useState({
-        email: "charles2@sequane.fr",
-        password: "UneChenille03//",
+        email: "",
+        password: "",
         rememberMe: false
     });
     // Sign-up
     const [signUpFormData, setSignUpFormData] = useState({
-        firstName: "Charles",
-        lastName: "ABJ",
-        email: "charles2@sequane.fr",
-        password: "UneChenille03//",
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
         acceptLegalTerms: false
     });
 
@@ -139,9 +76,11 @@ function Login() {
     // ============================= FONCTIONS =============================
 
     // Vérifier le statut
-    if (session) {
-        router.push("/dashboard");
-    }
+    useEffect(() => {
+        if (status === "authenticated") {
+            router.push("/dashboard");
+        }
+    }, [status, session, router])
 
     // (0a) Se connecter avec Google
     const handleSignIn = async () => {
@@ -150,7 +89,6 @@ function Login() {
             await signIn("google", { redirectTo: "/dashboard" });
 
         } catch (error) {
-            alert("Erreur lors de la connexion avec Google !");
             console.error("Erreur lors de la connexion avec Google", error);
         }
     };
@@ -159,7 +97,7 @@ function Login() {
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveTestimonyIndex((prevIndex) =>
-                prevIndex === testimonyData.length - 1 ? 0 : prevIndex + 1
+                prevIndex === testimonialsData.length - 1 ? 0 : prevIndex + 1
             );
         }, 9000);
 
@@ -207,19 +145,22 @@ function Login() {
             return;
         }
         setErrors({}); // On supprime les erreurs lié à Zod après la validation
-        // Il n'y a plus d'erreurs, on peut envoyer les données et les vérifier dans la base de données
+        // Il n'y a plus d'erreurs, on envoie les données et on vérifie dans la base de données
         try {
             if (form === "sign-up") {
                 //On envoi des données d'inscription à `/api/auth/signup`
                 const response = await fetch("/api/auth/signup", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json", // On envoie du JSON 
+                        "Accept": "application/json" // On accepte du JSON 
+                    },
                     body: JSON.stringify(signUpFormData),
                 });
 
                 const data = await response.json();
                 if (!response.ok) {
-                    setErrors({ api: data.message }); // Afficher une erreur de l'API
+                    setErrors({ api: data.message }); // On affiche l'erreur de l'API
                 } else {
                     console.log("Inscription réussie !");
                     await signIn("credentials", {
@@ -241,7 +182,6 @@ function Login() {
                     if (response.error === "Configuration") {
                         setErrors({ loginError: "Email ou mot de passe incorrect" })
                     }
-                    // setErrors({ loginError: response.error }); // Afficher une erreur si connexion échoue
                 } else {
                     router.push("/dashboard");
                 }
@@ -332,7 +272,7 @@ function Login() {
                 <p>Rejoignez notre communauté et connectez-vous avec des experts dans votre domaine pour accélérer votre apprentissage.</p>
 
                 <div className="testimonials-zone">
-                    {testimonyData.map((testimony, index) => (
+                    {testimonialsData.map((testimony, index) => (
                         <div key={testimony.testimonyId} className={index === activeTestimonyIndex ? 'testimony active' : 'testimony'}>
                             <Testimony dataTestimony={testimony} />
                         </div>
@@ -356,6 +296,8 @@ function Login() {
                         action=""
                         method="POST">
 
+                        {errors?.loginError && <p className="errors-message login-error"><FontAwesomeIcon icon={faExclamationCircle} /> {errors.loginError}</p>}
+
                         <EmailInput
                             dataEmailInput={{
                                 label: "Email",
@@ -365,7 +307,7 @@ function Login() {
                             }}
                             value={signInFormData.email}
                             onChange={handleInputChange}
-                            errors={errors?.loginError ? { email: errors.loginError } : undefined}
+                            errors={errors}
                             formName="sign-in"
                         />
                         <PasswordInput
@@ -376,7 +318,7 @@ function Login() {
                             }}
                             value={signInFormData.password}
                             onChange={handleInputChange}
-                            errors={errors?.loginError ? { password: errors.loginError } : undefined}
+                            errors={errors}
                             formName="sign-in" />
                         <CheckboxInput
                             dataCheckboxInput={{

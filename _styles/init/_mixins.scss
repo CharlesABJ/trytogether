@@ -199,6 +199,56 @@
   }
 }
 
+@mixin section-padding-inline {
+  padding-inline: calc($hundredpx + $fourtypx);
+  @media screen and (max-width: 1640px) {
+    padding-inline: calc($hundredpx + $fourtypx);
+  }
+  @media screen and (max-width: 1250px) {
+    padding-inline: calc(3.5 * $sixteenpx);
+  }
+  @media screen and (max-width: 678px) {
+    padding-inline: $sixteenpx;
+  }
+}
+@mixin section-padding-block {
+  padding-block: $hundredpx;
+  @media screen and (max-width: 1640px) {
+    padding-block: $hundredpx;
+  }
+  @media screen and (max-width: 1250px) {
+    padding-block: $sixtyfourpx;
+  }
+  @media screen and (max-width: 678px) {
+    padding-block: $sixteenpx;
+  }
+}
+
+@mixin section-margin-inline {
+  margin-inline: calc($hundredpx + $fourtypx);
+  @media screen and (max-width: 1640px) {
+    margin-inline: calc($hundredpx + $fourtypx);
+  }
+  @media screen and (max-width: 1250px) {
+    margin-inline: calc(3.5 * $sixteenpx);
+  }
+  @media screen and (max-width: 678px) {
+    margin-inline: $sixteenpx;
+  }
+}
+@mixin section-margin-block {
+  margin-block: $hundredpx;
+  @media screen and (max-width: 1640px) {
+    margin-block: $hundredpx;
+  }
+  @media screen and (max-width: 1250px) {
+    margin-block: $sixtyfourpx;
+  }
+  @media screen and (max-width: 678px) {
+    margin-block: $sixteenpx;
+  }
+}
+
 @mixin classic-apply-color($type, $color-name, $color) {
   .#{$type}-#{$color-name} {
     @if $type == "bg" {

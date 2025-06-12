@@ -5,3 +5,9 @@
     padding-bottom: $thirty-twopx;
   }
 }
+
+@media screen and (max-width: 1250px) {
+  .Footer {
+    padding-top: $hundredpx;
+  }
+}
