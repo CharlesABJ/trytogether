@@ -12,7 +12,7 @@ async function Dashboard() {
 
 
     return (
-        <main className="Dashboard">
+        <main className="Dashboard page">
             <AvatarEditor />
             <TitleTag dataTitleTag={{ title: "Tableau de bord" }} />
 
