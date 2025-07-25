@@ -8,6 +8,7 @@ import React, { useRef, useState } from 'react';
 const user = {
     firstName: "Mery",
     avatar: "/img/profil.webp",
+    banner: "/img/banner-default.webp",
     level: "1"
 };
 
@@ -17,7 +18,7 @@ interface AvatarEditorProps {
 
 function AvatarEditor({ hasEditable = true }: AvatarEditorProps) {
     const [avatar, setAvatar] = useState<string>(user.avatar);
-    const [banner, setBanner] = useState<string | null>(null);
+    const [banner, setBanner] = useState<string>(user.banner);
 
     const avatarInputRef = useRef<HTMLInputElement | null>(null);
     const bannerInputRef = useRef<HTMLInputElement | null>(null);
