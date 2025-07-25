@@ -2,6 +2,7 @@
   background: var(--bg-color-classic);
   color: var(--text-color-classic);
   width: calc(3 * $hundredpx);
+  max-width: 100%;
   border: none;
   border-radius: $eightpx;
   text-align: center;

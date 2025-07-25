@@ -27,7 +27,6 @@
 
 // (User)
 @import "../_components/User/Avatar/_Avatar";
-@import "../_components/User/UserModal/_UserModal";
 
 // (Reinsurance)
 @import "../_components/Reinsurance/Testimony/Testimony";
@@ -38,6 +37,11 @@
 @import "../_components/GoalItem/_GoalItem";
 @import "../_components/AgendaItem/_AgendaItem";
 @import "../_components/ClassicButton/_ClassicButton";
+// Modal
+@import "../_components/Modal/GoalModal/_GoalModal";
+@import "../_components/Modal/MeetingModal/_MeetingModal";
+@import "../_components/Modal/SettingsModal/_SettingsModal";
+@import "../_components/Modal/UserProfileModal/_UserProfileModal";
 
 // (3) Importation des fichiers de pages
 @import "../app/login/Login";
@@ -48,5 +52,13 @@
 @import "../app/(protected)/goals/Goals";
 @import "../app/(protected)/store/Store";
 
+// Profile
 @import "../app/(protected)/profile/Profile";
-@import "../app/(protected)/profile/components/SettingsSection/_SettingsSection.scss";
+/** pages **/
+@import "../app/(protected)/profile/billing/_Billing";
+@import "../app/(protected)/profile/edit/_Edit";
+@import "../app/(protected)/profile/notifications/_Notifications";
+@import "../app/(protected)/profile/security/_Security";
+@import "../app/(protected)/profile/settings/_Settings";
+/** components **/
+@import "../app/(protected)/profile/_components/SettingsSection/_SettingsSection.scss";

@@ -45,7 +45,7 @@ export const credentials = Credentials({
         return {
             id: user.id.toString(),
             email: user.email,
-            name: user.profile?.firstName + " " + user.profile?.lastName,
+            name: `${user.profile?.firstName} ${user.profile?.lastName}`,
             firstName: user.profile?.firstName,
             lastName: user.profile?.lastName,
 

@@ -29,7 +29,7 @@ export default function RootLayout({
 
   return (
     <SessionProvider>
-      <html data-main-color="original" lang="fr">
+      <html lang="fr">
         <body className={monserrat.className}>
           {children}
         </body>

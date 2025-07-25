@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { signOut, useSession } from 'next-auth/react';
-import SettingsSection from './components/SettingsSection/SettingsSection';
+import SettingsSection from './_components/SettingsSection/SettingsSection';
 import settingsData from '@/_datas/profile-settings.json';
 import { iconMap } from '@/_utils/icons/iconMap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,14 +35,14 @@ function Profile() {
     }
 
     return (
-        <main className='Profile'>
+        <main className='Profile page'>
             <h1>Mon Compte</h1>
 
             <div className="container-edit">
                 <div className="avatar_name-and-email">
                     <div className="avatar">
                         <Image
-                            src={"/img/user1.jpg"}
+                            src={"/img/profil.webp"}
                             alt={session?.user?.name || ""}
                             width={64}
                             height={64}

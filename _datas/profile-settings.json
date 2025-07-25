@@ -1,52 +1,75 @@
- [
-    {
-        "settingId": 1,
-        "title": "Informations personnelles",
-        "className": "personal-info",
-        "items": [
-            {
-                "item": "Modifier mon profil",
-                "icon": "faUser",
-                "link": "/profile/edit"
-            },
-            {
-                "item": "Notifications",
-                "icon": "faBell",
-                "link": "/profile/notifications"
-            }
-
-        ]
-    },
-    {
-        "settingId": 2,
-        "title": "Compte et sécurité",
-        "className": "account-and-security",
-        "items": [
-            {
-                "item": "Sécurité du compte",
-                "icon": "faShieldAlt",
-                "link": "/profile/security"
-            },
-            {
-                "item": "Paramètres",
-                "icon": "faCog",
-                "link": "/profile/settings"
-            },
-            {
-                "item": "Abonnement et facturation",
-                "icon": "faMoneyBill",
-                "link": "/profile/billing"
-            }
-        ]
-    },
-    {
-        "settingId": 3,
-        "title": "Aide",
-        "className": "help",
-        "items": [{
-            "item": "Centre d'aide",
-            "icon": "faQuestion",
-            "link": "/help"
-        }]
-    }
+[
+  {
+    "settingId": 1,
+    "title": "Préférences utilisateur",
+    "className": "personal-info",
+    "items": [
+      {
+        "item": "Modifier mon profil",
+        "icon": "faUser",
+        "link": ""
+      },
+      {
+        "item": "Thème & interface",
+        "icon": "faPaintRoller",
+        "link": ""
+      },
+      {
+        "item": "Notifications",
+        "icon": "faBell",
+        "link": ""
+      }
+    ]
+  },
+  {
+    "settingId": 2,
+    "title": "Sécurité & confidentialité",
+    "className": "account-and-security",
+    "items": [
+      {
+        "item": "Sécurité du compte",
+        "icon": "faShieldAlt",
+        "link": ""
+      },
+      {
+        "item": "Paramètres avancés",
+        "icon": "faCog",
+        "link": ""
+      }
+    ]
+  },
+  {
+    "settingId": 3,
+    "title": "Abonnement & facturation",
+    "className": "subscription-and-billing",
+    "items": [
+      {
+        "item": "Détails de l’abonnement",
+        "icon": "faMoneyBill",
+        "link": ""
+      },
+      {
+        "item": "Historique de facturation",
+        "icon": "faClock",
+        "link": ""
+      },
+      {
+        "item": "Modifier ou annuler",
+        "icon": "faFilePen",
+        "link": ""
+      }
+    ]
+  },
+  {
+    "settingId": 4,
+    "title": "Centre d'aide",
+    "className": "help",
+    "items": [
+      {
+        "item": "Assistance",
+        "icon": "faQuestion",
+        "link": ""
+      }
+    ]
+  }
 ]

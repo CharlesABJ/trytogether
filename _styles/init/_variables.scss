@@ -56,96 +56,108 @@ $hundredpx: 6.25rem;
 // COULEURS
 // ========================
 :root {
-  /* Original - Original  */
-  --bg-original-classic: #c74754;
-  --bg-original-light: #f8add4;
-  --bg-original-dark: #9f1239;
-  --bg-original-50: rgba(199, 71, 84, 0.5);
-  --bg-original-disabled: #c74754;
+  /* Original - Original (Rose Framboise sophistiqué) */
+  --bg-original-classic: #e63956;
+  --bg-original-light: #f9ccd4;
+  --bg-original-dark: #8e1f3f;
+  --bg-original-50: rgba(230, 57, 86, 0.5);
+  --bg-original-disabled: #b95064;
   --text-original-classic: var(--white);
   --text-original-light: var(--white);
   --text-original-dark: var(--white);
   --text-original-50: var(--white);
   --text-original-disabled: var(--disabled);
 
-  /* Blue - Bleu  */
-  --bg-blue-classic: #6366f1;
-  --bg-blue-light: #a5b4fc;
-  --bg-blue-dark: #3730a3;
-  --bg-blue-50: rgba(99, 102, 241, 0.5);
-  --bg-blue-disabled: #6366f1;
+  /* Slate - Ardoise (Bleu-gris équilibré) */
+  --bg-slate-classic: #334154;
+  --bg-slate-light: #a5b1c4;
+  --bg-slate-dark: #1f2a38;
+  --bg-slate-50: rgba(51, 65, 84, 0.5);
+  --bg-slate-disabled: #7c8a9e;
+  --text-slate-classic: var(--white);
+  --text-slate-light: var(--white);
+  --text-slate-dark: var(--white);
+  --text-slate-50: var(--white);
+  --text-slate-disabled: var(--disabled);
+
+  /* Blue - Bleu (Bleu nuit raffiné) */
+  --bg-blue-classic: #2a3a75;
+  --bg-blue-light: #9db3e2;
+  --bg-blue-dark: #1b2545;
+  --bg-blue-50: rgba(42, 58, 117, 0.5);
+  --bg-blue-disabled: #c1cae6;
   --text-blue-classic: var(--white);
   --text-blue-light: var(--white);
   --text-blue-dark: var(--white);
   --text-blue-50: var(--white);
   --text-blue-disabled: var(--disabled);
 
-  /* Red - Rouge */
-  --bg-red-classic: #f43f5e;
-  --bg-red-light: #ff85a2;
-  --bg-red-dark: #9f1239;
-  --bg-red-50: rgba(244, 63, 94, 0.5);
-  --bg-red-disabled: #f43f5e;
+  /* Red - Rouge (Rouge carmin moderne) */
+  --bg-red-classic: #d62839;
+  --bg-red-light: #ffb3b3;
+  --bg-red-dark: #941a2b;
+  --bg-red-50: rgba(214, 40, 57, 0.5);
+  --bg-red-disabled: #d62839;
   --text-red-classic: var(--white);
   --text-red-light: var(--white);
   --text-red-dark: var(--white);
   --text-red-50: var(--white);
   --text-red-disabled: var(--disabled);
 
-  /* Teal - Bleu cyan */
-  --bg-teal-classic: #14b8a6;
-  --bg-teal-light: #5eead4;
+  /* Teal - Bleu cyan (Vert d'eau moderne) */
+  --bg-teal-classic: #0d9488;
+  --bg-teal-light: #99f6e4;
   --bg-teal-dark: #0f766e;
-  --bg-teal-50: rgba(20, 184, 166, 0.5);
-  --bg-teal-disabled: #14b8a6;
+  --bg-teal-50: rgba(13, 148, 136, 0.5);
+  --bg-teal-disabled: #76e4d6;
   --text-teal-classic: var(--white);
   --text-teal-light: var(--white);
   --text-teal-dark: var(--white);
   --text-teal-50: var(--white);
   --text-teal-disabled: var(--disabled);
 
-  /* Yellow - Jaune */
+  /* Yellow - Jaune (Jaune moutarde raffiné) */
   --bg-yellow-classic: #eab308;
-  --bg-yellow-light: #facc15;
-  --bg-yellow-dark: #b45309;
+  --bg-yellow-light: #fde68a;
+  --bg-yellow-dark: #a16207;
   --bg-yellow-50: rgba(234, 179, 8, 0.5);
-  --bg-yellow-disabled: #eab308;
+  --bg-yellow-disabled: #f4c93c;
   --text-yellow-classic: var(--black);
   --text-yellow-light: var(--black);
   --text-yellow-dark: var(--black);
   --text-yellow-50: var(--black);
   --text-yellow-disabled: var(--disabled2);
 
-  /* Purple - Violet */
-  --bg-purple-classic: #8b5cf6;
-  --bg-purple-light: #d8b4fe;
-  --bg-purple-dark: #6b21a8;
-  --bg-purple-50: rgba(139, 92, 246, 0.5);
-  --bg-purple-disabled: #8b5cf6;
+  /* Purple - Violet (Violet royal modernisé) */
+  --bg-purple-classic: #7c3aed;
+  --bg-purple-light: #e9d5ff;
+  --bg-purple-dark: #5b21b6;
+  --bg-purple-50: rgba(124, 58, 237, 0.5);
+  --bg-purple-disabled: #b998f2;
   --text-purple-classic: var(--white);
   --text-purple-light: var(--white);
   --text-purple-dark: var(--white);
   --text-purple-50: var(--white);
   --text-purple-disabled: var(--disabled);
 
-  /* Orange - Orange */
+  /* Orange - Orange (Orange brûlé doux) */
   --bg-orange-classic: #f97316;
-  --bg-orange-light: #fdba74;
+  --bg-orange-light: #fed7aa;
   --bg-orange-dark: #c2410c;
   --bg-orange-50: rgba(249, 115, 22, 0.5);
-  --bg-orange-disabled: #f97316;
+  --bg-orange-disabled: #fbbf77;
   --text-orange-classic: var(--black);
   --text-orange-light: var(--black);
   --text-orange-dark: var(--black);
   --text-orange-50: var(--black);
   --text-orange-disabled: var(--disabled2);
 
-  /* Green - Vert */
-  --bg-green-classic: #22c55e;
-  --bg-green-light: #4ade80;
-  --bg-green-dark: #15803d;
-  --bg-green-50: rgba(34, 197, 94, 0.5);
-  --bg-green-disabled: #22c55e;
+  /* Green - Vert (Vert botanique équilibré) */
+  --bg-green-classic: #16a34a;
+  --bg-green-light: #bbf7d0;
+  --bg-green-dark: #166534;
+  --bg-green-50: rgba(22, 163, 74, 0.5);
+  --bg-green-disabled: #72d89b;
   --text-green-classic: var(--white);
   --text-green-light: var(--white);
   --text-green-dark: var(--white);
@@ -171,11 +183,15 @@ $hundredpx: 6.25rem;
   --success: #22c55e;
   --warning: #f97316;
   --info: #3b82f6;
+  --status-online: #22c55e;
+  --status-offline: #dc2626;
+  --status-busy: #f97316;
+  --status-invisible: #9ca3af;
 
   /* Couleurs de bordure et d'ombre */
   --border-color: #e5e7eb;
   --shadow-color: #1f293732;
-  --overlay-color: #000c;
+  --overlay-color: rgba(0, 0, 0, 0.7);
 
   /* 🎨 Mode clair par défaut */
   --body-bg-color: #f9fafb;
@@ -187,7 +203,7 @@ $hundredpx: 6.25rem;
 }
 
 /* 🌓 Mode Sombre */
-[data-theme="dark"] {
+body:has([data-theme="dark"]) {
   --body-bg-color: #111827;
   --body-text-color: #f1f1f1;
 
@@ -196,10 +212,11 @@ $hundredpx: 6.25rem;
   --shadow-color: #1f2937;
 
   /* ⚫ Couleurs Classiques */
-  --black: #1f1f1f;
-  --black-dark: #000;
-  --white: #f1f1f1;
-  --white-light: #fff;
+  --black: #fafafa;
+  --black-dark: #fff;
+  --white: #1f1f1f;
+  --white-light: #000;
+
   --grey-1: #6b7280;
   --grey-2: #9ca3af;
   --grey-3: #d1d5db;
@@ -215,6 +232,9 @@ $hundredpx: 6.25rem;
   --bg-purple-light: #c084fc;
   --bg-orange-light: #fb923c;
   --bg-green-light: #16a34a;
+
+  --body-bg-color: #1f1f20;
+  --body-text-color: #fafafa;
 }
 
 /* ✅ Mise à jour dynamique de la couleur principale */
@@ -222,19 +242,21 @@ $hundredpx: 6.25rem;
 $color-list: (
   // Original
   "original",
-  // Bleu
+  // Slate
+  "slate",
+  // Blue
   "blue",
-  // Rouge
+  // Red
   "red",
-  // Vert Cyan
+  // Teal
   "teal",
-  // Jaune
+  // Yellow
   "yellow",
-  // Violet
+  // Purple
   "purple",
   // Orange
   "orange",
-  // Vert
+  // Green
   "green"
 );
 

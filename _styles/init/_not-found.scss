@@ -4,9 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--bg-color-classic);
   .card {
     width: 450px;
-    border: 2px solid var(--bg-color-50);
+    background: color-mix(
+      in srgb,
+      var(--bg-color-classic),
+      var(--white-light) 90%
+    );
     padding: $twenty-fourpx;
     border-radius: $twelvepx;
     text-align: center;

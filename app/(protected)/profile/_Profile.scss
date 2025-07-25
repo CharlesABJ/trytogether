@@ -52,6 +52,7 @@
     overflow: hidden;
     display: flex;
     gap: $sixteenpx;
+    width: max-content;
     align-items: center;
     margin-top: $thirty-twopx;
     background: var(--white-light);

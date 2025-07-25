@@ -14,17 +14,26 @@ interface AgendaItemProps {
         startTime: string;
         endTime: string;
         isCompleted: boolean;
-    }
+    };
+    onAvatarClick?: () => void;
 }
-function AgendaItem({ dataAgendaItem }: AgendaItemProps) {
+
+function AgendaItem({ dataAgendaItem, onAvatarClick }: AgendaItemProps) {
     const [isCompleted, setIsCompleted] = useState(dataAgendaItem.isCompleted);
+
+    const safeLastnameInitial = dataAgendaItem.participantLastname
+        ? dataAgendaItem.participantLastname.charAt(0)
+        : "";
+
     return (
         <div className={`AgendaItem ${isCompleted ? 'completed' : ''}`}>
             <Avatar
                 dataAvatar={{
                     src: dataAgendaItem.participantAvatar,
-                    alt: `${dataAgendaItem.participantFirstname} ${dataAgendaItem.participantLastname}`
+                    alt: `${dataAgendaItem.participantFirstname} ${dataAgendaItem.participantLastname || ""}`,
                 }}
+                canOpenModal={true}
+                handleOpenModal={onAvatarClick}
             />
             <div className="infos">
                 <div className="schedules">
@@ -33,16 +42,15 @@ function AgendaItem({ dataAgendaItem }: AgendaItemProps) {
                 </div>
                 <div className="name-and-subject">
                     <div className="name">
-                        {dataAgendaItem.participantFirstname} {dataAgendaItem.participantLastname.charAt(0)}.
+                        {dataAgendaItem.participantFirstname} {safeLastnameInitial}.
                     </div>
                     <div className="lesson-subject">({dataAgendaItem.lessonSubject})</div>
                 </div>
-
             </div>
             <div className="settings">
                 <FontAwesomeIcon icon={faEllipsisVertical} />
             </div>
-        </div >
+        </div>
     );
 }
 

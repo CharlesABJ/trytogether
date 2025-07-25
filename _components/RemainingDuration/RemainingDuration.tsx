@@ -2,7 +2,14 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { iconMap } from '@/_utils/icons/iconMap';
 
-function RemainingDuration() {
+interface RemainingDurationProps {
+    dataRemainingDuration: {
+        date: string;
+        percentage: number;
+
+    }
+}
+function RemainingDuration({ dataRemainingDuration }: RemainingDurationProps) {
     return (
         <div className="RemainingDuration">
             <div className="title">    <FontAwesomeIcon className='icon' icon={iconMap["faClock"]} />
@@ -10,13 +17,13 @@ function RemainingDuration() {
             </div>
 
             <div className="goal">
-                Printemps 2026
+                {dataRemainingDuration.date}
             </div>
             <div className="percentage">
                 <div className="bar">
-                    <div className="fill"></div>
+                    <div className="fill" style={{ width: `${dataRemainingDuration.percentage}%` }}></div>
                 </div>
-                <span>40% terminé</span>
+                <span>{dataRemainingDuration.percentage}% terminé</span>
             </div>
         </div>
     );

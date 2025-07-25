@@ -72,6 +72,7 @@
     border-radius: 50%;
     margin: auto;
     border: 3px solid var(--white-light);
+    user-select: none;
 
     img {
       border-radius: 50%;
@@ -99,5 +100,29 @@
 @media screen and (max-width: 1250px) {
   .AvatarEditor {
     aspect-ratio: 16 / 9;
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .AvatarEditor {
+    .camera-editor {
+      &.banner-editor {
+        width: $fourtypx;
+        height: $fourtypx;
+        svg {
+          font-weight: $sixteenpx;
+        }
+      }
+    }
+    .avatar {
+      width: $hundredpx;
+      height: $hundredpx;
+      .camera-editor {
+        &.avatar-editor {
+          bottom: 0;
+          right: 0;
+        }
+      }
+    }
   }
 }

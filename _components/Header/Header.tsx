@@ -7,16 +7,20 @@ import { faBullseye } from '@fortawesome/free-solid-svg-icons/faBullseye';
 import { faCalendar, faMessage } from '@fortawesome/free-regular-svg-icons';
 import { faBars, faBookOpen, faCartShopping, faHouse, faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleMode } from '@/_redux/theme/themeSlice';
+import type { RootState } from "@/_redux/store";
 
 
 
 function Header() {
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const mode = useSelector((state: RootState) => state.theme.mode);
+    const dispatch = useDispatch();
     const pathname = usePathname(); // On récupère l'url actuelle
     const user = {
         name: "John Doe",
-        avatar: "/img/profil.jpeg"
+        avatar: "/img/profil.webp"
     };
     const navLinks = [
         {
@@ -59,13 +63,13 @@ function Header() {
         setIsBurgerMenuOpen(!isBurgerMenuOpen);
     }
     const handleChangeMode = () => {
-        setIsDarkMode(!isDarkMode);
+        dispatch(toggleMode());
     }
     return (
-        <header className="Header">
+        <header data-main-color={"blue"} className="Header">
             <div className="container">
                 <div className="logo">
-                    <Link href="/">
+                    <Link href="/dashboard">
                         <FontAwesomeIcon icon={faBookOpen} /><span>TryTogether</span>
                     </Link>
                 </div>
@@ -89,9 +93,10 @@ function Header() {
                     </ul>
                 </nav>
                 <div className={isBurgerMenuOpen ? "account-zone menu-is-open" : "account-zone"}>
-                    <div
+                    <div title='Bientôt disponible'
                         onClick={handleChangeMode}
-                        className={isDarkMode ? "toggle-darkmode darkmode" : "toggle-darkmode lightmode"}>
+                        data-theme={mode}
+                        className={mode === "dark" ? "toggle-darkmode darkmode" : "toggle-darkmode lightmode"}>
                         <FontAwesomeIcon className='faMoon' icon={faMoon} />
                         <FontAwesomeIcon className='faSun' icon={faSun} />
                     </div>

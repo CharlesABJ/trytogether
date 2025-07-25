@@ -1,0 +1,34 @@
+[
+  {
+    "agendaId": 1,
+    "userId": 1,
+    "lessonSubject": "Mathématiques",
+    "startTime": "13:30",
+    "endTime": "14:30",
+    "isCompleted": false
+  },
+  {
+    "agendaId": 2,
+    "userId": 2,
+    "lessonSubject": "Informatique",
+    "startTime": "17:30",
+    "endTime": "18:00",
+    "isCompleted": false
+  },
+  {
+    "agendaId": 3,
+    "userId": 3,
+    "lessonSubject": "Anglais",
+    "startTime": "18:30",
+    "endTime": "19:00",
+    "isCompleted": true
+  },
+  {
+    "agendaId": 4,
+    "userId": 4,
+    "lessonSubject": "Mathématiques",
+    "startTime": "18:30",
+    "endTime": "19:00",
+    "isCompleted": false
+  }
+]

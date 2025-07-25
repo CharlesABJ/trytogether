@@ -7,7 +7,7 @@ import React, { useRef, useState } from 'react';
 
 const user = {
     firstName: "Mery",
-    avatar: "/img/user1.jpg",
+    avatar: "/img/profil.webp",
     level: "1"
 };
 
@@ -79,7 +79,7 @@ function AvatarEditor({ hasEditable = true }: AvatarEditorProps) {
                         <FontAwesomeIcon icon={faCamera} />
                     </div>
                 )}
-                <Image src={avatar} alt="Profil" width={50} height={50} />
+                <Image src={avatar} alt="Profil" width={200} height={200} />
             </div>
         </div>
     );

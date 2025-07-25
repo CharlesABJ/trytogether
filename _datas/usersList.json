@@ -1,0 +1,47 @@
+[
+  {
+    "userId": 1,
+    "avatar": "/img/user5.jpg",
+    "firstname": "Franklin",
+    "lastname": "Sanders",
+    "pseudo": "Franklin S",
+    "description": "Passionné de mathématiques, toujours prêt à relever un défi.",
+    "badges": ["faBrain", "faMedal", "faTrophy"]
+  },
+  {
+    "userId": 2,
+    "avatar": "/img/user2.jpeg",
+    "firstname": "Candice",
+    "lastname": "Merin",
+    "pseudo": "Candice M",
+    "description": "Créative et rigoureuse, experte en HTML/CSS.",
+    "badges": ["faPaintRoller", "faLightbulb", "faCode"]
+  },
+  {
+    "userId": 3,
+    "avatar": "/img/user3.jpeg",
+    "firstname": "Eloise",
+    "lastname": "Mango",
+    "pseudo": "Eloise M",
+    "description": "Polyglotte en herbe, fan de grammaire anglaise.",
+    "badges": ["faBookOpen", "faLanguage", "faFeather"]
+  },
+  {
+    "userId": 4,
+    "avatar": "/img/user1.jpg",
+    "firstname": "Franklin",
+    "lastname": "Sanders",
+    "pseudo": "Franklin S",
+    "description": "Deuxième présence dans les agendas, mais toujours aussi pertinent 😉",
+    "badges": ["faUserClock"]
+  },
+  {
+    "userId": 5,
+    "avatar": "/img/profil.webp",
+    "firstname": "Aurore",
+    "lastname": "Lale",
+    "pseudo": "Aurore L",
+    "description": "Toujours positive, toujours prête à apprendre !",
+    "badges": ["faHeart", "faSmile", "faSeedling"]
+  }
+]

@@ -11,7 +11,7 @@ function Footer() {
         return null;
     }
     return (
-        <footer className='Footer'>
+        <footer className='Footer' data-main-color={"blue"}>
             <div className="container">
                 <p>Make with <FontAwesomeIcon icon={faHeart} /> by <Link target="_blank" href="https://charlesabj.com"><u>Charles ABJ</u></Link>
                 </p>

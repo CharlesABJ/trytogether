@@ -73,11 +73,12 @@
         border-radius: 50%;
         cursor: pointer;
         transition: 0.3s;
+        visibility: hidden;
         svg {
           transition: 0.3s;
         }
         &:hover {
-          background: var(--white);
+          background: color-mix(in srgb, var(--white), transparent 50%);
           svg {
             color: var(--color1-light);
           }
@@ -122,12 +123,14 @@
         &:hover {
           box-shadow: rgba(255, 255, 255, 0.412) 0px 0px 10px 0px;
         }
-
+        &:active {
+          transform: rotate(-1turn);
+          transition: padding-block 0.3s;
+        }
         &.active {
           box-shadow: rgba(255, 255, 255, 0.412) 0px 0px 10px 0px;
           &:active {
-            transform: rotate(-1turn);
-            transition: padding-block 0.3s;
+            transform: unset;
           }
         }
       }
@@ -198,6 +201,11 @@
               a {
                 position: relative;
                 padding-inline: $twenty-fourpx;
+                opacity: 0.65;
+                &.active {
+                  opacity: 1;
+                }
+
                 &::after {
                   content: "";
                   position: absolute;

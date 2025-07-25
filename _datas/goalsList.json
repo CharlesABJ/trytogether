@@ -1,0 +1,30 @@
+[
+  {
+    "goalId": 1,
+    "userId": 1,
+    "lessonSubject": "Mathématiques",
+    "goalDescription": "<p>Résoudre les 3 équations linéaires de l’exo page 47.</p><br><br><p><strong>Ps :</strong> Tu peux y arriver 💪💪</p>",
+    "isCompleted": false
+  },
+  {
+    "goalId": 2,
+    "userId": 2,
+    "lessonSubject": "Informatique",
+    "goalDescription": "<ul><li>Revoir la structure HTML de ton code</li><li>Télécharger l’extension « Wave »</li><li>Essayer de ne plus avoir aucune erreur ou alerte dans la console de ton navigateur</li><li>Faire une calculatrice JS (addition, soustraction, etc.)</li></ul>",
+    "isCompleted": true
+  },
+  {
+    "goalId": 3,
+    "userId": 3,
+    "lessonSubject": "Anglais",
+    "goalDescription": "<p>Apprendre les 20 verbes irréguliers :)</p>",
+    "isCompleted": true
+  },
+  {
+    "goalId": 4,
+    "userId": 5,
+    "lessonSubject": "Mathématiques",
+    "goalDescription": "<ul><li>Mémoriser par cœur le théorème de Pythagore</li></ul>",
+    "isCompleted": false
+  }
+]

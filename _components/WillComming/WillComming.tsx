@@ -1,5 +1,4 @@
 import React from 'react';
-import RemainingDuration from '../RemainingDuration/RemainingDuration';
 
 
 interface WillCommingProps {
@@ -16,7 +15,6 @@ function WillComming({ dataWillComming }: WillCommingProps) {
     return (
         <>
             <div className="WillComming">
-
                 <h1>
                     <span>{dataWillComming.title_a}</span>
                     {dataWillComming.title_b}
@@ -25,9 +23,6 @@ function WillComming({ dataWillComming }: WillCommingProps) {
                     {dataWillComming.description}
                 </div>
             </div>
-
-            <RemainingDuration />
-
         </>
     );
 }

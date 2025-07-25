@@ -1,8 +1,12 @@
 
 import {
+  faEllipsis,
+  faPen,
   faUser,
   faBell,
+  faPaintRoller,
   faShieldAlt,
+  faFilePen,
   faCog,
   faMoneyBill,
   faQuestion,
@@ -17,9 +21,13 @@ import {
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export const iconMap: Record<string, IconDefinition> = {
+  faEllipsis,
+  faPen,
   faUser,
+  faPaintRoller,
   faBell,
   faShieldAlt,
+  faFilePen,
   faCog,
   faMoneyBill,
   faQuestion,

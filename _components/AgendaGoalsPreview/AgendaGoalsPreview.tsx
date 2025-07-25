@@ -1,12 +1,18 @@
-"use client"
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 import AgendaItem from '../AgendaItem/AgendaItem';
 import GoalItem from '../GoalItem/GoalItem';
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullseye, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import ClassicButton from '../ClassicButton/ClassicButton';
+import UserProfileModal from '../Modal/UserProfileModal/UserProfileModal';
 
+import datasAgenda from "@/_datas/agendasList.json";
+import datasGoals from "@/_datas/goalsList.json";
+import usersList from "@/_datas/usersList.json";
+
+// --- Types
 interface AgendaGoalsPreviewProps {
     dataAgendaGoalsPreview: {
         title: string;
@@ -15,148 +21,106 @@ interface AgendaGoalsPreviewProps {
 }
 
 function AgendaGoalsPreview({ dataAgendaGoalsPreview }: AgendaGoalsPreviewProps) {
-    const datasAgenda = [
-        {
-            agendaId: 1,
-            participantAvatar: "/img/user5.jpg",
-            participantPseudo: "Franklin S",
-            participantFirstname: "Franklin",
-            participantLastname: "Sanders",
-            lessonSubject: "Mathématiques",
-            startTime: "13:30",
-            endTime: "14:30",
-            isCompleted: false
-
-        },
-        {
-            agendaId: 2,
-            participantAvatar: "/img/user2.jpeg",
-            participantPseudo: "Candice M",
-            participantFirstname: "Candice",
-            participantLastname: "Merin",
-            lessonSubject: "Informatique",
-            startTime: "17:30",
-            endTime: "18:00",
-            isCompleted: false
-        },
-        {
-            agendaId: 3,
-            participantAvatar: "/img/user3.jpeg",
-            participantPseudo: "Eloise M",
-            participantFirstname: "Eloise",
-            participantLastname: "Mango",
-            lessonSubject: "Anglais",
-            startTime: "18:30",
-            endTime: "19:00",
-            isCompleted: true
-        },
-        {
-            agendaId: 4,
-            participantAvatar: "/img/user1.jpg",
-            participantPseudo: "Franklin S",
-            participantFirstname: "Franklin",
-            participantLastname: "Sanders",
-            lessonSubject: "Mathématiques",
-            startTime: "18:30",
-            endTime: "19:00",
-            isCompleted: false
-        }
-    ];
-
-    const datasGoals = [
-        {
-            goalId: 1,
-            creatorAvatar: "/img/user5.jpg",
-            creatorPseudo: "Franklin S",
-            creatorFirstname: "Franklin",
-            creatorLastname: "Sanders",
-            lessonSubject: "Mathématiques",
-            goalDescription: `
-                <p>Résoudre les 3 équations linéaires de l’exo page 47.</p>
-                <br>
-                <br>
-                <p><strong>Ps :</strong> Tu peux y arriver 💪💪</p>
-            `,
-            isCompleted: false
-        },
-        {
-            goalId: 2,
-            creatorAvatar: "/img/user2.jpeg",
-            creatorPseudo: "Candice M",
-            creatorFirstname: "Candice",
-            creatorLastname: "Merin",
-            lessonSubject: "Informatique",
-            goalDescription: `
-                <ul>
-                    <li>Revoir la structure HTML de ton code</li>
-                    <li>Télécharger l’extension « Wave »</li>
-                    <li>Essayer de ne plus avoir aucune erreur ou alerte dans la console de ton navigateur</li>
-                    <li>Comme tu avances très vite, si tu as le temps, tu peux essayer de mettre en place tes nouvelles connaissances en javascript en essayant de réaliser une petite calculatrice basique (addition, soustraction, multiplication et division) </li>
-                </ul>
-            `,
-            isCompleted: true
-        },
-        {
-            goalId: 3,
-            creatorAvatar: "/img/user3.jpeg",
-            creatorPseudo: "Eloise M",
-            creatorFirstname: "Eloise",
-            creatorLastname: "Mango",
-            lessonSubject: "Anglais",
-            goalDescription: `
-                <p>Apprendre les 20 verbes irréguliers :)</p>
-            `,
-            isCompleted: true
-        },
-        {
-            goalId: 4,
-            creatorAvatar: "/img/profil.jpeg",
-            creatorPseudo: "Aurore L",
-            creatorFirstname: "Aurore",
-            creatorLastname: "Lale",
-            lessonSubject: "Mathématiques",
-            goalDescription: `
-                <ul>
-                    <li>Mémoriser par cœur le Theoreme de Pythagore</li>
-                </ul>
-            `,
-            isCompleted: false
-        }
-    ];
-
     const router = useRouter();
+
+    const [selectedUser, setSelectedUser] = useState<null | {
+        avatar: string;
+        firstname: string;
+        lastname: string;
+        pseudo: string;
+        description: string;
+        badges?: string[];
+    }>(null);
+
+    const handleAvatarClick = (userId: number) => {
+        const user = usersList.find((u) => u.userId === userId);
+        if (!user) return;
+
+        setSelectedUser({
+            avatar: user.avatar,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            pseudo: user.pseudo,
+            description: user.description,
+            badges: user.badges
+        });
+    };
+
+    const handleModalClose = () => {
+        setSelectedUser(null);
+    };
+
     const handleRedirect = () => {
-        if (dataAgendaGoalsPreview.isForMeeting) {
-            router.push("/meetings");
-        } else {
-            router.push("/goals");
-        }
-    }
+        router.push(dataAgendaGoalsPreview.isForMeeting ? "/meetings" : "/goals");
+    };
 
     return (
         <div className="AgendaGoalsPreview">
             <div className="title">
-                <h3>{dataAgendaGoalsPreview.title} {dataAgendaGoalsPreview.isForMeeting ? <FontAwesomeIcon icon={faCalendar} /> : <FontAwesomeIcon icon={faBullseye} />}</h3>
+                <h3>
+                    {dataAgendaGoalsPreview.title}{" "}
+                    <FontAwesomeIcon icon={dataAgendaGoalsPreview.isForMeeting ? faCalendar : faBullseye} />
+                </h3>
             </div>
 
             {dataAgendaGoalsPreview.isForMeeting ? (
-                datasAgenda.map((dataAgendaItem) => (
-                    <AgendaItem key={dataAgendaItem.agendaId} dataAgendaItem={dataAgendaItem} />
-                ))
+                datasAgenda.map((item) => {
+                    const user = usersList.find((u) => u.userId === item.userId);
+                    if (!user) return null;
+
+                    return (
+                        <AgendaItem
+                            key={item.agendaId}
+                            dataAgendaItem={{
+                                ...item,
+                                participantAvatar: user.avatar,
+                                participantPseudo: user.pseudo,
+                                participantFirstname: user.firstname,
+                                participantLastname: user.lastname,
+                            }}
+                            onAvatarClick={() => handleAvatarClick(user.userId)}
+                        />
+                    );
+                })
             ) : (
-                datasGoals.map((dataGoalItem) => (
-                    <GoalItem key={dataGoalItem.goalId} dataGoalItem={dataGoalItem} />
-                ))
+                datasGoals.map((item) => {
+                    const user = usersList.find((u) => u.userId === item.userId);
+                    if (!user) return null;
+
+                    return (
+                        <GoalItem
+                            key={item.goalId}
+                            dataGoalItem={{
+                                ...item,
+                                creatorAvatar: user.avatar,
+                                creatorPseudo: user.pseudo,
+                                creatorFirstname: user.firstname,
+                                creatorLastname: user.lastname
+                            }}
+                            onAvatarClick={() => handleAvatarClick(user.userId)}
+                        />
+                    );
+                })
             )}
 
-            {dataAgendaGoalsPreview.isForMeeting ? (
-                <ClassicButton dataClassicButton={{ backgroundColor: "bg-color1-light", value: "Ouvrir mon calendrier", onClick: handleRedirect }} />
-            ) : (
-                <ClassicButton dataClassicButton={{ backgroundColor: "bg-color1-light", value: "Ouvrir ma liste d’objectifs", onClick: handleRedirect }} />
+            <ClassicButton
+                dataClassicButton={{
+                    backgroundColor: "bg-color1-light",
+                    value: dataAgendaGoalsPreview.isForMeeting
+                        ? "Ouvrir mon calendrier"
+                        : "Ouvrir ma liste d’objectifs",
+                    onClick: handleRedirect
+                }}
+            />
 
+            {selectedUser && (
+                <UserProfileModal
+                    handleModalClose={handleModalClose}
+                    dataUserProfileModal={selectedUser}
+                />
             )}
         </div>
     );
 }
 
-export default AgendaGoalsPreview; 
+export default AgendaGoalsPreview;

@@ -24,7 +24,7 @@ async function Dashboard() {
                     }} />
                 <div className="badges-zone level">
                     <FontAwesomeIcon icon={faSuitcase} />
-                    {/* <span>{user.level}</span> */}
+                    <span>{"17"}</span>
                 </div>
             </div>
 

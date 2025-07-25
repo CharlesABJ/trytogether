@@ -9,11 +9,13 @@ interface GreetingsProps {
 async function Greetings({ dataGreeting }: GreetingsProps) {
     const session = await auth();
     const user = session?.user;
+    console.log(user);
+
     return (
         <div className="Greetings">
             <h2 >{dataGreeting.title}, <span className="username">
-                {user?.name || user?.firstName}
-            </span> !!
+                {user?.firstName || user?.name}
+            </span> !
             </h2>
             <p>{dataGreeting.description}</p>
         </div>

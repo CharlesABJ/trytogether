@@ -45,6 +45,7 @@ h2 {
 
 h3 {
   @include classic-h3;
+  max-width: 60%;
 }
 
 button,
