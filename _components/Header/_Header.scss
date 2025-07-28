@@ -263,7 +263,7 @@
           transition: 0.3s ease-in-out;
           &.menu-is-open {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: $sixteenpx;
             flex-wrap: wrap;
             li {

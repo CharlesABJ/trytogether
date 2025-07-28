@@ -46,7 +46,7 @@
     font-size: calc($thirty-twopx - $twopx);
   }
   @media screen and (max-width: 678px) {
-    font-size: calc($twenty-fivepx - $twopx);
+    // font-size: calc($twenty-fivepx - $twopx);
   }
 }
 @mixin classic-h1 {
